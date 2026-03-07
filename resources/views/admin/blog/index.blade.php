@@ -7,63 +7,7 @@
 
 
 
-            <form action="" method="POST" enctype="multipart/form-data"
-                style="display: none;  " id="adding" >
-                <div id="btn1"
-                    style="border: none;   box-shadow: 10px 10px 5px lightblue;
- background-color:#ffffff; font-size:2rem; padding:0 10px 0 10px; color:rgb(0, 0, 0); cursor: pointer; border-radius:10px;display:flex;justify-content:flex-end; padding-left:20px;">
-                    X </div>
 
-
-                @csrf
-
-                <div class="card-body">
-                    <div class="row g-3">
-
-                        <!-- Blog Title -->
-                        <div class="col-md-12">
-                            <label class="form-label">Blog Title</label>
-                            <input type="text" name="title" class="form-control" placeholder="Enter blog title"
-                                required>
-                        </div>
-
-                        <!-- Author -->
-                        <div class="col-md-6">
-                            <label class="form-label">Author Name</label>
-                            <input type="text" name="author" class="form-control" placeholder="Enter author name">
-                        </div>
-
-                        <!-- Status -->
-                        <div class="col-md-6">
-                            <label class="form-label">Status</label>
-                            <select name="status" class="form-select">
-                                <option value="published">Published</option>
-                                <option value="draft">Draft</option>
-                            </select>
-                        </div>
-
-                        <!-- Blog Content -->
-                        <div class="col-md-12">
-                            <label class="form-label">Blog Content</label>
-                            <textarea name="content" rows="6" class="form-control" placeholder="Write blog content here..." required></textarea>
-                        </div>
-
-                        <!-- Featured Image -->
-                        <div class="col-md-12">
-                            <label class="form-label">Featured Image</label>
-                            <input type="file" name="image" class="form-control">
-                        </div>
-
-                    </div>
-                </div>
-
-                <!-- Footer -->
-                <div class="card-footer">
-                    <button type="submit" class="btn btn-info">Publish Blog</button>
-                    <a href="{{ route('blogs.index') }}" class="btn btn-secondary">Cancel</a>
-                </div>
-
-            </form>
 
             <div class="card">
 
@@ -71,10 +15,9 @@
                 <div class="card-header">
                     <div class="d-flex justify-content-between align-items-center">
                         <h3 class="card-title mb-0">Blog Posts</h3>
-                        {{-- <a href="" class="btn btn-success btn-sm" id="btn">
-                        Add New Blog
-                    </a> --}}
-                        <button id="btn" class="btn btn-success btn-sm"> Add New Blog</button>
+                        <a href="{{ route('blogs.index') }}" class="btn btn-success btn-sm" id="btn">
+                            Add New Blog
+                        </a>
                     </div>
                 </div>
 
@@ -84,6 +27,7 @@
                         <thead>
                             <tr>
                                 <th>Title</th>
+                                <th>Sub Title</th>
                                 <th>Author</th>
                                 <th>Content</th>
                                 <th>Image</th>
@@ -94,6 +38,8 @@
                         <tbody>
                             <tr>
                                 <td>My First Blog</td>
+                                <td>My First Blog</td>
+
                                 <td>John Doe</td>
                                 <td>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aut sequi hic illo voluptatem?
                                     Et ratione, quam labore laudantium amet mollitia quae pariatur? Saepe, tenetur veritatis
@@ -112,6 +58,7 @@
 
                             <tr>
                                 <td>Laravel Tips</td>
+                                <td>any</td>
                                 <td>Jane Smith</td>
                                 <td>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ut voluptate eius, vel nemo
                                     reiciendis odio unde, officiis delectus repudiandae minima aut assumenda necessitatibus
@@ -147,26 +94,12 @@
 
 
 
-    </div>
+  
 
 
 
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
-    <script>
-        $(document).ready(function() {
 
-            $("#btn").click(function() {
-                $("#adding").fadeIn(1000); // shows form smoothly
-            });
-
-            $("#btn1").click(function() {
-                $("#adding").fadeOut(1000); // shows form smoothly
-            });
-
-            // shows form smoothly
-
-        });
-    </script>
 
 
 @endsection

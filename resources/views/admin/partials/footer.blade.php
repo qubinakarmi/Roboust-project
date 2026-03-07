@@ -9,7 +9,7 @@
         function showAlert() {
             Swal.fire({
                 title: 'Are you sure?',
-                text: 'Do you want to delete this blog?',
+                text: 'Do you want to delete?',
                 icon: 'warning',
                 showCancelButton: true,
                 confirmButtonText: 'Yes, delete it!',
@@ -28,16 +28,113 @@
         }
     </script>
 
+    {{-- cke editor script --}}
+    <script src="https://cdn.ckeditor.com/ckeditor5/39.0.1/classic/ckeditor.js"></script>
+
+    <script>
+        ClassicEditor
+            .create(document.querySelector('#editor'), {
+            })
+            .catch(error => {
+                console.error(error);
+            });
+    </script>
+
+    {{-- image javascript --}}
+
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+
+            let dropArea = document.getElementById("drop-area");
+            let input = document.getElementById("images");
+            let preview = document.getElementById("preview");
+
+            let selectedFiles = [];
+
+            dropArea.addEventListener("click", () => input.click());
+
+            ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
+                dropArea.addEventListener(eventName, e => e.preventDefault());
+            });
+
+            dropArea.addEventListener("drop", function(e) {
+                handleFiles(e.dataTransfer.files);
+            });
+
+            input.addEventListener("change", function() {
+                handleFiles(this.files);
+            });
+
+            function handleFiles(files) {
+
+                Array.from(files).forEach(file => {
+                    if (!file.type.startsWith("image/")) return;
+                    selectedFiles.push(file);
+                });
+
+                showPreview();
+            }
+
+            function showPreview() {
+
+                preview.innerHTML = "";
+
+                selectedFiles.forEach((file, index) => {
+
+                    let reader = new FileReader();
+
+                    reader.onload = function(e) {
+
+                        let col = document.createElement("div");
+                        col.classList.add("col-md-3", "mb-3");
+
+                        col.innerHTML = `
+                    <div class="card shadow-sm position-relative">
+                        <img src="${e.target.result}" 
+                             class="card-img-top"
+                             style="height:150px; object-fit:cover;">
+                        <button type="button"
+                                class="btn btn-danger btn-sm position-absolute top-0 end-0 m-1"
+                                onclick="removeImage(${index})">
+                            ✕
+                        </button>
+                    </div>
+                `;
+
+                        preview.appendChild(col);
+                    };
+
+                    reader.readAsDataURL(file);
+                });
+
+                updateInputFiles();
+            }
+
+            function updateInputFiles() {
+                const dataTransfer = new DataTransfer();
+                selectedFiles.forEach(file => dataTransfer.items.add(file));
+                input.files = dataTransfer.files;
+            }
+
+            window.removeImage = function(index) {
+                selectedFiles.splice(index, 1);
+                showPreview();
+            };
+
+        });
+    </script>
+
 
 
     <footer class="app-footer">
         <!--begin::To the end-->
-        <div class="float-end d-none d-sm-inline">Anything you want</div>
+        <div class="float-end d-none d-sm-inline">We are here to Guide.</div>
         <!--end::To the end-->
         <!--begin::Copyright-->
         <strong>
-            Copyright &copy; 2014-2025&nbsp;
-            <a href="https://adminlte.io" class="text-decoration-none">AdminLTE.io</a>.
+            Copyright &copy; 2026&nbsp;
+            <a href="https://adminlte.io" class="text-decoration-none">ABC Consultancy</a>.
         </strong>
         All rights reserved.
         <!--end::Copyright-->
@@ -115,139 +212,139 @@
         // IT'S ALL JUST JUNK FOR DEMO
         // ++++++++++++++++++++++++++++++++++++++++++
 
-    //     const sales_chart_options = {
-    //         series: [{
-    //                 name: 'Digital Goods',
-    //                 data: [28, 48, 40, 19, 86, 27, 90],
-    //             },
-    //             {
-    //                 name: 'Electronics',
-    //                 data: [65, 59, 80, 81, 56, 55, 40],
-    //             },
-    //         ],
-    //         chart: {
-    //             height: 300,
-    //             type: 'area',
-    //             toolbar: {
-    //                 show: false,
-    //             },
-    //         },
-    //         legend: {
-    //             show: false,
-    //         },
-    //         colors: ['#0d6efd', '#20c997'],
-    //         dataLabels: {
-    //             enabled: false,
-    //         },
-    //         stroke: {
-    //             curve: 'smooth',
-    //         },
-    //         xaxis: {
-    //             type: 'datetime',
-    //             categories: [
-    //                 '2023-01-01',
-    //                 '2023-02-01',
-    //                 '2023-03-01',
-    //                 '2023-04-01',
-    //                 '2023-05-01',
-    //                 '2023-06-01',
-    //                 '2023-07-01',
-    //             ],
-    //         },
-    //         tooltip: {
-    //             x: {
-    //                 format: 'MMMM yyyy',
-    //             },
-    //         },
-    //     };
+        //     const sales_chart_options = {
+        //         series: [{
+        //                 name: 'Digital Goods',
+        //                 data: [28, 48, 40, 19, 86, 27, 90],
+        //             },
+        //             {
+        //                 name: 'Electronics',
+        //                 data: [65, 59, 80, 81, 56, 55, 40],
+        //             },
+        //         ],
+        //         chart: {
+        //             height: 300,
+        //             type: 'area',
+        //             toolbar: {
+        //                 show: false,
+        //             },
+        //         },
+        //         legend: {
+        //             show: false,
+        //         },
+        //         colors: ['#0d6efd', '#20c997'],
+        //         dataLabels: {
+        //             enabled: false,
+        //         },
+        //         stroke: {
+        //             curve: 'smooth',
+        //         },
+        //         xaxis: {
+        //             type: 'datetime',
+        //             categories: [
+        //                 '2023-01-01',
+        //                 '2023-02-01',
+        //                 '2023-03-01',
+        //                 '2023-04-01',
+        //                 '2023-05-01',
+        //                 '2023-06-01',
+        //                 '2023-07-01',
+        //             ],
+        //         },
+        //         tooltip: {
+        //             x: {
+        //                 format: 'MMMM yyyy',
+        //             },
+        //         },
+        //     };
 
-    //     const sales_chart = new ApexCharts(
-    //         document.querySelector('#revenue-chart'),
-    //         sales_chart_options,
-    //     );
-    //     sales_chart.render();
-    // </script>
+        //     const sales_chart = new ApexCharts(
+        //         document.querySelector('#revenue-chart'),
+        //         sales_chart_options,
+        //     );
+        //     sales_chart.render();
+        // 
+    </script>
     <script>
-
         (() => {
-  "use strict";
+            "use strict";
 
-  const storedTheme = localStorage.getItem("theme");
+            const storedTheme = localStorage.getItem("theme");
 
-  const getPreferredTheme = () => {
-    if (storedTheme) {
-      return storedTheme;
-    }
+            const getPreferredTheme = () => {
+                if (storedTheme) {
+                    return storedTheme;
+                }
 
-    return window.matchMedia("(prefers-color-scheme: dark)").matches
-      ? "dark"
-      : "light";
-  };
+                return window.matchMedia("(prefers-color-scheme: dark)").matches ?
+                    "dark" :
+                    "light";
+            };
 
-  const setTheme = function (theme) {
-    if (
-      theme === "auto" &&
-      window.matchMedia("(prefers-color-scheme: dark)").matches
-    ) {
-      document.documentElement.setAttribute("data-bs-theme", "dark");
-    } else {
-      document.documentElement.setAttribute("data-bs-theme", theme);
-    }
-  };
+            const setTheme = function(theme) {
+                if (
+                    theme === "auto" &&
+                    window.matchMedia("(prefers-color-scheme: dark)").matches
+                ) {
+                    document.documentElement.setAttribute("data-bs-theme", "dark");
+                } else {
+                    document.documentElement.setAttribute("data-bs-theme", theme);
+                }
+            };
 
-  setTheme(getPreferredTheme());
+            setTheme(getPreferredTheme());
 
-  const showActiveTheme = (theme, focus = false) => {
-    const themeSwitcher = document.querySelector("#bd-theme");
+            const showActiveTheme = (theme, focus = false) => {
+                const themeSwitcher = document.querySelector("#bd-theme");
 
-    if (!themeSwitcher) {
-      return;
-    }
+                if (!themeSwitcher) {
+                    return;
+                }
 
-    const themeSwitcherText = document.querySelector("#bd-theme-text");
-    const activeThemeIcon = document.querySelector(".theme-icon-active i");
-    const btnToActive = document.querySelector(
-      `[data-bs-theme-value="${theme}"]`
-    );
-    const svgOfActiveBtn = btnToActive.querySelector("i").getAttribute("class");
+                const themeSwitcherText = document.querySelector("#bd-theme-text");
+                const activeThemeIcon = document.querySelector(".theme-icon-active i");
+                const btnToActive = document.querySelector(
+                    `[data-bs-theme-value="${theme}"]`
+                );
+                const svgOfActiveBtn = btnToActive.querySelector("i").getAttribute("class");
 
-    for (const element of document.querySelectorAll("[data-bs-theme-value]")) {
-      element.classList.remove("active");
-      element.setAttribute("aria-pressed", "false");
-    }
+                for (const element of document.querySelectorAll("[data-bs-theme-value]")) {
+                    element.classList.remove("active");
+                    element.setAttribute("aria-pressed", "false");
+                }
 
-    btnToActive.classList.add("active");
-    btnToActive.setAttribute("aria-pressed", "true");
-    activeThemeIcon.setAttribute("class", svgOfActiveBtn);
-    const themeSwitcherLabel = `${themeSwitcherText.textContent} (${btnToActive.dataset.bsThemeValue})`;
-    themeSwitcher.setAttribute("aria-label", themeSwitcherLabel);
+                btnToActive.classList.add("active");
+                btnToActive.setAttribute("aria-pressed", "true");
+                activeThemeIcon.setAttribute("class", svgOfActiveBtn);
+                const themeSwitcherLabel = `${themeSwitcherText.textContent} (${btnToActive.dataset.bsThemeValue})`;
+                themeSwitcher.setAttribute("aria-label", themeSwitcherLabel);
 
-    if (focus) {
-      themeSwitcher.focus();
-    }
-  };
+                if (focus) {
+                    themeSwitcher.focus();
+                }
+            };
 
-  window
-    .matchMedia("(prefers-color-scheme: dark)")
-    .addEventListener("change", () => {
-      if (storedTheme !== "light" || storedTheme !== "dark") {
-        setTheme(getPreferredTheme());
-      }
-    });
+            window
+                .matchMedia("(prefers-color-scheme: dark)")
+                .addEventListener("change", () => {
+                    if (storedTheme !== "light" || storedTheme !== "dark") {
+                        setTheme(getPreferredTheme());
+                    }
+                });
 
-  window.addEventListener("DOMContentLoaded", () => {
-    showActiveTheme(getPreferredTheme());
+            window.addEventListener("DOMContentLoaded", () => {
+                showActiveTheme(getPreferredTheme());
 
-    for (const toggle of document.querySelectorAll("[data-bs-theme-value]")) {
-      toggle.addEventListener("click", () => {
-        const theme = toggle.getAttribute("data-bs-theme-value");
-        localStorage.setItem("theme", theme);
-        setTheme(theme);
-        showActiveTheme(theme, true);
-      });
-    }
-  });
-})();
+                for (const toggle of document.querySelectorAll("[data-bs-theme-value]")) {
+                    toggle.addEventListener("click", () => {
+                        const theme = toggle.getAttribute("data-bs-theme-value");
+                        localStorage.setItem("theme", theme);
+                        setTheme(theme);
+                        showActiveTheme(theme, true);
+                    });
+                }
+            });
+        })();
     </script>
 
     <!-- jsvectormap -->

@@ -1,14 +1,14 @@
 @extends('admin.layouts.app2')
-@section('title','Add Settting ')
+@section('title', 'Add Settting ')
 @section('content')
 
-<main class="app-main">
-    <div class="app-content">
-        <div class="container-fluid">
+    <main class="app-main">
+        <div class="app-content">
+            <div class="container-fluid">
 
-           
 
-             
+
+
 
                 <!-- Form -->
                 <div class="card card-warning card-outline mb-4">
@@ -24,7 +24,8 @@
                             <div class="row mb-3">
                                 <label for="title" class="col-sm-2 col-form-label">Title</label>
                                 <div class="col-sm-10">
-                                    <input type="text" name="title" class="form-control" id="title" placeholder="Enter business title" required />
+                                    <input type="text" name="title" class="form-control" id="title"
+                                        placeholder="Enter business title" required />
                                 </div>
                             </div>
 
@@ -32,7 +33,9 @@
                             <div class="row mb-3">
                                 <label for="logo" class="col-sm-2 col-form-label">Logo Image</label>
                                 <div class="col-sm-10">
-                                    <input type="file" name="logo" class="form-control" id="logo" required />
+                                    <x-image action="" />
+
+                                    {{-- <input type="file" name="logo" class="form-control" id="logo" required /> --}}
                                 </div>
                             </div>
 
@@ -40,7 +43,8 @@
                             <div class="row mb-3">
                                 <label for="location" class="col-sm-2 col-form-label">Location</label>
                                 <div class="col-sm-10">
-                                    <input type="text" name="location" class="form-control" id="location" placeholder="Enter business location" required />
+                                    <input type="text" name="location" class="form-control" id="location"
+                                        placeholder="Enter business location" required />
                                 </div>
                             </div>
 
@@ -48,7 +52,8 @@
                             <div class="row mb-3">
                                 <label for="contact" class="col-sm-2 col-form-label">Contact Information</label>
                                 <div class="col-sm-10">
-                                    <input type="text" name="contact" class="form-control" id="contact" placeholder="Phone, Email, etc." required />
+                                    <input type="text" name="contact" class="form-control" id="contact"
+                                        placeholder="Phone, Email, etc." required />
                                 </div>
                             </div>
 
@@ -64,7 +69,6 @@
             </div>
 
         </div>
-    </div>
-</main>
+    </main>
 
 @endsection

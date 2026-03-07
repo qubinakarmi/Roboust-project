@@ -46,7 +46,7 @@
 
                                     <div class="col-md-6">
                                         <label class="form-label">Description</label>
-                                        <textarea class="form-control"></textarea>
+                                        <textarea id="editor" class="form-control"></textarea>
                                     </div>
 
                   

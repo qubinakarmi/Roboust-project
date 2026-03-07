@@ -44,6 +44,8 @@
                 <li class="nav-item">
                     <a href="#" class="nav-link">
                         {{-- <i class="nav-icon bi bi-clipboard-fill"></i> --}}
+                        <i class=" nav-icon fas fa-file-alt "></i>
+
                         <p>
                             Blog
                             {{-- <span class="nav-badge badge text-bg-secondary me-3">6</span> --}}
@@ -67,9 +69,40 @@
 
 
 
+                       <li class="nav-item">
+                    <a href="{{ route('admin.counter') }}" class="nav-link">
+                        {{-- <i class="nav-icon bi bi-clipboard-fill"></i> --}}
+                        <i class="nav-icon fas fa-tachometer-alt "></i>
+
+                        <p>
+                            Counter
+                            {{-- <span class="nav-badge badge text-bg-secondary me-3">6</span> --}}
+                            {{-- <i class="nav-arrow bi bi-chevron-right"></i> --}}
+                        </p>
+                    </a>
+                  
+                </li>
+
+
+
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
                 <li class="nav-item">
                     <a href="#" class="nav-link">
-                        {{-- <i class="nav-icon bi bi-clipboard-fill"></i> --}}
+                        <i class="nav-icon bi bi-clipboard-fill"></i>
                         <p>
                             Form
                             {{-- <span class="nav-badge badge text-bg-secondary me-3">6</span> --}}
@@ -90,6 +123,12 @@
                                 <p>Register Form</p>
                             </a>
                         </li>
+                          <li class="nav-item">
+                            <a href="{{ route('teams') }}" class="nav-link">
+                                {{-- <i class="nav-icon bi bi-circle"></i> --}}
+                                <p>Teams Form</p>
+                            </a>
+                        </li>
 
 
 
@@ -101,6 +140,7 @@
 
                 <li class="nav-item">
                     <a href="#" class="nav-link">
+                        <i class=" nav-icon fa-solid fa-person-walking-luggage"></i>
                         <p> Services<i class="nav-arrow bi bi-chevron-right"></i>
                         </p>
                     </a>
@@ -109,6 +149,7 @@
                         <li class="nav-item">
                             <a href="{{ route('admin.services') }}" class="nav-link">
                                 {{-- <i class="nav-icon bi bi-circle"></i> --}}
+
                                 <p>Services List</p>
                             </a>
                         </li>
@@ -120,16 +161,20 @@
 
 
 
-                        <li class="nav-item">
+                <li class="nav-item">
                     <a href="#" class="nav-link">
+                        <i class="nav-icon fa-solid fa-image"></i>
+
                         <p> Gallery<i class="nav-arrow bi bi-chevron-right"></i>
                         </p>
                     </a>
-                    
+
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
                             <a href="{{ route('gallery') }}" class="nav-link">
                                 {{-- <i class="nav-icon bi bi-circle"></i> --}}
+
+                                <i class="fa-thin fa-image"></i>
                                 <p>Add Gallery</p>
                             </a>
                         </li>
@@ -143,6 +188,8 @@
                 <li class="nav-item">
                     <a href="#" class="nav-link">
                         {{-- <i class="nav-icon bi bi-clipboard-fill"></i> --}}
+                        <i class="nav-icon fas fa-quote-left"></i>
+
                         <p> Testimonial
                             {{-- <span class="nav-badge badge text-bg-secondary me-3">6</span> --}}
                             <i class="nav-arrow bi bi-chevron-right"></i>
@@ -164,12 +211,14 @@
                 <li class="nav-item">
                     <a href="#" class="nav-link">
                         {{-- <i class="nav-icon bi bi-clipboard-fill"></i> --}}
+                        <i class=" nav-icon fa-solid fa-gear"></i>
 
 
                         <p>
                             Settings
                             {{-- <span class="nav-badge badge text-bg-secondary me-3">6</span> --}}
                             <i class="nav-arrow bi bi-chevron-right"></i>
+
                         </p>
                     </a>
                     <ul class="nav nav-treeview">

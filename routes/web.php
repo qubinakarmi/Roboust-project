@@ -64,7 +64,7 @@ Route::resource('setting', SettingController::class);
 
 Route::view('api','api');
 
-Route::view('counter','admin.counter.counter')->name('counter');
+Route::view('counter','admin.counter.counter')->name('admin.counter');
 
 
 Route::get('contact/form',[FormController::class,'contact_form'])->name('contact.form');
@@ -72,9 +72,9 @@ Route::get('register/form',[FormController::class,'register_form'])->name('regis
 
 Route::view('practice','practice');
 Route::view('gallery','admin.Gallery.gallery')->name('gallery');
-Route::view('abc','abc');
+Route::view('teams','admin.forms.teams')->name('teams');
 
-
+Route::view('image','texteditor');
 
 
 
