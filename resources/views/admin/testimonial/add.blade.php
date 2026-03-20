@@ -15,11 +15,23 @@
                     </div>
 
                     <!-- Form -->
-                    <form action="" method="POST" enctype="multipart/form-data">
+                    <form action="{{ route('testimonial.store') }}" method="POST" enctype="multipart/form-data">
                         @csrf
 
                         <div class="card-body">
                             <div class="row g-3">
+                                <div class="col-md-12">
+                                    <label class="form-label">Company Name</label>
+                                    <input type="text" name="company_name" class="form-control"
+                                        placeholder="Company or designation">
+                                </div>
+
+                                <!-- Client Position / Company -->
+                                <div class="col-md-12">
+                                    <label class="form-label">Designation</label>
+                                    <input type="text" name="designation" class="form-control"
+                                        placeholder="Company or designation">
+                                </div>
 
                                 <!-- Client Name -->
                                 <div class="col-md-6">
@@ -27,46 +39,28 @@
                                     <input type="text" name="client_name" class="form-control"
                                         placeholder="Enter client name" required>
                                 </div>
-
-                                <!-- Client Position / Company -->
-                                <div class="col-md-6">
-                                    <label class="form-label">Company / Position</label>
-                                    <input type="text" name="company" class="form-control"
-                                        placeholder="Company or designation">
+                                <!-- Testimonial Message -->
+                                <div class="col-md-12">
+                                    <label class="form-label">Message</label>
+                                    <textarea id="editor" name="message"></textarea>
                                 </div>
+                                <!-- Client Photo -->
 
-                                <!-- Rating -->
-                                <div class="col-md-6">
-                                    <label class="form-label">Rating</label>
-                                    <select name="rating" class="form-select">
-                                        <option value="5">⭐⭐⭐⭐⭐ (5)</option>
-                                        <option value="4">⭐⭐⭐⭐ (4)</option>
-                                        <option value="3">⭐⭐⭐ (3)</option>
-                                        <option value="2">⭐⭐ (2)</option>
-                                        <option value="1">⭐ (1)</option>
-                                    </select>
-                                </div>
+                                <label class="form-label">Client Photo</label>
 
+                                <x-image />
                                 <!-- Status -->
                                 <div class="col-md-6">
                                     <label class="form-label">Status</label>
                                     <select name="status" class="form-select">
-                                        <option value="published">Published</option>
-                                        <option value="hidden">Hidden</option>
+                                        <option value="1">Published</option>
+                                        <option value="0">Hidden</option>
                                     </select>
                                 </div>
 
-                                <!-- Testimonial Message -->
-                                <div class="col-md-12">
-                                    <label class="form-label">Testimonial Message</label>
-                                    <textarea id="editor" name="message" rows="5" class="form-control" placeholder="Write client feedback..." required></textarea>
-                                </div>
 
-                                <!-- Client Photo -->
-                                {{-- {{-- <div class="col-md-12"> --}}
-                                <label class="form-label">Client Photo</label>
-                                {{-- <input type="file" name="image" class="form-control"> --}}
-                                <x-image action="" />
+
+
 
 
                             </div>

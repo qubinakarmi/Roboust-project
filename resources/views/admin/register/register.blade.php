@@ -7,18 +7,15 @@
             <div class="app-content">
                 <div class="container-fluid">
 
-
-
-
                     <div class="card card-info card-outline">
 
                         <!-- Header -->
                         <div class="card-header">
-                            <h3 class="card-title">Contact</h3>
+                            <h3 class="card-title">Register User </h3>
                         </div>
 
                         <!-- Form -->
-                        <form action="" method="POST" enctype="multipart/form-data">
+                        <form action="{{ route('services.store') }}" method="POST" enctype="multipart/form-data">
                             @csrf
 
                             <div class="card-body">
@@ -32,24 +29,45 @@
                                     </div>
 
                                     <!-- Service Category -->
-                                    <div class="col-md-6">
+                                    <div class="col-md-12">
                                         <label class="form-label">Email</label>
                                         <input type="email" name="email" class="form-control"
                                             placeholder="Enter Your email">
                                     </div>
 
-                                    <div class="col-md-6">
+                                    <div class="col-md-12">
                                         <label class="form-label">Phone</label>
                                         <input type="number" name="phone" class="form-control"
                                             placeholder="Enter Your Phone Number">
                                     </div>
 
-                                    <div class="col-md-6">
-                                        <label class="form-label">Description</label>
-                                        <textarea id="editor" class="form-control"></textarea>
+                                    <div class="col-md-12">
+                                        <label class="form-label">Address</label>
+                                        <input type="text" name="address" class="form-control"
+                                            placeholder="Enter Your Address">
                                     </div>
 
-                  
+                                    <div class="col-md-12">
+                                        <label class="form-label">Password</label>
+                                        <input type="password" name="password" class="form-control"
+                                            placeholder="Enter Your Password">
+                                    </div>
+
+                                    <div class="col-md-12">
+                                        <label class="form-label">Confirm Password</label>
+                                        <input type="password" name="confirm_password" class="form-control"
+                                            placeholder="Enter Your confirm Password">
+                                    </div>
+
+                                    <div class="col-md-12">
+                                        <label class="form-label">Status</label>
+                                        <select name="status"  class="form-control">
+                                            <option value="1">active</option>
+                                            <option value="0" selected>inactive</option>
+
+                                        </select>
+                                        {{-- <input type="password" name="status" class="form-control"> --}}
+                                    </div>
 
 
 
@@ -66,18 +84,6 @@
                         </form>
 
                     </div>
-
-
-
-
-
-
-
-
-
-
-
-                    
 
                 </div>
             </div>

@@ -12,39 +12,46 @@ class AdminLoginController extends Controller
     {
         return view('admin.auth.login');
     }
+
+
     public function login(Request $request)
     {
         $request->validate([
-            'email'=>'required|email',
-            'password'=>'required'
+            'email' => 'required|email',
+            'password' => 'required'
         ]);
-        if(Auth::attempt($request->only('email','password'))){
 
-        if(Auth::user()->is_admin)
-            {
+
+        if (Auth::attempt($request->only('email', 'password'))) {
+
+            if (Auth::user()->is_admin) {
                 return redirect()->route('admin.home');
-
             }
             Auth::logout();
         }
-        return back()->withErrors(['email'=>'wrong credentials']);
+
+        
+        return back()->withErrors(['email' => 'wrong credentials']);
+
+
+
     }
 
 
 
 
-public function logout(Request $request)
-{
-    // Log out the user
-    Auth::logout();
+    public function logout(Request $request)
+    {
+        // Log out the user
+        Auth::logout();
 
-    // Invalidate the session
-    $request->session()->invalidate();
+        // Invalidate the session
+        $request->session()->invalidate();
 
-    // Regenerate CSRF token
-    $request->session()->regenerateToken();
+        // Regenerate CSRF token
+        $request->session()->regenerateToken();
 
-    // Redirect to admin login page
-    return redirect()->route('admin.index');
-}
+        // Redirect to admin login page
+        return redirect()->route('admin.index');
+    }
 }

@@ -15,7 +15,7 @@
                     </div>
 
                     <!-- Form -->
-                    <form action="{{ route('services.store') }}" method="POST" enctype="multipart/form-data">
+                    <form action="" method="POST" enctype="multipart/form-data">
                         @csrf
 
                         <div class="card-body">
@@ -28,11 +28,47 @@
                                         placeholder="Enter service name" required>
                                 </div>
 
+                                <div class="col-md-12">
+                                    <label class="form-label">Slug</label>
+                                    <input type="text" name="slug" class="form-control" placeholder="Enter slug"
+                                        required>
+                                </div>
+
+                                <div class="col-md-12">
+                                    <label class="form-label">Sub Title</label>
+                                    <input type="text" name="sub_title" class="form-control"
+                                        placeholder="Enter Sub title" required>
+                                </div>
+
+
+
+                                <!-- short Description -->
+                                <div class="col-md-12">
+                                    <label class="form-label">Short Description</label>
+                                    <textarea name="short_desc" rows="6" class="form-control" placeholder="Write service description..." required></textarea>
+                                </div>
+
+                                <!-- Service Description -->
+                                <div class="col-md-12">
+                                    <label class="form-label">Description</label>
+                                    <textarea id="editor" name="description" rows="6" class="form-control"
+                                        placeholder="Write service description..." required></textarea>
+                                </div>
+
                                 <!-- Service Category -->
-                                <div class="col-md-6">
+                                {{-- <div class="col-md-6">
                                     <label class="form-label">Category</label>
                                     <input type="text" name="category" class="form-control"
                                         placeholder="Enter service category">
+                                </div> --}}
+
+
+
+                                <!-- Service Image -->
+                                <div class="col-md-12">
+                                    <label class="form-label">Image</label>
+                                    {{-- <input type="file" name="image" class="form-control"> --}}
+                                    <x-image action="" />
                                 </div>
 
                                 <!-- Status -->
@@ -42,22 +78,6 @@
                                         <option value="active">Active</option>
                                         <option value="inactive">Inactive</option>
                                     </select>
-                                </div>
-
-                                <!-- Service Description -->
-                                <div class="col-md-12">
-                                    <label class="form-label">Description</label>
-                                    <textarea  id="editor" name="description" rows="6" class="form-control" placeholder="Write service description..." required></textarea>
-                                </div>
-
-                                <!-- Service Image -->
-                                <div class="col-md-12">
-                                    <label class="form-label">Image</label>
-                                    {{-- <input type="file" name="image" class="form-control"> --}}
-                                                                        <x-image action="" />
-
-                                  
-
                                 </div>
 
                             </div>

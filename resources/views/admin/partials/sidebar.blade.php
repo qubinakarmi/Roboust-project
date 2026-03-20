@@ -54,50 +54,29 @@
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="{{ route('admin.blog') }}" class="nav-link">
+                            <a href="{{ route('blog.index') }}" class="nav-link">
                                 {{-- <i class="nav-icon bi bi-circle"></i> --}}
                                 <p>Blog List</p>
                             </a>
                         </li>
-
-
-
-
 
                     </ul>
                 </li>
 
 
 
-                       <li class="nav-item">
-                    <a href="{{ route('admin.counter') }}" class="nav-link">
+                <li class="nav-item">
+                    <a href="{{ route('counter.index') }}" class="nav-link">
                         {{-- <i class="nav-icon bi bi-clipboard-fill"></i> --}}
                         <i class="nav-icon fas fa-tachometer-alt "></i>
-
                         <p>
                             Counter
                             {{-- <span class="nav-badge badge text-bg-secondary me-3">6</span> --}}
                             {{-- <i class="nav-arrow bi bi-chevron-right"></i> --}}
                         </p>
                     </a>
-                  
+
                 </li>
-
-
-
-
-
-
-    
-
-
-
-
-
-
-
-
-
 
 
                 <li class="nav-item">
@@ -111,28 +90,24 @@
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="{{ route('contact.form') }}" class="nav-link">
+                            <a href="{{ route('contacts.index') }}" class="nav-link">
                                 {{-- <i class="nav-icon bi bi-circle"></i> --}}
-                                <p>Contact Form</p>
+                                <p>Contact </p>
                             </a>
                         </li>
 
                         <li class="nav-item">
-                            <a href="{{ route('register.form') }}" class="nav-link">
+                            <a href="" class="nav-link">
                                 {{-- <i class="nav-icon bi bi-circle"></i> --}}
-                                <p>Register Form</p>
+                                <p>Register </p>
                             </a>
                         </li>
-                          <li class="nav-item">
-                            <a href="{{ route('teams') }}" class="nav-link">
+                        <li class="nav-item">
+                            <a href="{{ route('teams.index') }}" class="nav-link">
                                 {{-- <i class="nav-icon bi bi-circle"></i> --}}
-                                <p>Teams Form</p>
+                                <p>Teams </p>
                             </a>
                         </li>
-
-
-
-
 
                     </ul>
                 </li>
@@ -147,16 +122,12 @@
 
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="{{ route('admin.services') }}" class="nav-link">
-                                {{-- <i class="nav-icon bi bi-circle"></i> --}}
-
+                            <a href="{{ route('services.index') }}" class="nav-link">
                                 <p>Services List</p>
                             </a>
                         </li>
                     </ul>
                 </li>
-
-
 
 
 
@@ -171,8 +142,7 @@
 
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="{{ route('gallery') }}" class="nav-link">
-                                {{-- <i class="nav-icon bi bi-circle"></i> --}}
+                            <a href="{{ route('gall.create') }}" class="nav-link">
 
                                 <i class="fa-thin fa-image"></i>
                                 <p>Add Gallery</p>
@@ -197,7 +167,7 @@
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="{{ route('admin.testimonial') }}" class="nav-link">
+                            <a href="{{ route('testimonial.index') }}" class="nav-link">
                                 {{-- <i class="nav-icon bi bi-circle"></i> --}}
                                 <p>Testimonial List</p>
                             </a>
@@ -223,8 +193,7 @@
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="{{ route('setting.index') }}" class="nav-link">
-                                {{-- <i class="nav-icon bi bi-circle"></i> --}}
+                            <a href="{{ route('sets.index') }}" class="nav-link">
                                 <p>Settings List</p>
                             </a>
                         </li>

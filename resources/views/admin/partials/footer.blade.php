@@ -4,9 +4,14 @@
     <script src="https://code.jquery.com/jquery-4.0.0.js" integrity="sha256-9fsHeVnKBvqh3FB2HYu7g2xseAZ5MlN6Kz/qnkASV8U="
         crossorigin="anonymous"></script>
 
+
+        {{-- sweetalert --}}
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script>
-        function showAlert() {
+<script>
+    document.querySelectorAll('.delete-form').forEach(form => {
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+
             Swal.fire({
                 title: 'Are you sure?',
                 text: 'Do you want to delete?',
@@ -15,29 +20,34 @@
                 confirmButtonText: 'Yes, delete it!',
                 cancelButtonText: 'Cancel'
             }).then((result) => {
-
                 if (result.isConfirmed) {
-                    Swal.fire({
-                        title: 'Deleted!',
-                        text: 'Blog has been deleted successfully.',
-                        icon: 'success'
-                    });
+                    form.submit();
                 }
-
             });
-        }
-    </script>
+        });
+    });
+</script>
+
 
     {{-- cke editor script --}}
     <script src="https://cdn.ckeditor.com/ckeditor5/39.0.1/classic/ckeditor.js"></script>
 
     <script>
         ClassicEditor
-            .create(document.querySelector('#editor'), {
-            })
+            .create(document.querySelector('#editor'), {})
             .catch(error => {
                 console.error(error);
             });
+
+
+
+        document.querySelector('form').addEventListener('submit', function() {
+            if (typeof CKEDITOR !== 'undefined') {
+                for (let instance in CKEDITOR.instances) {
+                    CKEDITOR.instances[instance].updateElement();
+                }
+            }
+        });
     </script>
 
     {{-- image javascript --}}

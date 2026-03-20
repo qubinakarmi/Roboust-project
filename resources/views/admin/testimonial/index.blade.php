@@ -1,97 +1,90 @@
 @extends('admin.layouts.app2')
-@section('title','List Testimonial ')
+@section('title', 'List Testimonial ')
 @section('content')
 
-<div class="app-content mt-4">
-    <div class="container-fluid">
 
-        <div class="card">
+    @if (session('success'))
+        <span class="alert alert-success ">{{ session('success') }}</span>
+    @endif
 
-            <!-- Card Header -->
-            <div class="card-header">
-                <div class="d-flex justify-content-between align-items-center">
-                    <h3 class="card-title mb-0">Testimonials</h3>
+    <div class="app-content mt-4">
+        <div class="container-fluid">
 
-                    {{-- create route --}}
-                    <a href="{{ route('testimonial.index') }}" class="btn btn-success btn-sm">
-                        Add New Testimonial
-                    </a>
+            <div class="card">
+
+                <!-- Card Header -->
+                <div class="card-header">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <h3 class="card-title mb-0">Testimonials</h3>
+
+                        {{-- create route --}}
+                        <a href="{{ route('testimonial.create') }}" class="btn btn-success btn-sm">
+                            Add New Testimonial
+                        </a>
+                    </div>
                 </div>
-            </div>
 
-            <!-- Card Body -->
-            <div class="card-body p-0">
-                <table class="table table-striped table-hover mb-0">
-                    <thead>
-                        <tr>
-                            <th>Client Name</th>
-                            <th>Company / Position</th>
-                            <th>Feedback</th>
-                            <th>Rating</th>
-                            <th>Status</th>
-                            <th>Message</th>
-                            <th>Image</th>
-                            <th class="text-nowrap">Actions</th>
-                        </tr>
-                    </thead>
-                    <tbody>
+                <!-- Card Body -->
+                <div class="card-body p-0">
+                    <table class="table table-striped table-hover mb-0">
+                        <thead>
+                            <tr>
 
-                        <tr>
-                            <td>Ram Sharma</td>
-                            <td>ABC – Technical Director</td>
-                            <td>Excellent service and great support!</td>
-                            <td>⭐⭐⭐⭐⭐</td>
-                            <td><span class="badge text-bg-success">Published</span></td>
-                            <td>Highly recommended company.</td>
-                            <td>
-                                <img src="{{ asset('uploads/testimonials/ram.jpg') }}" width="60">
-                            </td>
+                                <th>Company Name</th>
+                                <th>Designation</th>
+                                <th>Client Name</th>
+                                <th>Message</th>
+                                <th>Image</th>
+                                <th>Status</th>
+                                <th class="text-nowrap">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach ($testimonials as $testimonial)
+                                <tr>
+                                    <td>{{ $testimonial->company_name }}</td>
+                                    <td>{{ $testimonial->designation }}</td>
+                                    <td>{{ $testimonial->client_name }}</td>
+                                    <td>{!! $testimonial->message !!}</td>
+                                    <td><img src="{{ isset($testimonial->image) ? asset('testimonials/' . $testimonial->image) : 'null' }}"
+                                            alt="" style="height:100px;">
+                                    </td>
+                                    <td>
 
-                            <td class="text-nowrap">
-                                <a href="#" class="btn btn-primary btn-sm">Edit</a>
+                                        <span class="badge {{ $testimonial->status === 1 ? 'bg-success' : 'bg-danger' }}">
+                                            {{ $testimonial->status === 1 ? 'Published' : 'Hidden' }}
+                                        </span>
 
-                                <button onclick="showAlert()" class="btn btn-danger btn-sm">Delete</button>
 
-                            </td>
-                        </tr>
+                                    </td>
+                                    <td class="text-nowrap">
+                                        <a href="{{ route('testimonial.edit', $testimonial->id) }}"
+                                            class="btn btn-primary btn-sm">Edit</a>
+                                        <form action="{{ route('testimonial.destroy', $testimonial->id) }}" method="POST"
+                                            class="delete-form">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                                        </form>
 
-                        <tr>
-                            <td>Sita Gurung</td>
-                            <td>JPG – Software Developer</td>
-                            <td>Professional team and timely delivery.</td>
-                            <td>⭐⭐⭐⭐</td>
-                            <td><span class="badge text-bg-warning">Hidden</span></td>
-                            <td>Will work again in future.</td>
-                            <td>
-                                <img src="{{ asset('uploads/testimonials/sita.jpg') }}" width="60">
-                            </td>
+                                    </td>
+                                </tr>
+                            @endforeach
 
-                            <td class="text-nowrap">
-                                <a href="#" class="btn btn-primary btn-sm">Edit</a>
 
-                                <button onclick="showAlert()" class="btn btn-danger btn-sm">Delete</button>
+                        </tbody>
+                    </table>
+                </div>
 
-                            </td>
-                        </tr>
+                <!-- Card Footer -->
+                <div class="card-footer clearfix">
+                    <span class="pagination px-2">{{ $testimonials->links('pagination::bootstrap-5') }}</span>
 
-                    </tbody>
-                </table>
-            </div>
+                </div>
 
-            <!-- Card Footer -->
-            <div class="card-footer clearfix">
-                <ul class="pagination pagination-sm m-0 float-end">
-                    <li class="page-item"><a class="page-link" href="#">&laquo;</a></li>
-                    <li class="page-item"><a class="page-link" href="#">1</a></li>
-                    <li class="page-item"><a class="page-link" href="#">2</a></li>
-                    <li class="page-item"><a class="page-link" href="#">3</a></li>
-                    <li class="page-item"><a class="page-link" href="#">&raquo;</a></li>
-                </ul>
             </div>
 
         </div>
-
     </div>
-</div>
 
 @endsection

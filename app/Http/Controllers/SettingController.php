@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Setting;
+
 use Illuminate\Http\Request;
 
 class SettingController extends Controller
@@ -11,24 +13,97 @@ class SettingController extends Controller
      */
     public function index()
     {
-         return view('admin.settings.add');
+
+        $settings = Setting::all()->pluck('value', 'key');
+
+        return view('admin.settings.add', compact('settings'));
     }
+
+
 
     /**
      * Show the form for creating a new resource.
      */
     public function create()
     {
-        //
+        // Fetch all settings as key => value
+
     }
 
     /**
      * Store a newly created resource in storage.
      */
+
+
+
+
+
     public function store(Request $request)
     {
-        //
+        $allSettings = $request->validate([
+            'title'    => 'required|string',
+            'logo'     => 'nullable|image|mimes:jpg,png,jpeg|max:2048',
+            'location' => 'required|string',
+            'contact'  => 'required|string',
+            'date'  => 'required|',
+
+        ]);
+
+        if ($request->hasFile('logo')) {
+            $file = $request->file('logo');
+            $fileName = $file->getClientOriginalName(); // use original file name
+            $file->move(public_path('settings'), $fileName);
+            $allSettings['logo'] = $fileName; //store in database
+
+        }
+
+        // Save settings (key-value)
+        foreach ($allSettings as $key => $value) {
+            Setting::updateOrCreate(
+                ['key' => $key],
+                ['value' => $value]
+            );
+        }
+
+        return redirect()->back()->with('success', 'Settings saved successfully!');
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     /**
      * Display the specified resource.

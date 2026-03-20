@@ -1,84 +1,96 @@
 @extends('admin.layouts.app2')
-@section('title','Edit Testimonial ')
+@section('title', 'Add Testimonial')
 @section('content')
-<main class="app-main">
-<div class="app-content">
-<div class="container-fluid">
 
-<div class="card card-info card-outline">
+    {{-- {{ dd($testimonials->company_name) }} --}}
+    <main class="app-main">
+        <div class="app-content">
+            <div class="container-fluid">
 
-    <!-- Header -->
-    <div class="card-header">
-        <h3 class="card-title">Add New Testimonial</h3>
-    </div>
+                <div class="card card-info card-outline">
 
-    <!-- Form -->
-    <form action="{{ route('testimonial.store') }}" method="POST" enctype="multipart/form-data">
-        @csrf
+                    <!-- Header -->
+                    <div class="card-header">
+                        <h3 class="card-title">Edit Testimonial</h3>
+                    </div>
 
-        <div class="card-body">
-            <div class="row g-3">
+                    <!-- Form -->
+                    <form action="{{ route('testimonial.update', $datas->id) }}" method="POST" enctype="multipart/form-data">
+                        @csrf
+                        @method('PUT')
 
-                <!-- Client Name -->
-                <div class="col-md-6">
-                    <label class="form-label">Client Name</label>
-                    <input type="text" name="client_name" class="form-control" placeholder="Enter client name" required>
+                        <div class="card-body">
+                            <div class="row g-3">
+                                <div class="col-md-12">
+                                    <label class="form-label">Company Name</label>
+                                    <input type="text" name="company_name" class="form-control"
+                                        placeholder="Company or designation" value="{{ $datas->company_name }}">
+                                </div>
+
+                                <!-- Client Position / Company -->
+                                <div class="col-md-12">
+                                    <label class="form-label">Designation</label>
+                                    <input type="text" name="designation" class="form-control"
+                                        placeholder="Company or designation" value="{{ $datas->designation }}">
+                                </div>
+
+                                <!-- Client Name -->
+                                <div class="col-md-6">
+                                    <label class="form-label">Client Name</label>
+                                    <input type="text" name="client_name" class="form-control"
+                                        placeholder="Enter client name" value="{{ $datas->client_name }}"required>
+                                </div>
+                                <!-- Testimonial Message -->
+                                <div class="col-md-12">
+                                    <label class="form-label">Message</label>
+                                    <textarea id="editor" name="message" rows="5" class="form-control" placeholder="Write client feedback...">{{ $datas->message }}</textarea>
+                                </div>
+                                <!-- Client Photo -->
+                                {{-- {{-- <div class="col-md-12"> --}}
+                                <div class="col-md-12">
+                                    <label class="form-label">Client Photo</label>
+                                    {{-- <input type="file" name="image" class="form-control"> --}}
+                                    <x-image />
+                                    <span>current image</span>
+                                    <img src="{{ asset('testimonials/' . $datas->image) }}" alt=""
+                                        style="height:100px;width:100px;">
+                                </div>
+                                <!-- Status -->
+                                <div class="col-md-6">
+                                    <label class="form-label">Status</label>
+                                    <select name="status" class="form-select">
+                                        <option value="1" {{ $datas->status == 1 ? 'selected' : '' }}>Published
+                                        </option>
+                                        <option value="0" {{ $datas->status == 0 ? 'selected' : '' }}>Hidden
+                                        </option>
+                                    </select>
+                                </div>
+
+
+
+
+
+
+                            </div>
+
+
+
+
+                        </div>
                 </div>
 
-                <!-- Client Position / Company -->
-                <div class="col-md-6">
-                    <label class="form-label">Company / Position</label>
-                    <input type="text" name="company" class="form-control" placeholder="Company or designation">
+                <!-- Footer -->
+                <div class="card-footer">
+                    <button type="submit" class="btn btn-info">Save Testimonial</button>
+                    <a href="{{ route('testimonial.index') }}" class="btn btn-secondary">Cancel</a>
                 </div>
 
-                <!-- Rating -->
-                <div class="col-md-6">
-                    <label class="form-label">Rating</label>
-                    <select name="rating" class="form-select">
-                        <option value="5">⭐⭐⭐⭐⭐ (5)</option>
-                        <option value="4">⭐⭐⭐⭐ (4)</option>
-                        <option value="3">⭐⭐⭐ (3)</option>
-                        <option value="2">⭐⭐ (2)</option>
-                        <option value="1">⭐ (1)</option>
-                    </select>
-                </div>
-
-                <!-- Status -->
-                <div class="col-md-6">
-                    <label class="form-label">Status</label>
-                    <select name="status" class="form-select">
-                        <option value="published">Published</option>
-                        <option value="hidden">Hidden</option>
-                    </select>
-                </div>
-
-                <!-- Testimonial Message -->
-                <div class="col-md-12">
-                    <label class="form-label">Testimonial Message</label>
-                    <textarea name="message" rows="5" class="form-control" placeholder="Write client feedback..." required></textarea>
-                </div>
-
-                <!-- Client Photo -->
-                <div class="col-md-12">
-                    <label class="form-label">Client Photo</label>
-                    <input type="file" name="image" class="form-control">
-                </div>
+                </form>
 
             </div>
+
         </div>
-
-        <!-- Footer -->
-        <div class="card-footer">
-            <button type="submit" class="btn btn-info">Save Testimonial</button>
-            <a href="{{ route('testimonial.index') }}" class="btn btn-secondary">Cancel</a>
         </div>
-
-    </form>
-
-</div>
-
-</div>
-</div>
-</main>
+    </main>
 
 @endsection

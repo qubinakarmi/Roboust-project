@@ -1,186 +1,100 @@
-@extends('admin.layouts2.app')
-@section('title','Edit Blog')
+@extends('admin.layouts.app2')
+@section('title', 'Edit Blog')
 
 @section('content')
 
+    <main class="app-main">
+        <div class="app-content">
+            <div class="container-fluid">
 
-    <div class="app-content">
-          <!--begin::Container-->
-          <div class="container-fluid">
+                <div class="card card-info card-outline">
 
-
-
-
-<!--begin::Form Validation-->
-                <div class="card card-info card-outline mb-4">
-                  <!--begin::Header-->
-                  <div class="card-header">
-                    <div class="card-title">Edit Blog</div>
-                  </div>
-                  <!--end::Header-->
-                  <!--begin::Form-->
-                  <form class="needs-validation" novalidate>
-                    <!--begin::Body-->
-                    <div class="card-body">
-                      <!--begin::Row-->
-                      <div class="row g-3">
-                        <!--begin::Col-->
-                        <div class="col-md-6">
-                          <label for="validationCustom01" class="form-label">First name</label>
-                          <input
-                            type="text"
-                            class="form-control"
-                            id="validationCustom01"
-                            value="Mark"
-                            required
-                          />
-                          <div class="valid-feedback">Looks good!</div>
-                        </div>
-                        <!--end::Col-->
-                        <!--begin::Col-->
-                        <div class="col-md-6">
-                          <label for="validationCustom02" class="form-label">Last name</label>
-                          <input
-                            type="text"
-                            class="form-control"
-                            id="validationCustom02"
-                            value="Otto"
-                            required
-                          />
-                          <div class="valid-feedback">Looks good!</div>
-                        </div>
-                        <!--end::Col-->
-                        <!--begin::Col-->
-                        <div class="col-md-6">
-                          <label for="validationCustomUsername" class="form-label">Username</label>
-                          <div class="input-group has-validation">
-                            <span class="input-group-text" id="inputGroupPrepend">@</span>
-                            <input
-                              type="text"
-                              class="form-control"
-                              id="validationCustomUsername"
-                              aria-describedby="inputGroupPrepend"
-                              required
-                            />
-                            <div class="invalid-feedback">Please choose a username.</div>
-                          </div>
-                        </div>
-                        <!--end::Col-->
-                        <!--begin::Col-->
-                        <div class="col-md-6">
-                          <label for="validationCustom03" class="form-label">City</label>
-                          <input
-                            type="text"
-                            class="form-control"
-                            id="validationCustom03"
-                            required
-                          />
-                          <div class="invalid-feedback">Please provide a valid city.</div>
-                        </div>
-                        <!--end::Col-->
-                        <!--begin::Col-->
-                        <div class="col-md-6">
-                          <label for="validationCustom04" class="form-label">State</label>
-                          <select class="form-select" id="validationCustom04" required>
-                            <option selected disabled value="">Choose...</option>
-                            <option>...</option>
-                          </select>
-                          <div class="invalid-feedback">Please select a valid state.</div>
-                        </div>
-                        <!--end::Col-->
-                        <!--begin::Col-->
-                        <div class="col-md-6">
-                          <label for="validationCustom05" class="form-label">Zip</label>
-                          <input
-                            type="text"
-                            class="form-control"
-                            id="validationCustom05"
-                            required
-                          />
-                          <div class="invalid-feedback">Please provide a valid zip.</div>
-                        </div>
-                        <!--end::Col-->
-                        <!--begin::Col-->
-                        <div class="col-12">
-                          <div class="form-check">
-                            <input
-                              class="form-check-input"
-                              type="checkbox"
-                              value=""
-                              id="invalidCheck"
-                              required
-                            />
-                            <label class="form-check-label" for="invalidCheck">
-                              Agree to terms and conditions
-                            </label>
-                            <div class="invalid-feedback">You must agree before submitting.</div>
-                          </div>
-                        </div>
-                        <!--end::Col-->
-                      </div>
-                      <!--end::Row-->
+                    <!-- Header -->
+                    <div class="card-header">
+                        <h3 class="card-title">Add New Blog</h3>
                     </div>
+                    <!-- Form -->
+                    <form action="{{ route('blog.update', $datas->id) }}" method="POST" enctype="multipart/form-data">
+                        @csrf
+                        @method('PUT')
 
-                    <!--end::Body-->
-                    <!--begin::Footer-->
-                    <div class="card-footer">
-                      <button class="btn btn-info" type="submit">Submit form</button>
-                    </div>
-                    <!--end::Footer-->
-                  </form>
-                  <!--end::Form-->
-                  <!--begin::JavaScript-->
-                  <script>
-                    // Example starter JavaScript for disabling form submissions if there are invalid fields
-                    (() => {
-                      'use strict';
+                        <div class="card-body">
+                            <div class="row g-3">
 
-                      // Fetch all the forms we want to apply custom Bootstrap validation styles to
-                      const forms = document.querySelectorAll('.needs-validation');
+                                <!-- Category -->
+                                <select name="author_id" class="form-control mb-2">
+                                    <option value="">Select Author</option>
+                                    @foreach ($authors as $author)
+                                        <option value="{{ $author->id }}"
+                                            {{ old('author_id', $datas->author_id) == $author->id ? 'selected' : '' }}>
+                                            {{ $author->name }}
+                                        </option>
+                                    @endforeach
+                                </select>
 
-                      // Loop over them and prevent submission
-                      Array.from(forms).forEach((form) => {
-                        form.addEventListener(
-                          'submit',
-                          (event) => {
-                            if (!form.checkValidity()) {
-                              event.preventDefault();
-                              event.stopPropagation();
-                            }
+                                <!-- Blog Title -->
+                                <div class="col-md-12">
+                                    <label class="form-label">Title</label>
+                                    <input type="text" name="title" class="form-control" placeholder="Enter blog title"
+                                        value="{{ old('title', $datas->title) }}">
+                                </div>
 
-                            form.classList.add('was-validated');
-                          },
-                          false,
-                        );
-                      });
-                    })();
-                  </script>
-                  <!--end::JavaScript-->
+                                <div class="col-md-12">
+                                    <label class="form-label">Sub Title</label>
+                                    <input type="text" name="sub_title" class="form-control"
+                                        placeholder="Enter blog sub title"
+                                        value="{{ old('sub_title', $datas->sub_title) }}">
+                                </div>
+
+                                <!-- Blog Content -->
+                                <div class="col-md-12">
+                                    <label class="form-label">Blog Content</label>
+                                    <textarea id="editor" name="blog_content" class="form-control" style="color: black;min-height:300px;">{{ old('blog_content', $datas->blog_content) }}</textarea>
+                                </div>
+
+                                <div class="col-md-12">
+                                    <label class="form-label">Short Content</label>
+                                    <textarea name="short_content" rows="6" class="form-control" placeholder="Write blog short content here..."
+                                        required style="color: black; min-height:300px;">{{ old('short_content', $datas->short_content) }}</textarea>
+                                </div>
+
+                                <!-- Featured Image -->
+                                <div class="col-md-12">
+                                    <label class="form-label">Client Photo</label>
+                                    <x-image />
+                                    <span>current image</span>
+                                    <img src="{{ asset('blogs/' . $datas->images) }}" alt=""
+                                        style="height:200px;width:400px;">
+                                </div>
+
+                                <!-- Status -->
+                                <div class="col-md-12">
+                                    <label class="form-label">Status</label>
+                                    <select name="status" class="form-select">
+                                        <option value="1" {{ old('status', $datas->status) == 1 ? 'selected' : '' }}>
+                                            Published
+                                        </option>
+                                        <option value="0" {{ old('status', $datas->status) == 0 ? 'selected' : '' }}>
+                                            Pending
+                                        </option>
+                                    </select>
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <!-- Footer -->
+                        <div class="card-footer">
+                            <button type="submit" class="btn btn-info">Publish Blog</button>
+                            <a href="{{ route('blog.create') }}" class="btn btn-secondary">Cancel</a>
+                        </div>
+
+                    </form>
+
                 </div>
-                <!--end::Form Validation-->
-              </div>
-              <!--end::Col-->
+
             </div>
-            <!--end::Row-->
-          </div>
-          <!--end::Container-->
         </div>
-
-
-
-
-
-
-
-
-
-
-
-
-    </div>
-    </div>
-
-
-
+    </main>
 
 @endsection
