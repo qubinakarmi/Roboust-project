@@ -52,6 +52,19 @@
                             <i class="nav-arrow bi bi-chevron-right"></i>
                         </p>
                     </a>
+
+
+
+
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="{{ route('author.index') }}" class="nav-link">
+                                {{-- <i class="nav-icon bi bi-circle"></i> --}}
+                                <p>Author List</p>
+                            </a>
+                        </li>
+
+                    </ul>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
                             <a href="{{ route('blog.index') }}" class="nav-link">
@@ -97,14 +110,13 @@
                         </li>
 
                         <li class="nav-item">
-                            <a href="" class="nav-link">
+                            <a href="{{ route('reg.index') }}" class="nav-link">
                                 {{-- <i class="nav-icon bi bi-circle"></i> --}}
                                 <p>Register </p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{ route('teams.index') }}" class="nav-link">
-                                {{-- <i class="nav-icon bi bi-circle"></i> --}}
+                            <a href="{{ route('team.index') }}" class="nav-link">
                                 <p>Teams </p>
                             </a>
                         </li>
@@ -122,7 +134,15 @@
 
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="{{ route('services.index') }}" class="nav-link">
+                            <a href="{{ route('category.index') }}" class="nav-link">
+                                <p>Category List</p>
+                            </a>
+                        </li>
+                    </ul>
+
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="{{ route('service.index') }}" class="nav-link">
                                 <p>Services List</p>
                             </a>
                         </li>

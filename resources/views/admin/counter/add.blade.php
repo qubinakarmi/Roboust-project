@@ -14,7 +14,7 @@
                         <h3 class="card-title">Counter Form</h3>
                     </div>
 
-                    <form action="" method="POST">
+                    <form action="{{ route('counter.store') }}" method="POST">
                         @csrf
 
                         <div class="card-body">
@@ -24,30 +24,54 @@
                                 <div class="col-md-12">
                                     <label class="form-label">Title</label>
                                     <input type="text" name="title" class="form-control">
+
+
+                                     @error('title')
+                                        <span style="color: red;">{{ $message }}</span>
+                                    @enderror
                                 </div>
 
                                 <!-- Description -->
                                 <div class="col-md-12">
                                     <label class="form-label">Description</label>
                                     <textarea id="editor" name="description" class="form-control"></textarea>
+                                
+                                 @error('description')
+                                        <span style="color: red;">{{ $message }}</span>
+                                    @enderror
                                 </div>
 
                                 <!-- Number -->
                                 <div class="col-md-12">
                                     <label class="form-label">Number</label>
                                     <input type="number" name="number" class="form-control" placeholder="Example: 500">
+                                
+                                
+                                 @error('number')
+                                        <span style="color: red;">{{ $message }}</span>
+                                    @enderror
                                 </div>
 
                                 <!-- Prefix -->
                                 <div class="col-md-12">
                                     <label class="form-label">Prefix</label>
                                     <input type="text" name="prefix" class="form-control" placeholder="Example: + or $">
+                               
+                                @error('prefix')
+                                        <span style="color: red;">{{ $message }}</span>
+                                    @enderror
+                               
                                 </div>
 
                                 <!-- Suffix -->
                                 <div class="col-md-12">
                                     <label class="form-label">Suffix</label>
                                     <input type="text" name="suffix" class="form-control" placeholder="Example: + or K">
+                                
+                                 @error('suffix')
+                                        <span style="color: red;">{{ $message }}</span>
+                                    @enderror
+                                
                                 </div>
 
                                 <!-- Icon -->
@@ -55,7 +79,12 @@
                                     <label class="form-label">Icon</label>
                                     <input type="text" name="icon" class="form-control"
                                         placeholder="Example: fa-solid fa-users">
-                                </div>
+                                
+                                  @error('icon')
+                                        <span style="color: red;">{{ $message }}</span>
+                                    @enderror
+                                
+                                    </div>
 
                                 <!-- Status -->
                                 <div class="col-md-12">
@@ -64,6 +93,11 @@
                                         <option value="1">Active</option>
                                         <option value="0">Inactive</option>
                                     </select>
+
+
+                                     @error('icon')
+                                        <span style="color: red;">{{ $message }}</span>
+                                    @enderror 
                                 </div>
 
                             </div>

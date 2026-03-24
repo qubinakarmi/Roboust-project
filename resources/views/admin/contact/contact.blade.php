@@ -28,7 +28,12 @@
                                     <div class="col-md-12">
                                         <label class="form-label">Full Name</label>
                                         <input type="text" name="name" class="form-control"
-                                            placeholder="Enter Your Name" required>
+                                            placeholder="Enter Your Name">
+
+
+                                        @error('name')
+                                            <span style="color: red;">{{ $message }}</span>
+                                        @enderror
                                     </div>
 
                                     <!-- Service Category -->
@@ -36,22 +41,42 @@
                                         <label class="form-label">Email</label>
                                         <input type="email" name="email" class="form-control"
                                             placeholder="Enter Your email">
+
+
+                                        @error('email')
+                                            <span style="color: red;">{{ $message }}</span>
+                                        @enderror
                                     </div>
 
                                     <div class="col-md-12">
                                         <label class="form-label">Phone</label>
                                         <input type="number" name="phone" class="form-control"
                                             placeholder="Enter Your Phone Number">
+
+
+                                        @error('phone')
+                                            <span style="color: red;">{{ $message }}</span>
+                                        @enderror
                                     </div>
                                     <div class="col-md-12">
                                         <label class="form-label">Subject</label>
                                         <input type="text" name="subject" class="form-control"
                                             placeholder="Enter Your subject">
+
+
+                                        @error('subject')
+                                            <span style="color: red;">{{ $message }}</span>
+                                        @enderror
                                     </div>
 
                                     <div class="col-md-12">
                                         <label class="form-label">Description</label>
                                         <textarea id="editor" class="form-control" name="description"></textarea>
+
+
+                                        @error('description')
+                                            <span style="color: red;">{{ $message }}</span>
+                                        @enderror
                                     </div>
 
 

@@ -14,7 +14,7 @@ return new class extends Migration
     
     public function up(): void
     {
-        Schema::create('table_counters', function (Blueprint $table) 
+        Schema::create('counters', function (Blueprint $table) 
         {
             $table->id();
             $table->string('title', 191);
@@ -33,6 +33,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('table_counters');
+        Schema::dropIfExists('counters');
     }
 };

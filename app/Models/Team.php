@@ -6,20 +6,17 @@ use Illuminate\Database\Eloquent\Model;
 
 class Team extends Model
 {
-    protected $casts = [
-    'created_at' => 'datetime',
-    'updated_at' => 'datetime',
-];
+
     protected $fillable = [
 
-        'desgination',
+        'designation',
         'full_name',
         'email',
         'phone',
         'address',
         'short_bio',
         'image',
-        'linke  din',
+        'linkedin',
         'twitter',
         'facebook',
         'ordering',

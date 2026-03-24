@@ -3,9 +3,13 @@
 @section('content')
 
 
-    @if (session('success'))
-        <span class="alert alert-success ">{{ session('success') }}</span>
-    @endif
+            @if (session('success'))
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                    {{ session('success') }}
+
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            @endif
 
     <div class="app-content mt-4">
         <div class="container-fluid">
@@ -42,10 +46,10 @@
                         <tbody>
                             @foreach ($testimonials as $testimonial)
                                 <tr>
-                                    <td>{{ $testimonial->company_name }}</td>
-                                    <td>{{ $testimonial->designation }}</td>
-                                    <td>{{ $testimonial->client_name }}</td>
-                                    <td>{!! $testimonial->message !!}</td>
+                                    <td>{{ $testimonial->company_name ?? 'N/A' }}</td>
+                                    <td>{{ $testimonial->designation ?? 'N/A' }}</td>
+                                    <td>{{ $testimonial->client_name ?? 'N/A' }}</td>
+                                    <td>{!! $testimonial->message ?? 'N/A' !!}</td>
                                     <td><img src="{{ isset($testimonial->image) ? asset('testimonials/' . $testimonial->image) : 'null' }}"
                                             alt="" style="height:100px;">
                                     </td>

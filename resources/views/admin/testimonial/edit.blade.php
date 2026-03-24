@@ -25,6 +25,10 @@
                                     <label class="form-label">Company Name</label>
                                     <input type="text" name="company_name" class="form-control"
                                         placeholder="Company or designation" value="{{ $datas->company_name }}">
+     @error('company_name')
+                                        <span style="color: red;">{{ $message }}</span>
+                                    @enderror 
+
                                 </div>
 
                                 <!-- Client Position / Company -->
@@ -32,18 +36,30 @@
                                     <label class="form-label">Designation</label>
                                     <input type="text" name="designation" class="form-control"
                                         placeholder="Company or designation" value="{{ $datas->designation }}">
-                                </div>
+                                
+                                     @error('designation')
+                                        <span style="color: red;">{{ $message }}</span>
+                                    @enderror 
+                                    </div>
 
                                 <!-- Client Name -->
                                 <div class="col-md-6">
                                     <label class="form-label">Client Name</label>
                                     <input type="text" name="client_name" class="form-control"
                                         placeholder="Enter client name" value="{{ $datas->client_name }}"required>
-                                </div>
+                               
+                                    @error('client_name')
+                                        <span style="color: red;">{{ $message }}</span>
+                                    @enderror 
+                                    </div>
                                 <!-- Testimonial Message -->
                                 <div class="col-md-12">
                                     <label class="form-label">Message</label>
                                     <textarea id="editor" name="message" rows="5" class="form-control" placeholder="Write client feedback...">{{ $datas->message }}</textarea>
+                                
+                                     @error('message')
+                                        <span style="color: red;">{{ $message }}</span>
+                                    @enderror 
                                 </div>
                                 <!-- Client Photo -->
                                 {{-- {{-- <div class="col-md-12"> --}}
@@ -54,7 +70,11 @@
                                     <span>current image</span>
                                     <img src="{{ asset('testimonials/' . $datas->image) }}" alt=""
                                         style="height:100px;width:100px;">
-                                </div>
+                                
+                                     @error('logo')
+                                        <span style="color: red;">{{ $message }}</span>
+                                    @enderror 
+                                    </div>
                                 <!-- Status -->
                                 <div class="col-md-6">
                                     <label class="form-label">Status</label>
@@ -64,6 +84,10 @@
                                         <option value="0" {{ $datas->status == 0 ? 'selected' : '' }}>Hidden
                                         </option>
                                     </select>
+                                
+                                     @error('status')
+                                        <span style="color: red;">{{ $message }}</span>
+                                    @enderror 
                                 </div>
 
 

@@ -95,43 +95,40 @@ class TestimonialController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
-    {
-        $request->validate([
-            'company_name' => 'required',
-            'designation'  => 'required',
-            'client_name'  => 'required',
-            'message'      => 'required',
-            'logo'         => 'image|mimes:jpg,png,jpeg|max:2048',
-            'status'       => 'required',
-        ]);
+   public function update(Request $request, string $id)
+{
+    $request->validate([
+        'company_name' => 'required',
+        'designation'  => 'required',
+        'client_name'  => 'required',
+        'message'      => 'required',
+        'logo'         => 'nullable|image|mimes:jpg,png,jpeg|max:2048',
+        'status'       => 'required',
+    ]);
 
-        $testimonial = Testimonial::findOrFail($id);
+    $testimonial = Testimonial::findOrFail($id);
 
-        // Handle file upload if present
-        if ($request->hasFile('logo')) {
-            $file = $request->file('logo');
+    // Handle file upload if present
+    if ($request->hasFile('logo')) {
+        $file = $request->file('logo');
+        $fileName = time() . '.' . $file->getClientOriginalExtension();
+        $file->move(public_path('testimonials'), $fileName);
 
-            $fileName = time() . '.' . $file->getClientOriginalExtension();
-
-            $file->move(public_path('testimonials'), $fileName);
-        }
-
-        // Update other fields
-        $testimonial->company_name = $request->company_name;
-        $testimonial->designation  = $request->designation;
-        $testimonial->client_name  = $request->client_name;
-        $testimonial->message      = $request->message;
-
-        $testimonial->image     = $fileName;
-
-
-        $testimonial->status       = $request->status;
-
-        $testimonial->save(); // save the changes
-
-        return redirect()->route('testimonial.index')->with('success', 'Testimonial updated successfully!');
+        // Only update the image if a new file was uploaded
+        $testimonial->image = $fileName;
     }
+
+    // Update other fields
+    $testimonial->company_name = $request->company_name;
+    $testimonial->designation  = $request->designation;
+    $testimonial->client_name  = $request->client_name;
+    $testimonial->message      = $request->message;
+    $testimonial->status       = $request->status;
+
+    $testimonial->save(); // save the changes
+
+    return redirect()->route('testimonial.index')->with('success', 'Testimonial updated successfully!');
+}
 
     /**
      * Remove the specified resource from storage.

@@ -2,6 +2,13 @@
 @section('title', 'List Services')
 
 @section('content')
+    @if (session('success'))
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            {{ session('success') }}
+
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    @endif
 
     <div class="app-content mt-4">
         <div class="container-fluid">
@@ -23,33 +30,39 @@
                     <table class="table table-striped table-hover mb-0">
                         <thead>
                             <tr>
-                                <th style="width: 60px">#</th>
                                 <th>Name</th>
                                 <th>Email</th>
                                 <th>Phone</th>
                                 <th>Subject</th>
                                 <th>Description</th>
-                                <th style="width: 180px">Actions</th>
+                                <th>Status</th>
+                                <th>Actions</th>
+                                <th>Mail</th>
                             </tr>
                         </thead>
                         <tbody>
 
 
+                            @foreach ($contacts as $contact)
+                                <tr>
+                                    <td>{{ $contact->name ?? 'N/A'}}</td>
+                                    <td>{{ $contact->email ?? 'N/A'}}</td>
+                                    <td>{{ $contact->phone?? 'N/A' }}</td>
+                                    <td>{{ $contact->subject?? 'N/A' }}</td>
+                                    <td>{{ $contact->description?? 'N/A' }}</td>
+                                    <td>{{ $contact->status ?? 'N/A'}}</td>
+                                    <td>
 
-                            <tr>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td>
-                                    <a href="{{ route('services') }}" class="btn btn-primary btn-sm">Edit</a>
-                                    <button onclick="showAlert()" class="btn btn-danger btn-sm">Delete</button>
-                                </td>
-                            </tr>
-
-
+                                        <form action="{{ route('contacts.destroy', $contact->id) }}" method="POST"
+                                            class="delete-form">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit" class="btn btn-danger btn-sm my-2">Delete</button>
+                                        </form>
+                                    </td>
+                                    <td><a href="{{ route('vmail') }}" class="btn btn-success">Mail</a></td>
+                                </tr>
+                            @endforeach
 
 
 
@@ -75,13 +88,8 @@
 
                 <!-- Card Footer -->
                 <div class="card-footer clearfix">
-                    <ul class="pagination pagination-sm m-0 float-end">
-                        <li class="page-item"><a class="page-link" href="#">&laquo;</a></li>
-                        <li class="page-item"><a class="page-link" href="#">1</a></li>
-                        <li class="page-item"><a class="page-link" href="#">2</a></li>
-                        <li class="page-item"><a class="page-link" href="#">3</a></li>
-                        <li class="page-item"><a class="page-link" href="#">&raquo;</a></li>
-                    </ul>
+                    <span class="pagination px-2">{{ $contacts->links('pagination::bootstrap-5') }}</span>
+
                 </div>
 
             </div>

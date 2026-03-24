@@ -4,10 +4,12 @@
 @section('content')
     <div class="container mt-5">
         @if (session('success'))
-            <div class="alert alert-success">
-                {{ session('success') }}
-            </div>
-        @endif
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            {{ session('success') }}
+
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    @endif
 
         <h2 class="mb-4">Gallery</h2>
         <a class="btn btn-outline-primary mb-3" href="{{ route('gall.create') }}"><i class="fa-solid fa-plus"></i>Add</a>
@@ -26,7 +28,7 @@
                             </button>
                         </form>
 
-                        <img src="{{ asset('gallery/' . $gallery->image) }}" class="card-img-top img-fluid"
+                        <img src="{{ isset($gallery->image) ? asset('gallery/' . $gallery->image): 'null' }}" class="card-img-top img-fluid"
                             alt="{{ $gallery->title }}">
                     </div>
                 </div>

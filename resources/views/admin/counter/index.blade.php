@@ -1,10 +1,14 @@
 @extends('admin.layouts.app2')
-@section('title', 'List Testimonial ')
+@section('title', 'Counter List ')
 @section('content')
 
 
     @if (session('success'))
-        <span class="alert alert-success ">{{ session('success') }}</span>
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            {{ session('success') }}
+
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
     @endif
 
     <div class="app-content mt-4">
@@ -40,24 +44,30 @@
                             </tr>
                         </thead>
                         <tbody>
-
+                            @foreach ($counters as $counter)
                                 <tr>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
+                                    <td>{{ $counter->title ?? 'N/A' }}</td>
                                     <td>
+                                        {!! !empty($counter->description) ? Str::limit(strip_tags($counter->description), 50) : 'N/A' !!}
                                     </td>
+                                    <td>{{ $counter->number ?? 'N/A' }}</td>
+                                    <td>{{ $counter->prefix ?? 'N/A' }}</td>
+                                    <td>{{ $counter->suffix ?? 'N/A' }} </td>
+
+
                                     <td>
 
-                                       
+                                        <span class="badge {{ $counter->status === 1 ? 'bg-success' : 'bg-danger' }}">
+                                            {{ $counter->status === 1 ? 'Active' : 'InActive' }}
+                                        </span>
 
 
                                     </td>
+
                                     <td class="text-nowrap">
-                                        <a href=""
+                                        <a href="{{ route('counter.edit', $counter->id) }}"
                                             class="btn btn-primary btn-sm">Edit</a>
-                                        <form action="" method="POST"
+                                        <form action="{{ route('counter.destroy', $counter->id) }}" method="POST"
                                             class="delete-form">
                                             @csrf
                                             @method('DELETE')
@@ -66,7 +76,7 @@
 
                                     </td>
                                 </tr>
-                     
+                            @endforeach
 
 
                         </tbody>

@@ -41,6 +41,10 @@
                                     <input type="text" name="title" class="form-control" id="title"
                                         placeholder="Enter business title" value="{{ $settings['title'] ?? '' }}" />
                                 </div>
+
+                                     @error('title')
+                                        <span style="color: red;">{{ $message }}</span>
+                                    @enderror 
                             </div>
 
                             <!-- Logo/Image -->
@@ -52,12 +56,15 @@
                                         <li>current image</li>
                                     </p>
 
-                                    <img src="{{ isset($settings['logo']) ? asset('settings/' . $settings['logo']) : '' }}"
+                                    <img src="{{ isset($settings['logo']) ? asset('settings/' . $settings['logo']) : 'null' }}"
                                         width="100">
 
 
-                                    {{-- <input type="file" name="logo" class="form-control" id="logo" required /> --}}
                                 </div>
+
+                                     @error('logo')
+                                        <span style="color: red;">{{ $message }}</span>
+                                    @enderror 
                             </div>
 
                             <!-- Location -->
@@ -68,6 +75,10 @@
                                         placeholder="Enter business location"
                                         value="{{ $settings['location'] ?? '' }}"required />
                                 </div>
+
+                                     @error('location')
+                                        <span style="color: red;">{{ $message }}</span>
+                                    @enderror 
                             </div>
 
                             <!-- Contact Information -->
@@ -76,8 +87,12 @@
                                 <div class="col-sm-10">
                                     <input type="text" name="contact" class="form-control"
                                         placeholder="Phone, Email, etc." value="{{ $settings['contact'] ?? '' }}"
-                                        required />
+                                         />
                                 </div>
+
+                                     @error('contact')
+                                        <span style="color: red;">{{ $message }}</span>
+                                    @enderror 
                             </div>
                             <label class="col-sm-2 col-form-label">date</label>
                             <input type="date" name="date" id="" class="form-control">

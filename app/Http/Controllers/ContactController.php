@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Contact;
 
 class ContactController extends Controller
 {
@@ -11,8 +12,8 @@ class ContactController extends Controller
      */
     public function index()
     {
-                return view('admin.contact.index');
-
+        $contacts=Contact::paginate(5);
+        return view('admin.contact.index',compact('contacts'));
     }
 
     /**
@@ -61,5 +62,8 @@ class ContactController extends Controller
     public function destroy(string $id)
     {
         //
+        $contacts=Contact::findorFail($id);
+        $contacts->delete();
+        return redirect()->route('contacts.index')->with('success','Contacts has been deleted');
     }
 }

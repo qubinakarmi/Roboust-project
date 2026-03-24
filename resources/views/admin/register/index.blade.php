@@ -1,57 +1,63 @@
-
 @extends('admin.layouts.app2')
 @section('title', 'List Register')
 
 @section('content')
 
+    @if (session('success'))
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            {{ session('success') }}
+
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    @endif
     <div class="app-content mt-4">
         <div class="container-fluid">
 
+
+
             <div class="card">
 
-                <!-- Card Header -->
-                {{-- <div class="card-header">
-                    <div class="d-flex justify-content-between align-items-center">
-                        <h3 class="card-title mb-0">Contact</h3>
-                        <a href="" class="btn btn-success btn-sm">
-                            Add New Contact
-                        </a>
-                    </div>
-                </div> --}}
+        
 
                 <!-- Card Body -->
                 <div class="card-body p-0">
                     <table class="table table-striped table-hover mb-0">
                         <thead>
                             <tr>
-                                <th style="width: 60px">#</th>
                                 <th>Name</th>
                                 <th>Email</th>
                                 <th>Phone</th>
                                 <th>Address</th>
                                 <th>Status</th>
-                                <th style="width: 180px">Actions</th>
+                                <th>Actions</th>
                             </tr>
                         </thead>
                         <tbody>
 
 
+                            @foreach ($registers as $register)
+                                <tr>
+                                    <td>{{ $register->name }}</td>
+                                    <td>{{ $register->email }}</td>
+                                    <td>{{ $register->phone }}</td>
+                                    <td>{{ $register->address }}</td>
+                                    <td> <span class="badge {{ $register->status === 1 ? 'bg-success' : 'bg-danger' }}">
+                                            {{ $register->status === 1 ? 'Active' : 'InActive' }}
+                                        </span>
+                                    </td>
+                                    <td>
+                                        {{-- <a href="{{ route('reg.edit', $register->id) }}"
+                                            class="btn btn-primary btn-sm">Edit</a> --}}
+                                        <form action="{{ route('reg.destroy', $register->id) }}" method="POST"
+                                            class="delete-form">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit" class="btn btn-danger btn-sm my-2">Delete</button>
+                                        </form>
 
-                            <tr>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td>
-                                    <a href="" class="btn btn-primary btn-sm">Edit</a>
-                                    <button onclick="showAlert()" class="btn btn-danger btn-sm">Delete</button>
-                                </td>
-                            </tr>
-
-
-
+                                    </td>
+                                </tr>
+                            @endforeach
 
 
 
@@ -74,16 +80,12 @@
 
 
 
-                <!-- Card Footer -->
+                  <!-- Card Footer -->
                 <div class="card-footer clearfix">
-                    <ul class="pagination pagination-sm m-0 float-end">
-                        <li class="page-item"><a class="page-link" href="#">&laquo;</a></li>
-                        <li class="page-item"><a class="page-link" href="#">1</a></li>
-                        <li class="page-item"><a class="page-link" href="#">2</a></li>
-                        <li class="page-item"><a class="page-link" href="#">3</a></li>
-                        <li class="page-item"><a class="page-link" href="#">&raquo;</a></li>
-                    </ul>
+                    <span class="pagination px-2">{{ $registers->links('pagination::bootstrap-5') }}</span>
+
                 </div>
+
 
             </div>
 

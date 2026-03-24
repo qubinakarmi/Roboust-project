@@ -4,8 +4,11 @@
       <nav class="app-header navbar navbar-expand bg-body">
         <!--begin::Container-->
         <div class="container-fluid">
+
+
+
           <!--begin::Start Navbar Links-->
-          <ul class="navbar-nav">
+          {{-- <ul class="navbar-nav">
             <li class="nav-item">
               <a class="nav-link" data-lte-toggle="sidebar" href="#" role="button">
                 <i class="bi bi-list"></i>
@@ -17,7 +20,7 @@
             <li class="nav-item d-none d-md-block">
               <a href="#" class="nav-link">Contact</a>
             </li>
-          </ul>
+          </ul> --}}
           <!--end::Start Navbar Links-->
 
 
@@ -233,22 +236,22 @@
             <li class="nav-item dropdown user-menu">
               <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
                 <img
-                  src="{{ asset('all_collect/assets/img/user2-160x160.jpg') }}"
+                  src="{{asset('gallery/qubi.jpg') }}"
                   class="user-image rounded-circle shadow"
                   alt="User Image"
                 />
-                <span class="d-none d-md-inline">Alexander Pierce</span>
+                <span class="d-none d-md-inline">{{ Auth::user()->name ?? 'Guest' }}</span>
               </a>
               <ul class="dropdown-menu dropdown-menu-lg dropdown-menu-end">
                 <!--begin::User Image-->
                 <li class="user-header text-bg-primary">
                   <img
-                    src="{{asset('all_collect/assets/img/user2-160x160.jpg') }}"
+                    src="{{asset('gallery/qubi.jpg') }}"
                     class="rounded-circle shadow"
                     alt="User Image"
                   />
                   <p>
-                    Alexander Pierce - Web Developer
+                    {{ Auth::user()->name }}
                     <small>Member since Nov. 2023</small>
                   </p>
                 </li>

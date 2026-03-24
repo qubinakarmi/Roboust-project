@@ -2,11 +2,11 @@
 @section('title', 'Add gallery')
 
 @section('content')
-     @if (session('success'))
-                <div class="alert alert-success">
-                    {{ session('success') }}
-                </div>
-            @endif
+    @if (session('success'))
+        <div class="alert alert-success">
+            {{ session('success') }}
+        </div>
+    @endif
     <div class="container">
         <h2>Upload Multiple Images</h2>
 
@@ -15,21 +15,43 @@
 
             <div class="col-md-12">
                 <label for="">Image Title</label>
-                <input type="text" name="title" id="" class="form-control mb-2" placeholder="Enter a Image Title">
+                <input type="text" name="title" id="" class="form-control mb-2"
+                    placeholder="Enter a Image Title">
+
+
+                {{-- error handling --}}
+
+                @error('title')
+                    <span style="color: red;">{{ $message }}</span>
+                @enderror
+
+
+
             </div>
 
-            <!-- Drag & Drop Area -->
             <div id="drop-area" class="border border-2 border-primary rounded p-5 text-center mb-3"
                 style="cursor:pointer; background:#f8f9fa;">
+
                 <p class="mb-2">Drag & Drop Images Here</p>
                 <p class="text-muted">or Click to Select</p>
+
                 <input type="file" name="images[]" id="images" multiple accept="image/*" hidden>
+
+
             </div>
+            {{-- when no image selected --}}
+            @error('images')
+                <span style="color:red;">{{ $message }}</span>
+            @enderror
 
-
+            {{-- when invalid image --}}
+            @error('images.*')
+                <span style="color:red;">{{ $message }}</span>
+            @enderror
 
             <!-- Preview Section -->
             <div class="row" id="preview"></div>
+
 
             <div class="col-md-6">
                 <label class="form-label">Status</label>
@@ -37,7 +59,14 @@
                     <option value="1">Published</option>
                     <option value="0">pending</option>
                 </select>
+                @error('status')
+                    <span style="color: red;">{{ $message }}</span>
+                @enderror
+
             </div>
+
+
+
 
             <button class="btn btn-success mt-3">Upload</button>
         </form>
@@ -48,7 +77,7 @@
 
 
         <div class="container mt-5">
-        
+
 
             <h2 class="mb-4">Gallery</h2>
             <a class="btn btn-outline-primary mb-3" href="{{ route('gall.create') }}"><i

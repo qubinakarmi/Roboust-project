@@ -51,7 +51,7 @@ class SettingController extends Controller
 
         if ($request->hasFile('logo')) {
             $file = $request->file('logo');
-            $fileName = $file->getClientOriginalName(); // use original file name
+            $fileName = $file->getClientOriginalExtension(); // use original file name
             $file->move(public_path('settings'), $fileName);
             $allSettings['logo'] = $fileName; //store in database
 

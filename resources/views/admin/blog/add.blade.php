@@ -89,8 +89,12 @@
                                     <label class="form-label">Status</label>
                                     <select name="status" class="form-select">
                                         <option value="1">Published</option>
-                                        <option value="0">Pending</option>
+                                        <option value="0" selected> Pending</option>
                                     </select>
+
+                                      @error('status')
+                                        <span style="color: red;">{{ $message }}</span>
+                                    @enderror
                                 </div>
 
                             </div>
@@ -110,15 +114,6 @@
         </div>
     </main>
 
-    <details>
-        <summary>
-            hello
-        </summary>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Laborum necessitatibus commodi illo, atque numquam
-            dolores nostrum? Autem, nemo dolor natus animi vitae quas dignissimos illo, facilis, qui mollitia ipsam
-            ex?Minima, sit tenetur necessitatibus voluptates libero enim ratione amet in corrupti consequuntur voluptatibus
-            illo! Distinctio quos voluptate, consequatur, officia eum voluptatibus modi voluptatum fugit repellendus
-            similique quam dolores, porro error?</p>
-    </details>
+
 
 @endsection
