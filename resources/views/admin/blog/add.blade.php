@@ -51,21 +51,23 @@
 
                                 </div>
 
-                                <!-- Blog Content -->
-                                <div class="col-md-12">
-                                    <label class="form-label">Blog Content</label>
-                                    <textarea name="blog_content" class="form-control" id="editor">{{ old('blog_content') }}</textarea>
-                                    @error('blog_content')
-                                        <span style="color: red;">{{ $message }}</span>
-                                    @enderror
-
-                                </div>
+            
 
                                 <div class="col-md-12">
                                     <label class="form-label">Short Content</label>
                                     <textarea name="short_content" rows="6" class="form-control" placeholder="Write blog short content here..."
                                         style="color: black; min-height:300px;">{{ old('short_content') }}</textarea>
                                     @error('short_content')
+                                        <span style="color: red;">{{ $message }}</span>
+                                    @enderror
+
+                                </div>
+
+                                                    <!-- Blog Content -->
+                                <div class="col-md-12">
+                                    <label class="form-label">Blog Content</label>
+                                    <textarea name="blog_content" class="form-control" id="editor">{{ old('blog_content') }}</textarea>
+                                    @error('blog_content')
                                         <span style="color: red;">{{ $message }}</span>
                                     @enderror
 

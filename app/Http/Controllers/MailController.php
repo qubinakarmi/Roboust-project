@@ -17,13 +17,13 @@ class MailController extends Controller
         return view('sendMessage');
     }
 
-    public function sendMail()
+    public function sendMail(Request $request)
     {
         $data = [
-            'subject' => 'hi',
-            'message' => 'hi',
+            'subject' => $request->subject,
+            'message' => $request->message,
         ];
-        Mail::to('qubinakarmi@gmail.com')->send(new SendMail($data));
+        Mail::to('qubinakarmi@gmail.com')->queue(new SendMail($data));
 
         return redirect()->route('contacts.index')
             ->with('success', 'Email sent successfully!');

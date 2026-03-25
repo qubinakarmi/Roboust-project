@@ -45,12 +45,16 @@
 
                             @foreach ($contacts as $contact)
                                 <tr>
-                                    <td>{{ $contact->name ?? 'N/A'}}</td>
-                                    <td>{{ $contact->email ?? 'N/A'}}</td>
-                                    <td>{{ $contact->phone?? 'N/A' }}</td>
-                                    <td>{{ $contact->subject?? 'N/A' }}</td>
-                                    <td>{{ $contact->description?? 'N/A' }}</td>
-                                    <td>{{ $contact->status ?? 'N/A'}}</td>
+                                    <td>{{ $contact->name ?? 'N/A' }}</td>
+                                    <td>{{ $contact->email ?? 'N/A' }}</td>
+                                    <td>{{ $contact->phone ?? 'N/A' }}</td>
+                                    <td>{{ $contact->subject ?? 'N/A' }}</td>
+                                    <td>{{ $contact->description ?? 'N/A' }}</td>
+                                    <td>
+                                        <span class="{{ $contact->status == 1 ? 'text-success' : 'text-danger' }}">
+                                            {{ $contact->status == 1 ? 'Active' : 'Inactive' }}
+                                        </span>
+                                    </td>
                                     <td>
 
                                         <form action="{{ route('contacts.destroy', $contact->id) }}" method="POST"

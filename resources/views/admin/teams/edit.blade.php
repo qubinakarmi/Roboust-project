@@ -17,6 +17,7 @@
                     <!-- Form -->
                     <form action="{{ route('team.update',$team->id) }}" method="POST" enctype="multipart/form-data">
                         @csrf
+                        @method('PUT')
 
                         <div class="card-body">
                             <div class="row g-3">

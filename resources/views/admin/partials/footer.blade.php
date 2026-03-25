@@ -30,25 +30,21 @@
 
 
     {{-- cke editor script --}}
-    <script src="https://cdn.ckeditor.com/ckeditor5/39.0.1/classic/ckeditor.js"></script>
+  <script src="https://cdn.ckeditor.com/ckeditor5/39.0.1/classic/ckeditor.js"></script>
 
-    <script>
-        ClassicEditor
-            .create(document.querySelector('#editor'), {})
-            .catch(error => {
-                console.error(error);
-            });
+<style>
+.ck.ck-powered-by {
+    display: none !important;
+}
+</style>
 
-
-
-        document.querySelector('form').addEventListener('submit', function() {
-            if (typeof CKEDITOR !== 'undefined') {
-                for (let instance in CKEDITOR.instances) {
-                    CKEDITOR.instances[instance].updateElement();
-                }
-            }
-        });
-    </script>
+<script>
+ClassicEditor
+    .create(document.querySelector('#editor'))
+    .catch(error => {
+        console.error(error);
+    });
+</script>
 
     {{-- image javascript --}}
 
