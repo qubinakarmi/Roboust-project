@@ -10,21 +10,37 @@
         </div>
     @endif
 
+ 
+
     <div class="app-content mt-4">
         <div class="container-fluid">
+               <a href="{{ route('contact.export') }}" class="btn btn-info"> <i class="fa-solid fa-download fa-xl"></i> Download Contact
+        Record</a>
+
+            <div class="mb-3">
+                <form action="{{ route('contacts.index') }}" method="GET">
+                    <div class="d-flex justify-content-end align-items-center">
+
+                        <!-- Search input -->
+                        <input type="text" name="search" placeholder="Search" class="form-control me-2 w-25"
+                            value="{{ request('search') }}">
+
+                        <!-- Status filter -->
+                        <select name="status" class="form-control me-2 w-25">
+                            <option value="">Select Status</option>
+                            <option value="1" {{ request('status') == '1' ? 'selected' : '' }}>Active</option>
+                            <option value="0" {{ request('status') == '0' ? 'selected' : '' }}>Inactive</option>
+                        </select>
+
+                        <button type="submit" class="btn btn-success mx-2">
+                            <i class="fa-solid fa-magnifying-glass"></i>
+                        </button>
+
+                    </div>
+                </form>
+            </div>
 
             <div class="card">
-
-                <!-- Card Header -->
-                {{-- <div class="card-header">
-                    <div class="d-flex justify-content-between align-items-center">
-                        <h3 class="card-title mb-0">Contact</h3>
-                        <a href="" class="btn btn-success btn-sm">
-                            Add New Contact
-                        </a>
-                    </div>
-                </div> --}}
-
                 <!-- Card Body -->
                 <div class="card-body p-0">
                     <table class="table table-striped table-hover mb-0">
@@ -92,8 +108,9 @@
 
                 <!-- Card Footer -->
                 <div class="card-footer clearfix">
+                    <div class="d-flex justify-content-center">
                     <span class="pagination px-2">{{ $contacts->links('pagination::bootstrap-5') }}</span>
-
+</div>
                 </div>
 
             </div>

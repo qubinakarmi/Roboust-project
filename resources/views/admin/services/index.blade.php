@@ -14,6 +14,32 @@
     <div class="app-content mt-4">
         <div class="container-fluid">
 
+            <a href="{{ route('service.export') }}" class="btn btn-info">  <i class="fa-solid fa-download fa-xl"></i> Download Services</a>
+
+
+
+            <div class="mb-3">
+                <form action="{{ route('service.index') }}" method="GET">
+                    <div class="d-flex justify-content-center align-items-centeralign-items-center">
+
+
+                        <!-- Search input -->
+                        <input type="text" name="search" placeholder="Search" class="form-control me-2 w-25"
+                            value="{{ request('search') }}">
+
+                    <!-- Status filter -->
+                        <select name="status" class="form-control me-2 w-25">
+                            <option value="">Select Status</option>
+                            <option value="1" {{ request('status') == '1' ? 'selected' : '' }}>Active</option>
+                            <option value="0" {{ request('status') == '0' ? 'selected' : '' }}>Inactive</option>
+                        </select>
+                        <button type="submit" class="btn btn-success mx-2">
+                            <i class="fa-solid fa-magnifying-glass"></i>
+                        </button>
+
+                    </div>
+                </form>
+            </div>
 
             <div class="card">
 
@@ -49,19 +75,56 @@
                                 <tr>
 
                                     <td>{{ $service->title ?? 'N/A' }}</td>
-                                    <td>{{ $service->category->name ?? 'N/A'}}</td>
+                                    <td>{{ $service->category->name ?? 'N/A' }}</td>
                                     <td>{{ $service->slug ?? 'N/A' }}</td>
                                     <td>{{ $service->sub_title ?? 'N/A' }}</td>
                                     <td>{{ $service->short_desc ?? 'N/A' }}</td>
                                     <td>{{ $service->description ?? 'N/A' }}</td>
                                     <td>
                                         @if (isset($service->image) && $service->image)
-                                            <img src="{{ isset($service->image) ? asset('services/' . $service->image): 'null'}}" width="80">
+                                            <img src="{{ isset($service->image) ? asset('services/' . $service->image) : 'null' }}"
+                                                width="80">
                                         @else
                                             N/A
                                         @endif
                                     </td>
                                     <td>
+
+
+                                        <!-- Include jQuery -->
+                                        {{-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+   
+   
+   
+   
+                                        <select 
+    class="status-dropdown form-control text-white p-1 {{ $service->status == 1 ? 'bg-success':'bg-danger'  }}" 
+    data-id="{{ $service->id }}      "
+>
+    <option value="1" {{ $service->status == 1 ? 'selected' : '' }} >Active</option>
+    <option value="0" {{ $service->status == 0 ? 'selected' : '' }}>Inactive</option>
+</select> --}}
+
+
+
+
+
+                                        {{-- <script>
+$(document).ready(function() {
+    $('.status-dropdown').change(function() {
+        var status = $(this).val();
+        var itemId = $(this).data('id');
+        
+      
+    });
+});
+</script> --}}
+
+
+
+
+
 
                                         <span class="badge {{ $service->status === 1 ? 'bg-success' : 'bg-danger' }}">
                                             {{ $service->status === 1 ? 'Active' : 'InActive' }}
@@ -89,15 +152,10 @@
                 </div>
 
                 <!-- Card Footer -->
-                {{-- <div class="card-footer clearfix">
-                    <ul class="pagination pagination-sm m-0 float-end">
-                        <li class="page-item"><a class="page-link" href="#">&laquo;</a></li>
-                        <li class="page-item"><a class="page-link" href="#">1</a></li>
-                        <li class="page-item"><a class="page-link" href="#">2</a></li>
-                        <li class="page-item"><a class="page-link" href="#">3</a></li>
-                        <li class="page-item"><a class="page-link" href="#">&raquo;</a></li>
-                    </ul>
-                </div> --}}
+                <div class="card-footer clearfix">
+                    <span class="pagination px-2">{{ $services->links('pagination::bootstrap-5') }}</span>
+
+                </div>
 
             </div>
 

@@ -2,19 +2,35 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\CountersExport;
 use App\Models\Counter;
 
 use Illuminate\Http\Request;
+use Maatwebsite\Excel\Facades\Excel;
 
 class CounterController extends Controller
 {
+
+public function export()
+{
+    return Excel::download(new CountersExport,'counters.xlsx');
+}
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
 
     {
-        $counters = Counter::paginate(5);
+        $counters = Counter::when($request->filled('search'),function ($query) use ($request)
+        {
+                $query->where('title', 'LIKE', '%' . $request->search . '%');
+            }
+        )->when($request->filled('status'), function ($q) use ($request) {
+            $q->where('status', $request->status);
+        })->latest()->paginate(5)->appends([
+            'status' => $request->status,
+            'search' => $request->search,
+        ]);
         return view('admin.counter.index', compact('counters'));
     }
 

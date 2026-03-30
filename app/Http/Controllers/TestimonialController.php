@@ -2,17 +2,33 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\TestimonialsExport;
 use Illuminate\Http\Request;
 use App\Models\Testimonial;
+use Maatwebsite\Excel\Facades\Excel;
 
 class TestimonialController extends Controller
 {
+    public function export()
+    {
+        return Excel::download(new TestimonialsExport, 'testimonials.xlsx');
+    }
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $testimonials = $testimonials = Testimonial::paginate(5); // 5 per page (you can change);
+        $testimonials = Testimonial::when($request->filled('search'), function ($query) use ($request) {
+            $query->where('client_name', 'LIKE', '%' . $request->search . '%');
+        })->when($request->filled('status'), function ($query) use ($request) {
+            $query->where('status', $request->status);
+        })
+            ->latest()
+            ->paginate(5)->appends([
+                'status' => $request->status,
+                'search' => $request->search,
+
+            ]); // 5 per page (you can change);
         return view('admin.testimonial.index', compact('testimonials'));
     }
 
@@ -33,11 +49,11 @@ class TestimonialController extends Controller
 
 
         $request->validate([
-            'company_name'    => 'required',
+            'company_name' => 'required',
             'designation' => 'required',
             'client_name' => 'required',
             'message' => 'required',
-            'logo'     => 'image|mimes:jpg,png,jpeg|max:2048',
+            'logo'    => 'required|image|mimes:jpg,png,jpeg|max:2048',
             'status' => 'required',
 
         ]);
@@ -95,40 +111,40 @@ class TestimonialController extends Controller
     /**
      * Update the specified resource in storage.
      */
-   public function update(Request $request, string $id)
-{
-    $request->validate([
-        'company_name' => 'required',
-        'designation'  => 'required',
-        'client_name'  => 'required',
-        'message'      => 'required',
-        'logo'         => 'nullable|image|mimes:jpg,png,jpeg|max:2048',
-        'status'       => 'required',
-    ]);
+    public function update(Request $request, string $id)
+    {
+        $request->validate([
+            'company_name' => 'required',
+            'designation'  => 'required',
+            'client_name'  => 'required',
+            'message'      => 'required',
+            'logo'         => 'nullable|image|mimes:jpg,png,jpeg|max:2048',
+            'status'       => 'required',
+        ]);
 
-    $testimonial = Testimonial::findOrFail($id);
+        $testimonial = Testimonial::findOrFail($id);
 
-    // Handle file upload if present
-    if ($request->hasFile('logo')) {
-        $file = $request->file('logo');
-        $fileName = time() . '.' . $file->getClientOriginalExtension();
-        $file->move(public_path('testimonials'), $fileName);
+        // Handle file upload if present
+        if ($request->hasFile('logo')) {
+            $file = $request->file('logo');
+            $fileName = time() . '.' . $file->getClientOriginalExtension();
+            $file->move(public_path('testimonials'), $fileName);
 
-        // Only update the image if a new file was uploaded
-        $testimonial->image = $fileName;
+            // Only update the image if a new file was uploaded
+            $testimonial->image = $fileName;
+        }
+
+        // Update other fields
+        $testimonial->company_name = $request->company_name;
+        $testimonial->designation  = $request->designation;
+        $testimonial->client_name  = $request->client_name;
+        $testimonial->message      = $request->message;
+        $testimonial->status       = $request->status;
+
+        $testimonial->save(); // save the changes
+
+        return redirect()->route('testimonial.index')->with('success', 'Testimonial updated successfully!');
     }
-
-    // Update other fields
-    $testimonial->company_name = $request->company_name;
-    $testimonial->designation  = $request->designation;
-    $testimonial->client_name  = $request->client_name;
-    $testimonial->message      = $request->message;
-    $testimonial->status       = $request->status;
-
-    $testimonial->save(); // save the changes
-
-    return redirect()->route('testimonial.index')->with('success', 'Testimonial updated successfully!');
-}
 
     /**
      * Remove the specified resource from storage.

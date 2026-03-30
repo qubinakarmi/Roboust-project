@@ -4,16 +4,31 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Maatwebsite\Excel\Facades\Excel;
 
 class ListController extends Controller
 {
+
+public function export(Request $request)
+{
+
+
+    return Excel::download(new \App\Exports\UsersExport, 'users.xlsx');
+}
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $registers=User::paginate(5);
-        return view('admin.register.index',compact('registers'));
+        $registers = User::when($request->filled('search'), function ($query) use ($request) {
+            $query->where('name', 'LIKE', '%' . $request->search . '%');
+        })->when($request->filled('status'), function ($q) use ($request) {
+            $q->where('status', $request->status);
+        })->latest()->paginate(5)->appends([
+            'search' => $request->search,
+            'status' => $request->status,
+        ]);;
+        return view('admin.register.index', compact('registers'));
     }
 
     /**
@@ -61,8 +76,8 @@ class ListController extends Controller
      */
     public function destroy(string $id)
     {
-        $user=User::findorFail($id);
+        $user = User::findorFail($id);
         $user->delete();
-        return redirect()->route('reg.index')->with('success','User has been deleted');
+        return redirect()->route('reg.index')->with('success', 'User has been deleted');
     }
 }

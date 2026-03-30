@@ -10,8 +10,40 @@
         </div>
     @endif
 
+
+
+
+
+
+
+
+
+
+
+
     <div class="app-content mt-4">
         <div class="container-fluid">
+
+
+
+
+<a href="{{ route('category.export') }}" class="btn btn-info"> <i class="fa-solid fa-download fa-xl"></i> Download Category</a>
+
+                <div class="mb-3">
+        <form action="{{ route('category.index') }}" method="GET">
+            <div class="d-flex justify-content-end align-items-center">
+
+
+                <!-- Search input -->
+                <input type="text" name="search" placeholder="Search" class="form-control me-2 w-25"
+                    value="{{ request('search') }}">
+                <button type="submit" class="btn btn-success mx-2">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                </button>
+
+            </div>
+        </form>
+    </div>
 
             <div class="card">
 
@@ -31,7 +63,7 @@
                         <thead>
                             <tr>
                                 <th>Name</th>
-                                <th>Slug</th>                              
+                                <th>Slug</th>
                                 <th>Action</th>
 
 
@@ -42,12 +74,13 @@
 
                             @foreach ($categories as $category)
                                 <tr>
-                                    <td>{{ $category->name ?? 'N/A'}}</td>
-                                    <td>{{ $category->slug ?? 'N/A'}}</td>
-                              
+                                    <td>{{ $category->name ?? 'N/A' }}</td>
+                                    <td>{{ $category->slug ?? 'N/A' }}</td>
+
                                     <td>
 
-                                        <form action="{{ route('category.destroy',$category->id) }}" method="POST" class="delete-form">
+                                        <form action="{{ route('category.destroy', $category->id) }}" method="POST"
+                                            class="delete-form">
                                             @csrf
                                             @method('DELETE')
                                             <button type="submit" class="btn btn-danger btn-sm my-2">Delete</button>
@@ -78,10 +111,11 @@
 
 
                 <!-- Card Footer -->
-                {{-- <div class="card-footer clearfix">
-                    <span class="pagination px-2">{{ $contacts->links('pagination::bootstrap-5') }}</span>
+                <!-- Card Footer -->
+                <div class="card-footer clearfix">
+                    <span class="pagination px-2">{{ $categories->links('pagination::bootstrap-5') }}</span>
 
-                </div> --}}
+                </div>
 
             </div>
 

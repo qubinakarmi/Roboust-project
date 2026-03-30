@@ -26,6 +26,13 @@
                                     <label class="form-label">Author Name</label>
                                     <input type="text" name="name" class="form-control"
                                         placeholder="Enter author name">
+
+                                        @error('name')
+                                        <span style="color: red;">{{ $message }}</span>
+
+                                        @enderror
+
+                                        
                                 </div>
 
                                 
@@ -33,15 +40,31 @@
                                 <div class="col-md-12">
                                     <label class="form-label">Email</label>
                                     <input type="text" name="email" class="form-control" placeholder="Enter Email">
+                                
+                                            @error('email')
+                                        <span style="color: red;">{{ $message }}</span>
+
+                                        @enderror
                                 </div>
 
                                 <div class="col-md-12">
                                     <label class="form-label">Address</label>
                                     <input type="text" name="address" class="form-control" placeholder="Enter Email">
+                                
+                                            @error('address')
+                                        <span style="color: red;">{{ $message }}</span>
+
+                                        @enderror
                                 </div>
                                 <div class="col-md-12">
                                     <label class="form-label">Bio</label>
                                     <textarea name="bio" placeholder="Enter your bio" class="form-control"></textarea>
+                                
+                                
+                                            @error('bio')
+                                        <span style="color: red;">{{ $message }}</span>
+
+                                        @enderror
                                 </div>
 
 
@@ -60,6 +83,12 @@
                                 <div class="col-md-12">
                                     <label class="form-label">Image</label>
                                     <x-image action="" />
+                                
+                                
+                                            @error('logo')
+                                        <span style="color: red;">{{ $message }}</span>
+
+                                        @enderror
                                 </div>
 
 

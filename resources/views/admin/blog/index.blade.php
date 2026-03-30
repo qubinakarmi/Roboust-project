@@ -15,14 +15,54 @@
                 </div>
             @endif
 
+            <a href="{{ route('blog.export') }}" class="btn btn-info">
+                <i class="fa-solid fa-download fa-xl"></i> Download All Blogs
+            </a>
+
+
+
+            <div class="mb-3">
+                <form action="{{ route('blog.index') }}" method="GET">
+                    <div class="d-flex justify-content-center align-items-centeralign-items-center">
+
+
+                        <!-- Search input -->
+                        <input type="text" name="search" placeholder="Search" class="form-control me-2 w-25"
+                            value="{{ request('search') }}">
+
+                        <!-- Author dropdown -->
+                        <select id="authorFilter" name="author_id" class="form-control  me-2 w-25">
+                            <option value="">Select Author</option>
+                            @foreach ($authors as $author)
+                                <option value="{{ $author->id }}" {{ 'author_id' == $author->id ? 'selected' : '' }}>
+                                    {{ $author->name }}
+                                </option>
+                            @endforeach
+                        </select>
+                        <button type="submit" class="btn btn-success mx-2">
+                            <i class="fa-solid fa-magnifying-glass"></i>
+                        </button>
+
+                    </div>
+                </form>
+            </div>
+
+
+
+
+
+
+
+
             <div class="card">
 
                 <!-- Card Header -->
                 <div class="card-header">
-                    <div class="d-flex justify-content-between align-items-center">
-                        <h3 class="card-title mb-0">Blog Posts</h3>
-                        <a href="{{ route('blog.create') }}" class="btn btn-success btn-sm" id="btn">
-                            Add New Blog
+                    <h3 class="card-title mb-0">Blog Posts</h3>
+
+                    <div class="d-flex justify-content-center align-items-center">
+                        <a href="{{ route('blog.create') }}" class="btn btn-success btn-sm p-2" id="btn">
+                            <i class="fa-solid fa-plus"></i>Add Blog
                         </a>
                     </div>
                 </div>
@@ -53,7 +93,7 @@
                                     <td>{!! $blog->blog_content ?? 'N/A' !!}</td>
                                     <td>{{ $blog->short_content ?? 'N/A' }}</td>
 
-                                    <td><img src="{{ asset('blogs/' .$blog->images) }}" alt=""
+                                    <td><img src="{{ asset('blogs/' . $blog->images) }}" alt=""
                                             style="height: 100px;width:100px;"></td>
                                     <td>
                                         @if ($blog->status === 0)
@@ -83,22 +123,14 @@
                     </table>
                 </div>
 
-                <!-- Card Footer (Pagination) -->
-                {{-- <div class="card-footer clearfix">
-                    <ul class="pagination pagination-sm m-0 float-end">
-                        <li class="page-item"><a class="page-link" href="#">&laquo;</a></li>
-                        <li class="page-item"><a class="page-link" href="#">1</a></li>
-                        <li class="page-item"><a class="page-link" href="#">2</a></li>
-                        <li class="page-item"><a class="page-link" href="#">3</a></li>
-                        <li class="page-item"><a class="page-link" href="#">&raquo;</a></li>
-                    </ul>
-                </div> --}}
 
 
-                     <!-- Card Footer -->
+
+                <!-- Card Footer -->
                 <div class="card-footer clearfix">
-                    <span class="pagination px-2">{{ $blogs->links('pagination::bootstrap-5') }}</span>
-
+                    <div class="d-flex justify-content-center">
+                        <span class="pagination px-2">{{ $blogs->links('pagination::bootstrap-5') }}</span>
+                    </div>
                 </div>
 
             </div>
@@ -112,7 +144,6 @@
 
 
 
-    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 
 
 

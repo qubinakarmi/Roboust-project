@@ -14,6 +14,34 @@
     <div class="app-content mt-4">
         <div class="container-fluid">
 
+
+
+               <a href="{{ route('testimonial.export') }}" class="btn btn-info"> <i class="fa-solid fa-download fa-xl"></i> Download Testimonial
+        Record</a>
+
+            <div class="mb-3">
+                <form action="{{ route('testimonial.index') }}" method="GET">
+                    <div class="d-flex justify-content-end align-items-center">
+
+                        <!-- Search input -->
+                        <input type="text" name="search" placeholder="Search" class="form-control me-2 w-25"
+                            value="{{ request('search') }}">
+
+                        <!-- Status filter -->
+                        <select name="status" class="form-control me-2 w-25">
+                            <option value="">Select Status</option>
+                            <option value="1" {{ request('status') == '1' ? 'selected' : '' }}>Published</option>
+                            <option value="0" {{ request('status') == '0' ? 'selected' : '' }}>Hidden</option>
+                        </select>
+
+                        <button type="submit" class="btn btn-success mx-2">
+                            <i class="fa-solid fa-magnifying-glass"></i>
+                        </button>
+
+                    </div>
+                </form>
+            </div>
+
             <div class="card">
 
                 <!-- Card Header -->
@@ -68,7 +96,7 @@
                                             class="delete-form">
                                             @csrf
                                             @method('DELETE')
-                                            <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                                            <button type="submit" class="btn btn-danger btn-sm my-2">Delete</button>
                                         </form>
 
                                     </td>

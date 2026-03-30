@@ -2,18 +2,42 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\TeamsExport;
 use Illuminate\Http\Request;
 use App\Models\Team;
+use Maatwebsite\Excel\Facades\Excel;
 
 class TeamController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
+
+    public function export()
+   {
+    return Excel::download(new TeamsExport,'teams.xlsx');
+
+   }
+    public function index(Request $request)
 
     {
-        $teams=Team::paginate(5);
+        $teams=Team::when($request->filled('search'),function($query) use($request){
+            $query->where(function($q) use($request){
+            $q->where('designation','LIKE','%'.$request->search.'%')
+            ->orWhere('full_name','LIKE','%'.$request->search.'%')
+            ->orWhere('phone','LIKE','%'.$request->search.'%')
+            ->orWhere('address','LIKE','%'.$request->search.'%')
+            ->orWhere('ordering','LIKE','%'.$request->search.'%');
+            });
+           
+
+        })->when($request->filled('status') , function ($query) use ($request) {
+                $query->where('status', $request->status);
+            })->latest()->paginate(5)->appends([
+            'status'=>$request->status,
+            'search'=>$request->search,
+            
+        ]);
         return view('admin.teams.index',compact('teams'));
     }
 

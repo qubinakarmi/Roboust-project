@@ -39,6 +39,18 @@
 
 
             </div>
+
+            
+
+
+
+
+
+
+
+
+
+
             {{-- when no image selected --}}
             @error('images')
                 <span style="color:red;">{{ $message }}</span>

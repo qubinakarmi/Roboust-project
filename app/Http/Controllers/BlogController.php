@@ -9,9 +9,20 @@ use Illuminate\Support\Str;
 
 
 
-
+use App\Exports\BlogsExport;
+use Maatwebsite\Excel\Facades\Excel;
 class BlogController extends Controller
 {
+
+
+
+
+
+public function export()
+{
+
+    return Excel::download(new BlogsExport, 'blogs.xlsx');
+}
     /**
      * Display a listing of the resource.
      */
@@ -19,11 +30,27 @@ class BlogController extends Controller
 
 
 
-    public function index()
-    {
-        $blogs = Blog::with('author')->paginate(5); // eager load
-        return view('admin.blog.index', compact('blogs'));
-    }
+public function index(Request $request)
+{
+    $authors = Author::all();
+
+    $blogs = Blog::with('author')
+        ->when($request->search != null && $request->search !== '', function ($query) use ($request) {
+            $query->where('title', 'LIKE', '%' . $request->search . '%');
+        })
+        ->when($request->author_id != null && $request->author_id !== '', function ($query) use ($request) {
+            $query->where('author_id', $request->author_id);
+        })
+        ->latest()
+        ->paginate(5)->appends([
+            'status'=>$request->status
+        ]);
+
+    // Preserve query params for pagination
+    $blogs->appends($request->all());
+
+    return view('admin.blog.index', compact('blogs', 'authors'));
+}
 
     /**
      * Show the form for creating a new resource.
@@ -50,7 +77,7 @@ class BlogController extends Controller
             'blog_content' => 'required',
             'sub_title' => 'required',
             'short_content' => 'required',
-            'logo' => 'mimes:jpeg,png,jpg,gif|max:2048',
+            'logo' => 'required|mimes:jpeg,png,jpg,gif|max:2048',
             'status' => 'required',
 
 

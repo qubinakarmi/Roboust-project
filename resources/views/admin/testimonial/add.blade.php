@@ -25,9 +25,9 @@
                                     <input type="text" name="company_name" class="form-control"
                                         placeholder="Company or designation">
 
-                                             @error('company_name')
+                                    @error('company_name')
                                         <span style="color: red;">{{ $message }}</span>
-                                    @enderror 
+                                    @enderror
                                 </div>
 
                                 <!-- Client Position / Company -->
@@ -36,29 +36,29 @@
                                     <input type="text" name="designation" class="form-control"
                                         placeholder="Company or designation">
 
-                                             @error('designation')
+                                    @error('designation')
                                         <span style="color: red;">{{ $message }}</span>
-                                    @enderror 
+                                    @enderror
                                 </div>
 
                                 <!-- Client Name -->
                                 <div class="col-md-6">
                                     <label class="form-label">Client Name</label>
                                     <input type="text" name="client_name" class="form-control"
-                                        placeholder="Enter client name" required>
+                                        placeholder="Enter client name">
 
-                                             @error('client_name')
+                                    @error('client_name')
                                         <span style="color: red;">{{ $message }}</span>
-                                    @enderror 
+                                    @enderror
                                 </div>
                                 <!-- Testimonial Message -->
                                 <div class="col-md-12">
                                     <label class="form-label">Message</label>
                                     <textarea id="editor" name="message"></textarea>
-                                     @error('message')
+                                    @error('message')
                                         <span style="color: red;">{{ $message }}</span>
-                                    @enderror 
-                                
+                                    @enderror
+
                                 </div>
                                 <!-- Client Photo -->
 
@@ -66,9 +66,9 @@
 
                                 <x-image />
 
-                                     @error('logo')
-                                        <span style="color: red;">{{ $message }}</span>
-                                    @enderror 
+                                @error('logo')
+                                    <span style="color: red;">{{ $message }}</span>
+                                @enderror
                                 <!-- Status -->
                                 <div class="col-md-6">
                                     <label class="form-label">Status</label>
@@ -77,9 +77,9 @@
                                         <option value="0">Hidden</option>
                                     </select>
 
-                                         @error('status')
+                                    @error('status')
                                         <span style="color: red;">{{ $message }}</span>
-                                    @enderror 
+                                    @enderror
                                 </div>
 
 

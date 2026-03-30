@@ -9,6 +9,10 @@
 
         <link rel="stylesheet" href="{{ asset('css/style.css') }}">
 
+
+
+        
+
     <!-- AdminLTE CSS -->
     <link rel="stylesheet" href="{{ asset('all_collect/css/adminlte.css') }}">
 

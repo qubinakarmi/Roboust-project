@@ -2,19 +2,28 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\CategoriesExport;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use App\Models\Category;
+use Maatwebsite\Excel\Facades\Excel;
 
 class CategoryController extends Controller
 {
+
+public function export()
+{
+    return Excel::download(new CategoriesExport,'category.xlsx');
+}
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
 
     {
-        $categories = Category::paginate(5);
+        $categories = Category::when($request->filled('search'),function($query) use($request){
+            $query->where('name','LIKE','%'.$request->search.'%');
+        })->paginate(5);
         return view('admin.category.index', compact('categories'));
     }
 

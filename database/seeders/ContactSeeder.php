@@ -4,7 +4,8 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
-use App\Models\Contact;
+use App\Models\User;
+use Illuminate\Support\Facades\Hash;
 
 class ContactSeeder extends Seeder
 {
@@ -13,32 +14,94 @@ class ContactSeeder extends Seeder
      */
     public function run(): void
     {
-
-    $contacts=[['name'=>'Qubi Nakarmi',
-        'email'=>'qubinakarmi@gmail.com',
-        'phone'=>'12345678',
-        'subject'=>'Gain the more info ',
-        'description'=>'Want to more about the company',
-
-        ],
-        ['name'=>'Suprem Shrestha',
-        'email'=>'supremshrestha12@gmail.com',
-        'phone'=>'12345678',
-        'subject'=>'Gain the more info ',
-        'description'=>'Want to more about the company',],
-        
-        ['name'=>'Suprem Shrestha',
-        'email'=>'supremshrestha12@gmail.com',
-        'phone'=>'12345678',
-        'subject'=>'Gain the more info ',
-        'description'=>'Want to more about the company',],
-        
-        
-        ];
+$contacts = [
+    [
+        'name' => 'Lal Shrestha',
+        'email' => 'lalshrestha1@gmail.com',
+        'phone' => '980000001',
+        'address' => 'Company details',
+        'status' => 1,
+        'password' => Hash::make('123456788'),
+    ],
+    [
+        'name' => 'Suprem Shrestha',
+        'email' => 'supremshrestha2@gmail.com',
+        'phone' => '980000002',
+        'address' => 'Company details',
+        'status' => 0,
+        'password' => Hash::make('123456788'),
+    ],
+    [
+        'name' => 'Ramesh Karki',
+        'email' => 'rameshkarki3@gmail.com',
+        'phone' => '980000003',
+        'address' => 'Company details',
+        'status' => 1,
+        'password' => Hash::make('123456788'),
+    ],
+    [
+        'name' => 'Sita Lama',
+        'email' => 'sitalama4@gmail.com',
+        'phone' => '980000004',
+        'address' => 'Company details',
+        'status' => 0,
+        'password' => Hash::make('123456788'),
+    ],
+    [
+        'name' => 'Ram Thapa',
+        'email' => 'ramthapa5@gmail.com',
+        'phone' => '980000005',
+        'address' => 'Company details',
+        'status' => 1,
+        'password' => Hash::make('123456788'),
+    ],
+    [
+        'name' => 'Gita Rai',
+        'email' => 'gitarai6@gmail.com',
+        'phone' => '980000006',
+        'address' => 'Company details',
+        'status' => 0,
+        'password' => Hash::make('123456788'),
+    ],
+    [
+        'name' => 'Hari Gurung',
+        'email' => 'harigurung7@gmail.com',
+        'phone' => '980000007',
+        'address' => 'Company details',
+        'status' => 1,
+        'password' => Hash::make('123456788'),
+    ],
+    [
+        'name' => 'Suman Shrestha',
+        'email' => 'sumanshrestha8@gmail.com',
+        'phone' => '980000008',
+        'address' => 'Company details',
+        'status' => 0,
+        'password' => Hash::make('123456788'),
+    ],
+    [
+        'name' => 'Anita Khatri',
+        'email' => 'anitakhatri9@gmail.com',
+        'phone' => '980000009',
+        'address' => 'Company details',
+        'status' => 1,
+        'password' => Hash::make('123456788'),
+    ],
+    [
+        'name' => 'Binod Magar',
+        'email' => 'binodmagar10@gmail.com',
+        'phone' => '980000010',
+        'address' => 'Company details',
+        'status' => 0,
+        'password' => Hash::make('123456788'),
+    ],
+  
+   
+];
 
         foreach($contacts as $contact)
             {
-        Contact::create($contact);
+        User::create($contact);
 
             }
     }

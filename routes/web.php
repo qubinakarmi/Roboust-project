@@ -8,8 +8,10 @@ use App\Http\Controllers\BlogController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\CounterController;
+use App\Http\Controllers\ExportController;
 use App\Http\Controllers\GalleryController;
 use App\Http\Controllers\MailController;
+use App\Http\Controllers\SearchController;
 use App\Http\Controllers\ServiceController;
 use App\Http\Controllers\SettingController;
 use App\Http\Controllers\TestimonialController;
@@ -22,14 +24,30 @@ Route::get('/', function () {
 });
 
 
-Route::get('admin/login', [AdminLoginController::class, 'index'])->name('admin.index');
-Route::post('admin/login', [AdminLoginController::class, 'login'])->name('admin.login');
+   Route::get('admin/login', [AdminLoginController::class, 'index'])->name('admin.index');
+   Route::post('admin/login', [AdminLoginController::class, 'login'])->name('admin.login');
 
-Route::middleware(['admin', 'auth'])->group(function () {
+
+
+   Route::middleware(['admin', 'auth'])->group(function () {
+
+
     Route::get('admin/dashboard', [AdminHomeController::class, 'index'])->name('admin.home');
+// Export route for blogs
+    Route::get('author/export', [AuthorController::class, 'export'])->name('author.export');
+    Route::get('blog/export', [BlogController::class, 'export'])->name('blog.export');
+    Route::get('category/export', [CategoryController::class, 'export'])->name('category.export');
+    Route::get('contact/export', [ContactController::class, 'export'])->name('contact.export');
+    Route::get('counter/export', [CounterController::class, 'export'])->name('counter.export');
+    Route::get('reg/export', [ListController::class, 'export'])->name('reg.export');
+    Route::get('service/export', [ServiceController::class, 'export'])->name('service.export');
+    Route::get('team/export', [TeamController::class, 'export'])->name('team.export');
+    Route::get('testimonial/export', [TestimonialController::class, 'export'])->name('testimonial.export');
 
 
-    //Resource Controller
+
+// Resource route
+    Route::resource('blog', BlogController::class);
     Route::resource('author', AuthorController::class);
     Route::resource('blog', BlogController::class);
     Route::resource('category', CategoryController::class);
@@ -42,23 +60,22 @@ Route::middleware(['admin', 'auth'])->group(function () {
     Route::resource('testimonial', TestimonialController::class);
     Route::resource('reg', ListController::class);
 
-
-
-
-
     Route::view('dashboard', 'admin.dashboard')->name('admin.dashboard');
-});
 
-Auth::routes();
+   //Mail
+    Route::get('mail', [MailController::class, 'vMail'])->name('vmail');
+    Route::post('send/mail', [MailController::class, 'sendMail'])->name('sendMail');
 
+    });
+    
+    Auth::routes();
 
-Route::middleware(['user', 'auth'])->group(function () {
+    Route::middleware(['user', 'auth'])->group(function () 
+    {
     Route::get('home', [App\Http\Controllers\HomeController::class, 'index'])
         ->name('home');
-});
+    });
 
 
 Route::post('admin_logout', [AdminLoginController::class, 'logout']);
-// Route::get('mail/{id}',[MailController::class,'mail'])->name('mail');
-Route::get('mail', [MailController::class, 'vMail'])->name('vmail');
-Route::post('send/mail', [MailController::class, 'sendMail'])->name('sendMail');
+

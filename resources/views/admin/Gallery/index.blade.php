@@ -33,6 +33,14 @@
                     </div>
                 </div>
             @endforeach
+
+
+
+                <!-- Card Footer -->
+                <div class="card-footer clearfix">
+                    <span class="pagination px-2">{{ $galleries->links('pagination::bootstrap-5') }}</span>
+
+                </div>
         </div>
     </div>
 @endsection

@@ -15,9 +15,45 @@
 
 
 
+<a href="{{ route('reg.export') }}" class="btn btn-info"><i class="fa-solid fa-download fa-xl"></i>  Download User Records</a>
+
+            <div class="mb-3">
+                <form action="{{ route('reg.index') }}" method="GET">
+                    <div class="d-flex justify-content-center align-items-center">
+
+
+                        <!-- Search input -->
+                        <input type="text" name="search" placeholder="Search" class="form-control me-2 w-25"
+                            value="{{ request('search') }}">
+
+                        <!-- Status filter -->
+                        <select name="status" class="form-control me-2 w-25">
+                            <option value="">Select Status</option>
+                            <option value="1" {{ request('status') == '1' ? 'selected' : '' }}>Active</option>
+                            <option value="0" {{ request('status') == '0' ? 'selected' : '' }}>Inactive</option>
+                        </select>
+
+
+
+
+
+
+                        <button type="submit" class="btn btn-success mx-2">
+                            <i class="fa-solid fa-magnifying-glass"></i>
+                        </button>
+
+                    </div>
+                </form>
+            </div>
+
+
+
+
+
+
             <div class="card">
 
-        
+
 
                 <!-- Card Body -->
                 <div class="card-body p-0">
@@ -80,9 +116,13 @@
 
 
 
-                  <!-- Card Footer -->
+                <!-- Card Footer -->
                 <div class="card-footer clearfix">
+
+                    <div class="d-flex justify-content-center">
+
                     <span class="pagination px-2">{{ $registers->links('pagination::bootstrap-5') }}</span>
+                    </div>
 
                 </div>
 

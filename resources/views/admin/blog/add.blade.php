@@ -33,8 +33,8 @@
                                 <!-- Blog Title -->
                                 <div class="col-md-12">
                                     <label class="form-label">Title</label>
-                                    <input type="text" name="title" class="form-control"
-                                        placeholder="Enter blog title" value="{{ old('title') }}">
+                                    <input type="text" name="title" class="form-control" placeholder="Enter blog title"
+                                        value="{{ old('title') }}">
                                     @error('title')
                                         <span style="color: red;">{{ $message }}</span>
                                     @enderror
@@ -44,14 +44,14 @@
                                 <div class="col-md-12">
                                     <label class="form-label">Sub Title</label>
                                     <input type="text" name="sub_title" class="form-control"
-                                        placeholder="Enter blog sub title"  value="{{ old('sub_title') }}">
+                                        placeholder="Enter blog sub title" value="{{ old('sub_title') }}">
                                     @error('sub_title')
                                         <span style="color: red;">{{ $message }}</span>
                                     @enderror
 
                                 </div>
 
-            
+
 
                                 <div class="col-md-12">
                                     <label class="form-label">Short Content</label>
@@ -63,10 +63,12 @@
 
                                 </div>
 
-                                                    <!-- Blog Content -->
+                                <!-- Blog Content -->
                                 <div class="col-md-12">
                                     <label class="form-label">Blog Content</label>
                                     <textarea name="blog_content" class="form-control" id="editor">{{ old('blog_content') }}</textarea>
+
+
                                     @error('blog_content')
                                         <span style="color: red;">{{ $message }}</span>
                                     @enderror
@@ -76,13 +78,11 @@
                                 <!-- Featured Image -->
                                 <div class="col-md-12">
                                     <label class="form-label">Featured Image</label>
-                                    {{-- <input type="file" name="image" class="form-control"> --}}
                                     <x-image action="" />
 
                                     @error('logo')
                                         <span style="color: red;">{{ $message }}</span>
                                     @enderror
-
 
                                 </div>
 
@@ -94,7 +94,7 @@
                                         <option value="0" selected> Pending</option>
                                     </select>
 
-                                      @error('status')
+                                    @error('status')
                                         <span style="color: red;">{{ $message }}</span>
                                     @enderror
                                 </div>
