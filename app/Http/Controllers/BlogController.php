@@ -11,6 +11,7 @@ use Illuminate\Support\Str;
 
 use App\Exports\BlogsExport;
 use Maatwebsite\Excel\Facades\Excel;
+
 class BlogController extends Controller
 {
 
@@ -18,11 +19,11 @@ class BlogController extends Controller
 
 
 
-public function export()
-{
+    public function export()
+    {
 
-    return Excel::download(new BlogsExport, 'blogs.xlsx');
-}
+        return Excel::download(new BlogsExport, 'blogs.xlsx');
+    }
     /**
      * Display a listing of the resource.
      */
@@ -30,27 +31,27 @@ public function export()
 
 
 
-public function index(Request $request)
-{
-    $authors = Author::all();
+    public function index(Request $request)
+    {
+        $authors = Author::all();
 
-    $blogs = Blog::with('author')
-        ->when($request->search != null && $request->search !== '', function ($query) use ($request) {
-            $query->where('title', 'LIKE', '%' . $request->search . '%');
-        })
-        ->when($request->author_id != null && $request->author_id !== '', function ($query) use ($request) {
-            $query->where('author_id', $request->author_id);
-        })
-        ->latest()
-        ->paginate(5)->appends([
-            'status'=>$request->status
-        ]);
+        $blogs = Blog::with('author')
+            ->when($request->search != null && $request->search !== '', function ($query) use ($request) {
+                $query->where('title', 'LIKE', '%' . $request->search . '%');
+            })
+            ->when($request->author_id != null && $request->author_id !== '', function ($query) use ($request) {
+                $query->where('author_id', $request->author_id);
+            })
+            ->latest()
+            ->paginate(5)->appends([
+                'status' => $request->status
+            ]);
 
-    // Preserve query params for pagination
-    $blogs->appends($request->all());
+        // Preserve query params for pagination
+        $blogs->appends($request->all());
 
-    return view('admin.blog.index', compact('blogs', 'authors'));
-}
+        return view('admin.blog.index', compact('blogs', 'authors'));
+    }
 
     /**
      * Show the form for creating a new resource.
@@ -172,7 +173,6 @@ public function index(Request $request)
     public function destroy(string $id)
     {
         // Find the testimonial by ID
-        echo $id;
         $blogs = Blog::findOrFail($id);
 
         // Optional: Delete the associated image file from storage

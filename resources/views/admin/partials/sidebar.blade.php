@@ -198,6 +198,56 @@
 
 
 
+
+                <li class="nav-item">
+                    <a href="#" class="nav-link">
+
+                        <p> Slider
+                            <i class="nav-arrow bi bi-chevron-right"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="{{ route('slider.index') }}" class="nav-link">
+                                <p>Slider List</p>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+
+
+
+                <li class="nav-item">
+                    <a href="#" class="nav-link">
+
+                        <p> Pages
+                            <i class="nav-arrow bi bi-chevron-right"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="{{ route('page.index') }}" class="nav-link">
+                                <p>Pages List</p>
+                            </a>
+                        </li>
+                    </ul>
+
+
+                </li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
                 <li class="nav-item">
                     <a href="#" class="nav-link">
                         {{-- <i class="nav-icon bi bi-clipboard-fill"></i> --}}
