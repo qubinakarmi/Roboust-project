@@ -1,5 +1,5 @@
 @extends('admin.layouts.app2')
-@section('title', 'List Slider')
+@section('title', 'List Sub Pages')
 
 @section('content')
     @if (session('success'))
@@ -15,11 +15,11 @@
     <div class="app-content mt-4">
         <div class="container-fluid">
             <a href="{{ route('subpage.export') }}" class="btn btn-info"> <i class="fa-solid fa-download fa-xl"></i> Download
-               Sub Content
+                Sub Content
                 Record</a>
 
             <div class="mb-3">
-                <form action="{{ route('page.index') }}" method="GET">
+                <form action="{{ route('subpage.index') }}" method="GET">
                     <div class="d-flex justify-content-end align-items-center">
 
                         <!-- Search input -->
@@ -42,11 +42,7 @@
             </div>
 
             <div class="card">
-                <div class=" d-flex justify-content-start align-item-start p-2">
-                    <a href="{{ route('subpage.create') }}" class="btn btn-success  btn-sm p-2" id="btn"> <i
-                            class="fa-solid fa-plus"></i> Add sub page content</a>
 
-                </div>
 
                 <!-- Card Body -->
                 <div class="card-body p-0">
@@ -54,33 +50,25 @@
 
                         <thead>
                             <tr>
+                                <th>Page_title</th>
                                 <th>Title</th>
-                                <th>Description</th>
+                                <th>Description</th>nt
                                 <th>Image</th>
                                 <th>Status</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
                         <tbody>
-
-                            <tr>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                            </tr>
-                            {{-- @foreach ($pages as $page)
+                            @foreach ($contents as $content)
                                 <tr>
-                                    <td>{{ $page->title?? 'N\A' }}</td>
-                                    <td>{{ $page->slug ?? 'N\A'}}</td>
-                                    <td>{{ $page->sub_title?? 'N\A' }}</td>
-                                    <td>{{ $page->short_content ?? 'N\A'}}</td>
-                                    <td>{{ $page->detail_content?? 'N\A' }}</td>
-                                           <td><img src="{{ asset('pages/' . $page->image) }}" alt="{{ $page->title }}"
+                                    <td>{{ $content->page->title }}</td>
+                                    <td>{{ $content->title }}</td>
+                                    <td>{!! $content->description !!} </td>
+
+                                    <td><img src="{{ asset('contents/' . $content->image) }}" alt="{{ $content->title }}"
                                             style="height: 100px;width:100px;"></td>
                                     <td>
-                                        @if ($page->status === 0)
+                                        @if ($content->status === 0)
                                             <span class="alert alert-warning p-1" role="alert">Hidden</span>
                                         @else
                                             <span class="alert alert-success p-1 text-black" role="alert">Published</span>
@@ -89,9 +77,10 @@
 
                                     <td>
 
-                                        <a href="{{ route('page.edit', $page->id) }}" class="btn btn-warning">edit</a>
+                                        <a href="{{ route('subpage.edit', $content->id) }}"
+                                            class="btn btn-warning">edit</a>
 
-                                        <form action="{{ route('page.destroy', $page->id) }}" method="POST"
+                                        <form action="{{ route('subpage.destroy', $content->id) }}" method="POST"
                                             class="delete-form">
                                             @csrf
                                             @method('DELETE')
@@ -99,7 +88,8 @@
                                         </form>
                                     </td>
                                 </tr>
-                            @endforeach --}}
+                            @endforeach
+
 
                         </tbody>
                     </table>
@@ -122,7 +112,11 @@
                 </div> --}}
 
             </div>
+            <div class="my-2">
 
+                <a href="{{ route('page.index') }}" class="btn btn-success my-2s"> <i
+                        class="fa-solid fa-arrow-left-long"></i> Back to Page</a>
+            </div>
         </div>
     </div>
 

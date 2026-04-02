@@ -32,7 +32,7 @@ use App\Http\Controllers\SubPageController;
 
 
 
-    Route::middleware(['admin', 'auth'])->group(function () {
+    // Route::middleware(['admin', 'auth'])->group(function () {
 
 
     Route::get('admin/dashboard', [AdminHomeController::class, 'index'])->name('admin.home');
@@ -77,7 +77,7 @@ use App\Http\Controllers\SubPageController;
     Route::get('mail', [MailController::class, 'vMail'])->name('vmail');
     Route::post('send/mail', [MailController::class, 'sendMail'])->name('sendMail');
 
-    });
+    // });
     
     Auth::routes();
 

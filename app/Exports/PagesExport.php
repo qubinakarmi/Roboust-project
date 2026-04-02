@@ -30,11 +30,12 @@ class PagesExport implements FromCollection,WithHeadings,WithMapping
             $page->short_content,
             $page->detail_content,
             $page->status==1?'Published':'Hidden',
+            $page->created_at
 
         ];
     }
 
-    public function Headings():array
+    public function headings():array
     {
         return [
             'S.N',
@@ -44,6 +45,7 @@ class PagesExport implements FromCollection,WithHeadings,WithMapping
            ' Short Content',
            ' Detail Content',
             'Status',
+            'Created_at'
         ];
     }
 }

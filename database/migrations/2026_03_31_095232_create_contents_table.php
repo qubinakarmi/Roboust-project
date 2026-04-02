@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('contents', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('page_id')->constrained('pages')->cascadeOnDelete();
             $table->string('title',255);
             $table->longText('description');
             $table->string('image',255);

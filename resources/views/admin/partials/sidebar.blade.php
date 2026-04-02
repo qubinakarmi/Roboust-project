@@ -201,7 +201,7 @@
 
                 <li class="nav-item">
                     <a href="#" class="nav-link">
-
+                        <i class="fa-solid fa-sliders"></i>
                         <p> Slider
                             <i class="nav-arrow bi bi-chevron-right"></i>
                         </p>
@@ -219,7 +219,7 @@
 
                 <li class="nav-item">
                     <a href="#" class="nav-link">
-
+                        <i class="fa-regular fa-file"></i>
                         <p> Pages
                             <i class="nav-arrow bi bi-chevron-right"></i>
                         </p>

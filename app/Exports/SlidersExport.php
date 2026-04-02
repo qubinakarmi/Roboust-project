@@ -29,11 +29,12 @@ class SlidersExport implements FromCollection,WithHeadings,WithMapping
             $slider->video_link,
             $slider->ordering,
             $slider->status==1?'Published':'Hidden',
+            $slider->created_at,
 
         ];
     }
 
-    public function Headings():array
+    public function headings():array
     {
         return[
             'S.N',
@@ -43,6 +44,7 @@ class SlidersExport implements FromCollection,WithHeadings,WithMapping
             'Video Link',
             'Ordering',
             'Status',
+            'Created_at',
         ];
     }
 }

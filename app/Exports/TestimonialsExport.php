@@ -36,7 +36,7 @@ class TestimonialsExport implements FromCollection,WithMapping,WithHeadings
         ];
     }
 
-    public function Headings(): array
+    public function headings(): array
     {
         return [
             'S.N',

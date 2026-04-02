@@ -1,5 +1,5 @@
 @extends('admin.layouts.app2')
-@section('title', 'Add Slider')
+@section('title', 'Add Sub Page')
 
 @section('content')
 
@@ -20,6 +20,7 @@
 
                         <div class="card-body">
                             <div class="row g-3">
+                                <input type="hidden" name="page_id" value="{{ $page_id }}">
 
                                 <!-- Slider Title  -->
                                 <div class="col-md-12">

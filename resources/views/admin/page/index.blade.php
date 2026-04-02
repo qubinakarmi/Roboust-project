@@ -49,11 +49,7 @@
                 </div>
 
 
-                <div class=" d-flex justify-content-end align-item-end p-2">
-                    <a href="{{ route('subpage.create') }}" class="btn btn-success  btn-sm p-2" id="btn"> <i
-                            class="fa-solid fa-plus"></i> Add sub page content</a>
 
-                </div>
 
                 <!-- Card Body -->
                 <div class="card-body p-0">
@@ -69,7 +65,7 @@
                                 <th>Detail Content</th>
                                 <th>Image</th>
                                 <th>Status</th>
-                                <th>Action</th>
+                                <th style="width:300px;">Action</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -91,15 +87,50 @@
                                     </td>
 
                                     <td>
+                                        <div class="d-flex justify-content-center">
+                                            <div class="row">
 
-                                        <a href="{{ route('page.edit', $page->id) }}" class="btn btn-warning">edit</a>
+                                                <div class="col-md-6">
+                                                    <a href="{{ route('page.edit', $page->id) }}"
+                                                        class="btn btn-warning btn-sm">
+                                                        <i class="fa-solid fa-pen-to-square"></i> Edit
+                                                    </a>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <form action="{{ route('page.destroy', $page->id) }}" method="POST"
+                                                        onsubmit="return confirm('Are you sure you want to delete this?')">
+                                                        @csrf
+                                                        @method('DELETE')
 
-                                        <form action="{{ route('page.destroy', $page->id) }}" method="POST"
-                                            class="delete-form">
-                                            @csrf
-                                            @method('DELETE')
-                                            <button type="submit" class="btn btn-danger btn-sm my-2">Delete</button>
-                                        </form>
+                                                        <button type="submit" class="btn btn-danger btn-sm">
+                                                            <i class="fa-solid fa-trash"></i> Delete
+                                                        </button>
+                                                    </form>
+                                                </div>
+                                                <div class="col-md-6 my-2">
+                                                    <a href="{{ route('subpage.create', ['page_id' => $page->id]) }}"
+                                                        class="btn btn-success btn-sm">
+                                                        <i class="fa-solid fa-plus"></i> Subpage
+                                                    </a>
+                                                </div>
+                                                <div class="col-md-6 my-2">
+                                                    <a href="{{ route('subpage.index') }}"
+                                                        class="btn btn-info btn-sm text-white">
+                                                        <i class="fa-solid fa-eye"></i> View
+                                                    </a>
+                                                </div>
+                                            </div>
+
+
+
+
+
+
+
+
+
+                                        </div>
+
                                     </td>
                                 </tr>
                             @endforeach
