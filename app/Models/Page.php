@@ -14,6 +14,10 @@ class Page extends Model
         'short_content',
         'detail_content',
         'image',
+        'meta_title',
+        'meta_keywords',
+        'meta_description',
+        'meta_image',
         'status',
     ];
 }

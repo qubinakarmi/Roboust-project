@@ -5,56 +5,76 @@
         crossorigin="anonymous"></script>
 
 
-        {{-- sweetalert --}}
+    {{-- sweetalert --}}
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-<script>
-    document.querySelectorAll('.delete-form').forEach(form => {
-        form.addEventListener('submit', function(e) {
-            e.preventDefault();
+    <script>
+        document.querySelectorAll('.delete-form').forEach(form => {
+            form.addEventListener('submit', function(e) {
+                e.preventDefault();
 
-            Swal.fire({
-                title: 'Are you sure?',
-                text: 'Do you want to delete?',
-                icon: 'warning',
-                showCancelButton: true,
-                confirmButtonText: 'Yes, delete it!',
-                cancelButtonText: 'Cancel'
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    form.submit();
-                }
+                Swal.fire({
+                    title: 'Are you sure?',
+                    text: 'Do you want to delete?',
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonText: 'Yes, delete it!',
+                    cancelButtonText: 'Cancel'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        form.submit();
+                    }
+                });
             });
         });
-    });
-</script>
+    </script>
 
 
     {{-- cke editor script --}}
-  <script src="https://cdn.ckeditor.com/ckeditor5/39.0.1/classic/ckeditor.js"></script>
+    <script src="https://cdn.ckeditor.com/ckeditor5/39.0.1/classic/ckeditor.js"></script>
 
-<style>
-.ck.ck-powered-by {
-    display: none !important;
-}
-</style>
+    <style>
+        .ck.ck-powered-by {
+            display: none !important;
+        }
+    </style>
 
-<script>
-ClassicEditor
-    .create(document.querySelector('#editor'))
-    .catch(error => {
-        console.error(error);
-    });
-</script>
+    <script>
+        ClassicEditor
+            .create(document.querySelector('#editor'))
+            .catch(error => {
+                console.error(error);
+            });
+    </script>
 
     {{-- image javascript --}}
 
 
-    <script>
-        document.addEventListener("DOMContentLoaded", function() {
 
-            let dropArea = document.getElementById("drop-area");
-            let input = document.getElementById("images");
-            let preview = document.getElementById("preview");
+
+
+
+
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/tagmanager/3.0.2/tagmanager.min.js"></script>
+
+
+        
+<script>
+$("#tags_input").tagsManager({
+    hiddenTagListName: 'hidden_tags',
+    maxTags: 10,
+    prefilled: @json($currentTags ?? [])
+});
+</script>
+
+
+    <script>
+        function setup(dropId, inputId, previewId) {
+
+            let dropArea = document.getElementById(dropId);
+            let input = document.getElementById(inputId);
+            let preview = document.getElementById(previewId);
 
             let selectedFiles = [];
 
@@ -73,62 +93,40 @@ ClassicEditor
             });
 
             function handleFiles(files) {
+                const file = files[0]; // single image
+                if (!file || !file.type.startsWith("image/")) return;
 
-                Array.from(files).forEach(file => {
-                    if (!file.type.startsWith("image/")) return;
-                    selectedFiles.push(file);
-                });
-
+                selectedFiles = [file];
                 showPreview();
             }
 
             function showPreview() {
-
                 preview.innerHTML = "";
 
-                selectedFiles.forEach((file, index) => {
+                let file = selectedFiles[0];
+                if (!file) return;
 
-                    let reader = new FileReader();
+                let reader = new FileReader();
 
-                    reader.onload = function(e) {
+                reader.onload = function(e) {
+                    preview.innerHTML = `
+                <div class="col-md-4">
+                    <img src="${e.target.result}" class="img-fluid rounded border">
+                </div>
+            `;
+                };
 
-                        let col = document.createElement("div");
-                        col.classList.add("col-md-3", "mb-3");
+                reader.readAsDataURL(file);
 
-                        col.innerHTML = `
-                    <div class="card shadow-sm position-relative">
-                        <img src="${e.target.result}" 
-                             class="card-img-top"
-                             style="height:150px; object-fit:cover;">
-                        <button type="button"
-                                class="btn btn-danger btn-sm position-absolute top-0 end-0 m-1"
-                                onclick="removeImage(${index})">
-                            ✕
-                        </button>
-                    </div>
-                `;
-
-                        preview.appendChild(col);
-                    };
-
-                    reader.readAsDataURL(file);
-                });
-
-                updateInputFiles();
-            }
-
-            function updateInputFiles() {
                 const dataTransfer = new DataTransfer();
-                selectedFiles.forEach(file => dataTransfer.items.add(file));
+                dataTransfer.items.add(file);
                 input.files = dataTransfer.files;
             }
+        }
 
-            window.removeImage = function(index) {
-                selectedFiles.splice(index, 1);
-                showPreview();
-            };
-
-        });
+        // INIT BOTH
+        setup("drop-area-1", "images-1", "preview-1");
+        setup("drop-area-2", "images-2", "preview-2");
     </script>
 
 

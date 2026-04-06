@@ -55,14 +55,10 @@
                                     <th>Name</th>
                                     <th>Email</th>
                                     <th>Phone</th>
-                                    <th>Address</th>
-                                    <th>Short Bio</th>
                                     <th>Image</th>
-                                    <th>LinkedIn</th>
-                                    <th>Twitter</th>
-                                    <th>Facebook</th>
-                                    <th>Ordering</th>
                                     <th>Status</th>
+                                    <th>Created_at</th>
+
                                     <th>Actions</th>
                                 </tr>
                             </thead>
@@ -73,8 +69,6 @@
                                         <td>{{ $team->full_name ?? 'N/A' }}</td>
                                         <td>{{ $team->email ?? 'N/A' }}</td>
                                         <td>{{ $team->phone ?? 'N/A' }}</td>
-                                        <td>{{ $team->address ?? 'N/A' }}</td>
-                                        <td>{!! $team->short_bio ?? 'N/A' !!}</td>
                                         <td>
                                             @if ($team->image)
                                                 <img src="{{ asset('teams/' . $team->image) }}" alt="Team Image"
@@ -83,10 +77,7 @@
                                                 N/A
                                             @endif
                                         </td>
-                                        <td>{{ $team->linkedin ?? 'N/A' }}</td>
-                                        <td>{{ $team->twitter ?? 'N/A' }}</td>
-                                        <td>{{ $team->facebook ?? 'N/A' }}</td>
-                                        <td>{{ $team->ordering ?? 'N/A' }}</td>
+                                       
                                         <td>
 
                                             <span class="badge {{ $team->status === 1 ? 'bg-success' : 'bg-danger' }}">
@@ -95,6 +86,7 @@
 
 
                                         </td>
+                                        <td>{{ $team->created_at->format('m-d-Y') }}</td>
                                         <td>
                                             <a href="{{ route('team.edit', $team->id) }}"
                                                 class="btn btn-primary btn-sm mb-1">Edit</a>

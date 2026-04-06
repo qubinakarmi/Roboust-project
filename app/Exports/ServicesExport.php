@@ -33,7 +33,7 @@ class ServicesExport implements FromCollection,WithHeadings,WithMapping
             $service->short_desc,
             $service->description,
             $service->status == 1 ? 'Active' : 'Inactive', // convert 0/1 to readable
-            $service->created_at,
+            $service->created_at->format('d-m-Y'),
         ];
     }
 

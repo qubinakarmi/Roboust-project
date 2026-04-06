@@ -28,7 +28,7 @@ class AuthorsExport implements FromCollection, WithHeadings, WithMapping
             $author->name,
             $author->email,
             $author->bio,
-            $author->created_at,
+            $author->created_at->format('d-m-Y'),
 
 
         ];

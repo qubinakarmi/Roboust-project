@@ -58,13 +58,12 @@
                         <thead>
                             <tr>
                                 <th>Title</th>
-                                <th>Slug</th>
 
                                 <th>Sub Title</th>
-                                <th>Short Content</th>
-                                <th>Detail Content</th>
+
                                 <th>Image</th>
                                 <th>Status</th>
+                                <th>Created_at</th>
                                 <th style="width:300px;">Action</th>
                             </tr>
                         </thead>
@@ -72,10 +71,8 @@
                             @foreach ($pages as $page)
                                 <tr>
                                     <td>{{ $page->title ?? 'N\A' }}</td>
-                                    <td>{{ $page->slug ?? 'N\A' }}</td>
                                     <td>{{ $page->sub_title ?? 'N\A' }}</td>
-                                    <td>{{ $page->short_content ?? 'N\A' }}</td>
-                                    <td>{{ $page->detail_content ?? 'N\A' }}</td>
+
                                     <td><img src="{{ asset('pages/' . $page->image) }}" alt="{{ $page->title }}"
                                             style="height: 100px;width:100px;"></td>
                                     <td>
@@ -85,6 +82,8 @@
                                             <span class="alert alert-success p-1 text-black" role="alert">Published</span>
                                         @endif
                                     </td>
+                                    <td>{{ $page->created_at->format('m-d-Y') }}</td>
+
 
                                     <td>
                                         <div class="d-flex justify-content-center">

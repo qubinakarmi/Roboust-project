@@ -82,6 +82,68 @@
 
                                 </div>
 
+
+                                {{-- //Start of meta  --}}
+                                <div class="col-md-12">
+                                    <label class="form-label">Meta Title</label>
+                                    <input type="text" name="meta_title" class="form-control"
+                                        placeholder="Enter blog meta_title"
+                                        value="{{ old('meta_title', $page->meta_title) }}">
+
+                                    @error('meta_title')
+                                        <span style="color: red;">{{ $message }}</span>
+                                    @enderror
+                                </div>
+
+                                <div class="col-md-12">
+                                    <label class="form-label">Meta Keyword</label>
+
+                                    {{-- Hidden input for tagsManager --}}
+                                    <input type="hidden" name="hidden_tags" id="hidden_tags" />
+
+                                    {{-- Visible input for user --}}
+                                    <input type="text" class="tm-input form-control" id="tags_input"
+                                        placeholder="Enter tags">
+
+                                    @error('hidden_tags')
+                                        <span style="color: red;">{{ $message }}</span>
+                                    @enderror
+                                    <small id="tag-error" style="color:red;"></small>
+                                </div>
+
+                                <div class="col-md-12">
+                                    <label class="form-label">Meta Description</label>
+                                    <textarea name="meta_description" class="form-control" id="editor">{{ old('meta_description', $page->meta_description) }}</textarea>
+
+                                    @error('meta_description')
+                                        <span style="color: red;">{{ $message }}</span>
+                                    @enderror
+                                </div>
+
+
+
+                                <div class="col-md-12">
+                                    <label class="form-label">Meta Photo</label>
+                                    <x-meta_image />
+                                    <span>current image</span>
+                                    <img src="{{ asset('meta_pages/' . $page->meta_image) }}" alt=""
+                                        style="height:200px;width:400px;">
+
+
+                                    @error('meta_image')
+                                        <span style="color: red;">{{ $message }}</span>
+                                    @enderror
+
+                                </div>
+
+
+                                {{-- end of meta --}}
+
+
+
+
+
+
                                 <!-- Status -->
                                 <div class="col-md-12">
                                     <label class="form-label">Status</label>
@@ -111,7 +173,7 @@
 
                         <!-- Footer -->
                         <div class="card-footer">
-                            <button type="submit" class="btn btn-info">Add Content</button>
+                            <button type="submit" class="btn btn-info">Update Content</button>
                             <a href="" class="btn btn-secondary">Cancel</a>
                         </div>
 

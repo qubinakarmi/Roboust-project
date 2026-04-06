@@ -30,7 +30,7 @@ class BlogsExport implements FromCollection, WithHeadings, WithMapping
             $blog->sub_title,
             $blog->short_content,
             $blog->status == 1 ? 'Active' : 'Inactive', // convert 0/1 to readable
-            $blog->created_at,
+            $blog->created_at->format('d-m-Y'),
         ];
     }
 

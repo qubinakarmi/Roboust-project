@@ -52,9 +52,10 @@
                             <tr>
                                 <th>Page_title</th>
                                 <th>Title</th>
-                                <th>Description</th>nt
+                                <th>Description</th>
                                 <th>Image</th>
                                 <th>Status</th>
+                                <th>Created_at</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
@@ -74,6 +75,7 @@
                                             <span class="alert alert-success p-1 text-black" role="alert">Published</span>
                                         @endif
                                     </td>
+                                    <td>{{ $content->created_at->format('m-d-Y') ?? 'N/A' }}</td>
 
                                     <td>
 
@@ -104,12 +106,7 @@
 
 
 
-                <!-- Card Footer -->
-                {{-- <div class="card-footer clearfix">
-                    <div class="d-flex justify-content-center">
-                        <span class="pagination px-2">{{ $pages->links('pagination::bootstrap-5') }}</span>
-                    </div>
-                </div> --}}
+             
 
             </div>
             <div class="my-2">

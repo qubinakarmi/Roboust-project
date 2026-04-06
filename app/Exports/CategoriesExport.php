@@ -24,7 +24,7 @@ class CategoriesExport implements FromCollection,WithHeadings,WithMapping
              $this->rowNumber,
             $category->name,
             $category->slug,
-                        $category->created_at,
+                        $category->created_at->format('d-m-Y'),
 
         ];
     }

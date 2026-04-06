@@ -14,7 +14,8 @@
     <div class="app-content mt-4">
         <div class="container-fluid">
 
-            <a href="{{ route('service.export') }}" class="btn btn-info">  <i class="fa-solid fa-download fa-xl"></i> Download Services</a>
+            <a href="{{ route('service.export') }}" class="btn btn-info"> <i class="fa-solid fa-download fa-xl"></i> Download
+                Services</a>
 
 
 
@@ -27,7 +28,7 @@
                         <input type="text" name="search" placeholder="Search" class="form-control me-2 w-25"
                             value="{{ request('search') }}">
 
-                    <!-- Status filter -->
+                        <!-- Status filter -->
                         <select name="status" class="form-control me-2 w-25">
                             <option value="">Select Status</option>
                             <option value="1" {{ request('status') == '1' ? 'selected' : '' }}>Active</option>
@@ -61,10 +62,7 @@
 
                                 <th>Title</th>
                                 <th>Category Name</th>
-                                <th>Slug</th>
                                 <th>Sub Title</th>
-                                <th>Short description</th>
-                                <th>Description</th>
                                 <th>Image</th>
                                 <th>Status</th>
                                 <th style="width: 180px">Actions</th>
@@ -76,10 +74,8 @@
 
                                     <td>{{ $service->title ?? 'N/A' }}</td>
                                     <td>{{ $service->category->name ?? 'N/A' }}</td>
-                                    <td>{{ $service->slug ?? 'N/A' }}</td>
                                     <td>{{ $service->sub_title ?? 'N/A' }}</td>
-                                    <td>{{ $service->short_desc ?? 'N/A' }}</td>
-                                    <td>{{ $service->description ?? 'N/A' }}</td>
+
                                     <td>
                                         @if (isset($service->image) && $service->image)
                                             <img src="{{ isset($service->image) ? asset('services/' . $service->image) : 'null' }}"
@@ -132,6 +128,7 @@ $(document).ready(function() {
 
 
                                     </td>
+                                    <td>{{ $service->created_at->format('m-d-Y') }}</td>
                                     <td>
                                         <a href="{{ route('service.edit', $service->id) }}"
                                             class="btn btn-primary btn-sm">Edit</a>

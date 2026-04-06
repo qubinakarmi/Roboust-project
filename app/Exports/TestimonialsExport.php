@@ -29,7 +29,7 @@ class TestimonialsExport implements FromCollection,WithMapping,WithHeadings
             $testimonial->client_name,
             $testimonial->message,
             $testimonial->status == 1 ? 'Published' : 'Hidden',
-            $testimonial->created_at
+            $testimonial->created_at->format('d-m-Y')
 
 
 

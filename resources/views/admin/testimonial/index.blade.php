@@ -65,9 +65,9 @@
                                 <th>Company Name</th>
                                 <th>Designation</th>
                                 <th>Client Name</th>
-                                <th>Message</th>
                                 <th>Image</th>
                                 <th>Status</th>
+                                <th>Created_at</th>
                                 <th class="text-nowrap">Actions</th>
                             </tr>
                         </thead>
@@ -77,7 +77,6 @@
                                     <td>{{ $testimonial->company_name ?? 'N/A' }}</td>
                                     <td>{{ $testimonial->designation ?? 'N/A' }}</td>
                                     <td>{{ $testimonial->client_name ?? 'N/A' }}</td>
-                                    <td>{!! $testimonial->message ?? 'N/A' !!}</td>
                                     <td><img src="{{ isset($testimonial->image) ? asset('testimonials/' . $testimonial->image) : 'null' }}"
                                             alt="" style="height:100px;">
                                     </td>
@@ -89,6 +88,7 @@
 
 
                                     </td>
+                                    <td>{{ $testimonial->created_at->format('m-d-Y') }}</td>
                                     <td class="text-nowrap">
                                         <a href="{{ route('testimonial.edit', $testimonial->id) }}"
                                             class="btn btn-primary btn-sm">Edit</a>

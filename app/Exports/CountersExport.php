@@ -27,7 +27,7 @@ class CountersExport implements FromCollection,WithMapping,WithHeadings
             $counter->prefix,
             $counter->suffix,
             $counter->status == 1 ? 'Active' : 'InActive',
-                        $counter->created_at,
+                        $counter->created_at->format('d-m-Y'),
 
 
         ];

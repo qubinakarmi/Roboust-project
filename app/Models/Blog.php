@@ -16,6 +16,10 @@ class Blog extends Model
         'blog_content',
         'short_content',
         'images',
+        'meta_title',
+        'meta_keywords',
+        'meta_description',
+        'meta_image',
         'status',
     ];
 

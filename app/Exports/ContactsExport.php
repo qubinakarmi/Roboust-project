@@ -25,7 +25,7 @@ class ContactsExport implements FromCollection, WithHeadings ,WithMapping
             $contact->phone,
             $contact->description,
             $contact->status == 1 ? 'Active' : 'Inactive', // convert 0/1 to readable
-            $contact->created_at,
+            $contact->created_at->format('d-m-Y'),
 
         ];
     }

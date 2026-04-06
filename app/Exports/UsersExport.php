@@ -25,7 +25,7 @@ class UsersExport implements FromCollection,WithHeadings,WithMapping
             $user->phone,
             $user->address,
             $user->status ==1 ? 'Active':'Inactive',
-            $user->created_at
+            $user->created_at->format('d-m-Y')
 
         ];
     }

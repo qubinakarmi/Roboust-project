@@ -46,16 +46,16 @@
 
                                 <div class="col-md-12">
                                     <label class="form-label">Short Content</label>
-                                    <textarea name="short_content"  class="form-control" placeholder="Enter a Short Content">{{ old('short_content') }}</textarea>
+                                    <textarea name="short_content" class="form-control" placeholder="Enter a Short Content">{{ old('short_content') }}</textarea>
                                     @error('short_content')
                                         <span style="color: red;">{{ $message }}</span>
                                     @enderror
                                 </div>
 
 
-                                     <div class="col-md-12">
+                                <div class="col-md-12">
                                     <label class="form-label">Detail Content</label>
-                                    <textarea name="detail_content"  class="form-control" placeholder="Enter a Detail Content">{{ old('detail_content') }}</textarea>
+                                    <textarea name="detail_content" class="form-control" placeholder="Enter a Detail Content">{{ old('detail_content') }}</textarea>
                                     @error('detail_content')
                                         <span style="color: red;">{{ $message }}</span>
                                     @enderror
@@ -75,6 +75,67 @@
                                         <span style="color: red;">{{ $message }}</span>
                                     @enderror
                                 </div>
+
+
+
+
+                        {{-- //Start of meta  --}}
+
+
+                                <div class="col-md-12">
+                                    <label class="form-label">Meta Title</label>
+                                    <input type="text" name="meta_title" class="form-control"
+                                        placeholder="Enter blog meta_title" value="{{ old('meta_title') }}">
+
+
+
+                                    @error('meta_title')
+                                        <span style="color: red;">{{ $message }}</span>
+                                    @enderror
+                                </div>
+
+
+
+                                <div class="col-md-12">
+                                    <label class="form-label">Meta Keyword</label>
+                                    <!-- Hidden input (NO tm-input class) -->
+                                    <input type="hidden" name="hidden_tags" id="hidden_tags" />
+
+                                    <!-- Visible input -->
+                                    <input type="text" id="tags_input" class="form-control" placeholder="Enter tags">
+
+                                    @error('hidden_tags')
+                                        <span style="color: red;">{{ $message }}</span>
+                                    @enderror
+                                    <small id="tag-error" style="color:red;"></small>
+                                </div>
+
+                                <div class="col-md-12">
+                                    <label class="form-label">Meta Description</label>
+
+                                    <textarea name="meta_description" class="form-control" id="editor">{{ old('meta_description') }}</textarea>
+
+                                    @error('meta_description')
+                                        <span style="color: red;">{{ $message }}</span>
+                                    @enderror
+                                </div>
+
+
+                                <div class="col-md-12">
+                                    <label class="form-label">Meta Image</label>
+                                    <!-- Drag & Drop Area -->
+                                    <x-meta_image />
+
+                                    @error('meta_image')
+                                        <span style="color: red;">{{ $message }}</span>
+                                    @enderror
+
+                                </div>
+                                {{-- end of meta --}}
+
+
+
+
 
                                 <div class="col-md-12">
                                     <label class="form-label">Status</label>

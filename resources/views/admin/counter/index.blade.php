@@ -10,11 +10,12 @@
         </div>
     @endif
 
-    
+
     <div class="app-content mt-4">
         <div class="container-fluid">
 
-            <a href="{{ route('counter.export') }}" class="btn btn-info">  <i class="fa-solid fa-download fa-xl"></i> Download Counter Record</a>
+            <a href="{{ route('counter.export') }}" class="btn btn-info"> <i class="fa-solid fa-download fa-xl"></i> Download
+                Counter Record</a>
             <div class="mb-3">
                 <form action="{{ route('counter.index') }}" method="GET">
                     <div class="d-flex justify-content-end align-items-center">
@@ -57,11 +58,12 @@
                             <tr>
 
                                 <th>Title</th>
-                                <th>Description</th>
                                 <th>Number</th>
                                 <th>Prefix</th>
                                 <th>Suffix</th>
                                 <th>Status</th>
+                                <th>Created_at</th>
+
                                 <th class="text-nowrap">Actions</th>
                             </tr>
                         </thead>
@@ -69,9 +71,7 @@
                             @foreach ($counters as $counter)
                                 <tr>
                                     <td>{{ $counter->title ?? 'N/A' }}</td>
-                                    <td>
-                                        {!! !empty($counter->description) ? Str::limit(strip_tags($counter->description), 50) : 'N/A' !!}
-                                    </td>
+
                                     <td>{{ $counter->number ?? 'N/A' }}</td>
                                     <td>{{ $counter->prefix ?? 'N/A' }}</td>
                                     <td>{{ $counter->suffix ?? 'N/A' }} </td>
@@ -85,6 +85,7 @@
 
 
                                     </td>
+                                    <td>{{ $counter->created_at->format('m-d-Y') }}</td>
 
                                     <td class="text-nowrap">
                                         <a href="{{ route('counter.edit', $counter->id) }}"

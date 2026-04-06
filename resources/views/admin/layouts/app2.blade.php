@@ -7,17 +7,19 @@
 
     <title>@yield('title')</title>
 
-        <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/style.css') }}">
 
 
 
-        
 
+    <link rel="stylesheet" type="text/css"
+        href="https://cdnjs.cloudflare.com/ajax/libs/tagmanager/3.0.2/tagmanager.min.css">
     <!-- AdminLTE CSS -->
     <link rel="stylesheet" href="{{ asset('all_collect/css/adminlte.css') }}">
 
     <!-- OverlayScrollbars -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/overlayscrollbars@2.11.0/styles/overlayscrollbars.min.css">
+    <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/overlayscrollbars@2.11.0/styles/overlayscrollbars.min.css">
 
     <!-- Bootstrap Icons -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
@@ -31,7 +33,7 @@
     <!-- SweetAlert2 CSS -->
     <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css" rel="stylesheet" />
     <!-- SweetAlert2 JS -->
-<link  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" rel="stylesheet">
 </head>
 <!--end::Head-->
 <!--begin::Body-->
@@ -39,20 +41,21 @@
 <body class="layout-fixed sidebar-expand-lg bg-body-tertiary">
 
 
-<div class="app-wrapper">
+    <div class="app-wrapper">
 
-    @include('admin.partials.header')
-    @include('admin.partials.sidebar')
+        @include('admin.partials.header')
+        @include('admin.partials.sidebar')
 
-    <main class="app-main p-3">
-        @yield('content')
-    </main>
+        <main class="app-main p-3">
+            @yield('content')
+        </main>
 
-    @include('admin.partials.footer')
+        @include('admin.partials.footer')
 
-</div>
+    </div>
 
 
+    @stack('scripts')
 
 
 </body>

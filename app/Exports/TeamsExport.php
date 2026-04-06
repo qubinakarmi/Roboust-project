@@ -32,7 +32,7 @@ class TeamsExport implements FromCollection, WithHeadings, WithMapping
             $team->twitter,
             $team->ordering,
             $team->status==1 ? 'Active':'Inactive',
-            $team->created_at
+            $team->created_at->format('d-m-Y')
 
 
         ];

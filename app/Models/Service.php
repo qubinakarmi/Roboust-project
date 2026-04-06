@@ -9,28 +9,24 @@ class Service extends Model
 {
     protected $fillable = [
         'category_id',
-
         'title',
         'slug',
         'sub_title',
         'short_desc',
         'description',
         'image',
+        'meta_title',
+        'meta_keywords',
+        'meta_description',
+        'meta_image',
         'status',
 
     ];
 
-    protected $casts = [
-    'created_at' => 'datetime',
-    'updated_at' => 'datetime',
-];
+
     public function category(): BelongsTo
 
-    { 
+    {
         return $this->belongsTo(Category::class);
     }
-
-
-  
-
 }

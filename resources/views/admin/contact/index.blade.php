@@ -10,12 +10,13 @@
         </div>
     @endif
 
- 
+
 
     <div class="app-content mt-4">
         <div class="container-fluid">
-               <a href="{{ route('contact.export') }}" class="btn btn-info"> <i class="fa-solid fa-download fa-xl"></i> Download Contact
-        Record</a>
+            <a href="{{ route('contact.export') }}" class="btn btn-info"> <i class="fa-solid fa-download fa-xl"></i> Download
+                Contact
+                Record</a>
 
             <div class="mb-3">
                 <form action="{{ route('contacts.index') }}" method="GET">
@@ -50,8 +51,8 @@
                                 <th>Email</th>
                                 <th>Phone</th>
                                 <th>Subject</th>
-                                <th>Description</th>
                                 <th>Status</th>
+                                <th>Created_at</th>
                                 <th>Actions</th>
                                 <th>Mail</th>
                             </tr>
@@ -65,12 +66,14 @@
                                     <td>{{ $contact->email ?? 'N/A' }}</td>
                                     <td>{{ $contact->phone ?? 'N/A' }}</td>
                                     <td>{{ $contact->subject ?? 'N/A' }}</td>
-                                    <td>{{ $contact->description ?? 'N/A' }}</td>
                                     <td>
                                         <span class="{{ $contact->status == 1 ? 'text-success' : 'text-danger' }}">
                                             {{ $contact->status == 1 ? 'Active' : 'Inactive' }}
                                         </span>
                                     </td>
+
+                                    <td>{{ $contact->created_at->format('m-d-Y') ?? 'N/A' }}</td>
+
                                     <td>
 
                                         <form action="{{ route('contacts.destroy', $contact->id) }}" method="POST"
@@ -109,8 +112,8 @@
                 <!-- Card Footer -->
                 <div class="card-footer clearfix">
                     <div class="d-flex justify-content-center">
-                    <span class="pagination px-2">{{ $contacts->links('pagination::bootstrap-5') }}</span>
-</div>
+                        <span class="pagination px-2">{{ $contacts->links('pagination::bootstrap-5') }}</span>
+                    </div>
                 </div>
 
             </div>

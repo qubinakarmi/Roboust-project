@@ -14,7 +14,7 @@
         <div class="container-fluid">
 
 
-                 <a href="{{ route('author.export') }}" class="btn btn-info">
+            <a href="{{ route('author.export') }}" class="btn btn-info">
                 <i class="fa-solid fa-download fa-xl"></i> Download Author List
             </a>
             <!-- Search -->
@@ -56,6 +56,8 @@
                                     <th>Email</th>
                                     <th>Bio</th>
                                     <th>Image</th>
+                                    <th>Created_at</th>
+
                                     <th>Action</th>
                                 </tr>
                             </thead>
@@ -72,6 +74,8 @@
                                                 alt="{{ $author->name }}" class="img-fluid rounded"
                                                 style="max-height: 80px;">
                                         </td>
+                                                                                <td>{{ $author->created_at->format('m-d-Y') }}</td>
+
                                         <td>
                                             <form action="{{ route('author.destroy', $author->id) }}" method="POST">
                                                 @csrf

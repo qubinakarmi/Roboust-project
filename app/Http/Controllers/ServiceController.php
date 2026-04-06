@@ -12,10 +12,10 @@ use Illuminate\Http\Request;
 class ServiceController extends Controller
 {
 
-public function export()
-{
-    return Excel::download(new ServicesExport,'services.xlsx');
-}
+    public function export()
+    {
+        return Excel::download(new ServicesExport, 'services.xlsx');
+    }
     /**
      * Display a listing of the resource.
      */
@@ -56,6 +56,18 @@ public function export()
             'short_desc' => 'required',
             'logo' => 'required|mimes:jpeg,png,jpg,gif|max:2048',
             'status' => 'required',
+            'hidden_tags'   => [
+                'nullable',
+                function ($attribute, $value, $fail) {
+                    // Convert string to array
+                    $tags = array_filter(array_map('trim', explode(',', $value)));
+
+                    // Check if more than 10
+                    if (count($tags) > 10) {
+                        $fail('Maximum 10 tags allowed.');
+                    }
+                },
+            ],
         ]);
 
 
@@ -67,16 +79,29 @@ public function export()
             $file->move(public_path('services'), $fileName);
         }
 
+        if ($request->hasFile('meta_image')) {
+            $file = $request->file('meta_image');
+
+            $meta_fileName = time() . '.' . $file->getClientOriginalExtension();
+
+            $file->move(public_path('meta_services'), $meta_fileName);
+        }
+
+
 
         Service::create([
-            'category_id' => $request->category_id,
-            'title' => $request->name,
+            'category_id' => $request->category_id  ?? '',
+            'title' => $request->name ?? '',
             'slug' => Str::Slug($request->name, '-'),
-            'sub_title' => $request->sub_title,
-            'short_desc' => $request->short_desc,
-            'description' => strip_tags($request->description),
-            'image' => $fileName,
-            'status' => $request->status,
+            'sub_title' => $request->sub_title ?? '',
+            'short_desc' => $request->short_desc  ?? '',
+            'description' => strip_tags($request->description) ?? '',
+            'image' => $fileName ?? '',
+            'status' => $request->status ?? 0,
+            'meta_title' => $request->meta_title ?? '',
+            'meta_keywords' =>  $request->hidden_tags ?? '',
+            'meta_description' => $request->meta_description ?? '',
+            'meta_image' => $meta_fileName ?? '',
 
 
 
@@ -101,9 +126,23 @@ public function export()
 
         $categories = Category::all();
         $services = Service::findorFail($id);
+          $currentTags = $services->meta_keywords
+            ? array_map('trim', explode(',', $services->meta_keywords))
+            : [];
+
+        // All tags (ONLY for suggestions/autocomplete)
+        $allTags = Service::pluck('meta_keywords')
+            ->filter()
+            ->map(function ($t) {
+                return array_map('trim', explode(',', $t));
+            })
+            ->flatten()
+            ->unique()
+            ->values()
+            ->toArray();
 
 
-        return view('admin.services.edit', compact('services', 'categories'));
+        return view('admin.services.edit', compact('services', 'categories','currentTags', 'allTags'));
     }
 
     /**
@@ -119,6 +158,18 @@ public function export()
             'logo'       => 'nullable|mimes:jpeg,png,jpg,gif|max:2048',
             'status'     => 'required',
             'category_id' => 'required|exists:categories,id',
+            'hidden_tags'   => [
+                'nullable',
+                function ($attribute, $value, $fail) {
+                    // Convert string to array
+                    $tags = array_filter(array_map('trim', explode(',', $value)));
+
+                    // Check if more than 10
+                    if (count($tags) > 10) {
+                        $fail('Maximum 10 tags allowed.');
+                    }
+                },
+            ],
         ]);
 
         // Find the existing service
@@ -133,6 +184,8 @@ public function export()
             'short_desc'  => $request->short_desc,
             'description' => strip_tags($request->description),
             'status'      => $request->status,
+            'meta_keywords' =>  $request->hidden_tags ?? '',
+
         ];
 
         // Handle file upload if a new image is provided

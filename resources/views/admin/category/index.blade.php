@@ -27,23 +27,24 @@
 
 
 
-<a href="{{ route('category.export') }}" class="btn btn-info"> <i class="fa-solid fa-download fa-xl"></i> Download Category</a>
+            <a href="{{ route('category.export') }}" class="btn btn-info"> <i class="fa-solid fa-download fa-xl"></i> Download
+                Category</a>
 
-                <div class="mb-3">
-        <form action="{{ route('category.index') }}" method="GET">
-            <div class="d-flex justify-content-end align-items-center">
+            <div class="mb-3">
+                <form action="{{ route('category.index') }}" method="GET">
+                    <div class="d-flex justify-content-end align-items-center">
 
 
-                <!-- Search input -->
-                <input type="text" name="search" placeholder="Search" class="form-control me-2 w-25"
-                    value="{{ request('search') }}">
-                <button type="submit" class="btn btn-success mx-2">
-                    <i class="fa-solid fa-magnifying-glass"></i>
-                </button>
+                        <!-- Search input -->
+                        <input type="text" name="search" placeholder="Search" class="form-control me-2 w-25"
+                            value="{{ request('search') }}">
+                        <button type="submit" class="btn btn-success mx-2">
+                            <i class="fa-solid fa-magnifying-glass"></i>
+                        </button>
 
+                    </div>
+                </form>
             </div>
-        </form>
-    </div>
 
             <div class="card">
 
@@ -63,7 +64,8 @@
                         <thead>
                             <tr>
                                 <th>Name</th>
-                                <th>Slug</th>
+                                <th>Created_at</th>
+
                                 <th>Action</th>
 
 
@@ -75,7 +77,8 @@
                             @foreach ($categories as $category)
                                 <tr>
                                     <td>{{ $category->name ?? 'N/A' }}</td>
-                                    <td>{{ $category->slug ?? 'N/A' }}</td>
+                                    <td>{{ $category->created_at->format('m-d-Y') ?? 'N/A' }}</td>
+
 
                                     <td>
 

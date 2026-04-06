@@ -56,11 +56,9 @@
                             <tr>
                                 <th>Title</th>
                                 <th>Sub Title</th>
-                                <th>Url Link</th>
-                                <th>Video Link</th>
-                                <th>Ordering</th>
                                 <th>Image</th>
                                 <th>Status</th>
+                                <th>Created_at</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
@@ -74,11 +72,8 @@
 
                                 <td>{{ $slider->sub_title ?? 'N\A' }}</td>
 
-                                <td>{{ $slider->url_link ?? 'N\A' }}</td>
+    
 
-                                <td>{{ $slider->video_link ?? 'N\A' }}</td>
-
-                                <td>{{ $slider->ordering ?? 'N\A' }}</td>
                                 <td><img src="{{ asset('sliders/' . $slider->image) }}" alt="{{ $slider->title }}"
                                         style="height: 100px;width:100px;"></td>
                                 <td>
@@ -88,6 +83,7 @@
                                         <span class="alert alert-success p-1 text-black" role="alert">Published</span>
                                     @endif
                                 </td>
+                                <td>{{ $slider->created_at->format('m-d-Y') }}</td>
 
                                 <td>
 

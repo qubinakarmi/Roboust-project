@@ -30,7 +30,7 @@ class PagesExport implements FromCollection,WithHeadings,WithMapping
             $page->short_content,
             $page->detail_content,
             $page->status==1?'Published':'Hidden',
-            $page->created_at
+            $page->created_at->format('d-m-Y')
 
         ];
     }

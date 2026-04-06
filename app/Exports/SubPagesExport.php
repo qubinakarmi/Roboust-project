@@ -29,7 +29,7 @@ class SubPagesExport implements FromCollection,WithHeadings,WithMapping
             $content->title,
             $content->description,
             $content->status == 1 ? 'Published' : 'Hidden',
-            $content->created_at,
+            $content->created_at->format('d-m-Y'),
 
 
         ];

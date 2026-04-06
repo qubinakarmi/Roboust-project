@@ -66,63 +66,80 @@
                         </a>
                     </div>
 
-                    
+
                 </div>
 
                 <!-- Card Body -->
                 <div class="card-body p-0">
-                    <table class="table table-striped table-hover mb-0">
-                        <thead>
-                            <tr>
-                                <th>Author</th>
-                                <th>Title</th>
-                                <th>slug</th>
-                                <th>Sub Title</th>
-                                <th>Blog Content</th>
-                                <th>Short Content</th>
-                                <th>image</th>
-                                <th>Status</th>
-                                <th style="width: 180px">Actions</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach ($blogs as $blog)
+                    <div class="table-responsive">
+
+                        <table class="table table-striped table-hover mb-0">
+                            <thead>
                                 <tr>
-                                    <td>{{ $blog->author->name ?? 'N/A' }}</td>
-                                    <td>{{ $blog->title ?? 'N/A' }}</td>
-                                    <td>{{ $blog->slug ?? 'N/A' }}</td>
-                                    <td>{{ $blog->sub_title ?? 'N/A' }}</td>
-                                    <td>{!! $blog->blog_content ?? 'N/A' !!}</td>
-                                    <td>{{ $blog->short_content ?? 'N/A' }}</td>
-
-                                    <td><img src="{{ asset('blogs/' . $blog->images) }}" alt=""
-                                            style="height: 100px;width:100px;"></td>
-                                    <td>
-                                        @if ($blog->status === 0)
-                                            <span class="alert alert-warning p-1" role="alert">hidden</span>
-                                        @else
-                                            <span class="alert alert-success p-1 text-black" role="alert">visible</span>
-                                        @endif
-                                    </td>
-                                    <td>
-                                        <a href="{{ route('blog.edit', $blog->id) }}"
-                                            class="btn btn-primary btn-sm">Edit</a>
+                                    <th>Author</th>
+                                    <th>Title</th>
 
 
+                                    <th>image</th>
+                                    <th>Status</th>
+                                    <th>Created_at</th>
 
-
-                                        <form action="{{ route('blog.destroy', $blog->id) }}" method="POST"
-                                            class="delete-form">
-                                            @csrf
-                                            @method('DELETE')
-                                            <button type="submit" class="btn btn-danger btn-sm my-2">Delete</button>
-                                        </form>
-                                    </td>
+                                    <th style="width: 180px">Actions</th>
                                 </tr>
-                            @endforeach
+                            </thead>
+                            <tbody>
+                                @foreach ($blogs as $blog)
+                                    <tr>
+                                        <td>{{ $blog->author->name ?? 'N/A' }}</td>
+                                        <td>{{ $blog->title ?? 'N/A' }}</td>
 
-                        </tbody>
-                    </table>
+
+
+
+                                        <td><img src="{{ asset('blogs/' . $blog->images) }}" alt=""
+                                                style="height: 100px;width:100px;"></td>
+
+
+                                        <td>
+
+
+                                            @if ($blog->status === 0)
+                                                <span class="alert alert-warning p-1" role="alert">hidden</span>
+                                            @else
+                                                <span class="alert alert-success p-1 text-black"
+                                                    role="alert">visible</span>
+                                            @endif
+                                        </td>
+
+
+                                        <td>{{ $blog->created_at->format('m-d-Y') }}</td>
+
+                                        <td>
+                                            <a href="{{ route('blog.edit', $blog->id) }}"
+                                                class="btn btn-primary btn-sm">Edit</a>
+
+
+
+
+                                            <form action="{{ route('blog.destroy', $blog->id) }}" method="POST"
+                                                class="delete-form">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit" class="btn btn-danger btn-sm my-2">Delete</button>
+                                            </form>
+
+                                            <div class="col-md-6 my-2">
+                                                <a href="{{ route('blog.view') }}" class="btn btn-info btn-sm text-white">
+                                                    <i class="fa-solid fa-eye"></i> View
+                                                </a>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                @endforeach
+
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
 
 

@@ -29,7 +29,7 @@ class SlidersExport implements FromCollection,WithHeadings,WithMapping
             $slider->video_link,
             $slider->ordering,
             $slider->status==1?'Published':'Hidden',
-            $slider->created_at,
+            $slider->created_at->format('d-m-Y'),
 
         ];
     }

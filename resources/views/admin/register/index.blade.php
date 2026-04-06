@@ -15,7 +15,8 @@
 
 
 
-<a href="{{ route('reg.export') }}" class="btn btn-info"><i class="fa-solid fa-download fa-xl"></i>  Download User Records</a>
+            <a href="{{ route('reg.export') }}" class="btn btn-info"><i class="fa-solid fa-download fa-xl"></i> Download User
+                Records</a>
 
             <div class="mb-3">
                 <form action="{{ route('reg.index') }}" method="GET">
@@ -65,6 +66,7 @@
                                 <th>Phone</th>
                                 <th>Address</th>
                                 <th>Status</th>
+                                <th>Created_at</th>
                                 <th>Actions</th>
                             </tr>
                         </thead>
@@ -81,9 +83,10 @@
                                             {{ $register->status === 1 ? 'Active' : 'InActive' }}
                                         </span>
                                     </td>
+                                    <td>{{ $register->created_at->format('m-d-Y') }}</td>
+
                                     <td>
-                                        {{-- <a href="{{ route('reg.edit', $register->id) }}"
-                                            class="btn btn-primary btn-sm">Edit</a> --}}
+
                                         <form action="{{ route('reg.destroy', $register->id) }}" method="POST"
                                             class="delete-form">
                                             @csrf
@@ -121,7 +124,7 @@
 
                     <div class="d-flex justify-content-center">
 
-                    <span class="pagination px-2">{{ $registers->links('pagination::bootstrap-5') }}</span>
+                        <span class="pagination px-2">{{ $registers->links('pagination::bootstrap-5') }}</span>
                     </div>
 
                 </div>
