@@ -132,11 +132,7 @@
                                                 </form>
 
                                                 <!-- View -->
-                                                <a href="{{ route('blog.view') }}"
-                                                    class="btn btn-info btn-sm text-white">
-                                                    <i class="fa-solid fa-eye"></i>
-                                                    View
-                                                </a>
+                                            
 
                                             </div>
                                         </td>
