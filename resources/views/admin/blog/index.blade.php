@@ -78,8 +78,6 @@
                                 <tr>
                                     <th>Author</th>
                                     <th>Title</th>
-
-
                                     <th>image</th>
                                     <th>Status</th>
                                     <th>Created_at</th>
@@ -92,16 +90,11 @@
                                     <tr>
                                         <td>{{ $blog->author->name ?? 'N/A' }}</td>
                                         <td>{{ $blog->title ?? 'N/A' }}</td>
-
-
-
-
                                         <td><img src="{{ asset('blogs/' . $blog->images) }}" alt=""
                                                 style="height: 100px;width:100px;"></td>
 
 
                                         <td>
-
 
                                             @if ($blog->status === 0)
                                                 <span class="alert alert-warning p-1" role="alert">hidden</span>
@@ -114,24 +107,37 @@
 
                                         <td>{{ $blog->created_at->format('m-d-Y') }}</td>
 
+                                        
+
                                         <td>
-                                            <a href="{{ route('blog.edit', $blog->id) }}"
-                                                class="btn btn-primary btn-sm">Edit</a>
+                                            <div class="d-flex justify-content-center align-items-center gap-2">
 
-
-
-
-                                            <form action="{{ route('blog.destroy', $blog->id) }}" method="POST"
-                                                class="delete-form">
-                                                @csrf
-                                                @method('DELETE')
-                                                <button type="submit" class="btn btn-danger btn-sm my-2">Delete</button>
-                                            </form>
-
-                                            <div class="col-md-6 my-2">
-                                                <a href="{{ route('blog.view') }}" class="btn btn-info btn-sm text-white">
-                                                    <i class="fa-solid fa-eye"></i> View
+                                                <!-- Edit -->
+                                                <a href="{{ route('blog.edit', $blog->id) }}"
+                                                    class="btn btn-warning btn-sm">
+                                                    <i class="fa-regular fa-pen-to-square"></i>
+                                                    Edit
                                                 </a>
+
+                                                <!-- Delete -->
+                                                <form action="{{ route('blog.destroy', $blog->id) }}" method="POST"
+                                                    class="m-0">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <button type="submit"
+                                                        class="btn btn-danger btn-sm   ">
+                                                        <i class="fa-solid fa-trash"></i>
+                                                        Delete
+                                                    </button>
+                                                </form>
+
+                                                <!-- View -->
+                                                <a href="{{ route('blog.view') }}"
+                                                    class="btn btn-info btn-sm text-white">
+                                                    <i class="fa-solid fa-eye"></i>
+                                                    View
+                                                </a>
+
                                             </div>
                                         </td>
                                     </tr>

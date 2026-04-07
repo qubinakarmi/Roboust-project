@@ -55,7 +55,7 @@ Route::get('subpage/export', [SubPageController::class, 'export'])->name('subpag
 
 // Resource route
 Route::get('blog_view', [BlogController::class, 'view'])->name('blog.view');
-Route::resource('blog', BlogController::class);
+Route::get('service_view', [ServiceController::class, 'view'])->name('services.view');
 
 Route::resource('author', AuthorController::class);
 Route::resource('blog', BlogController::class);

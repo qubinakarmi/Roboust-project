@@ -19,6 +19,20 @@ class ServiceController extends Controller
     /**
      * Display a listing of the resource.
      */
+
+    public function view(Request $request)
+    {
+        $services = Service::when($request->filled('search'), function ($query) use ($request) {
+            $query->where('title', 'LIKE', '%' . $request->search . '%');
+        })->when($request->filled('status'), function ($query) use ($request) {
+            $query->where('status', $request->status);
+        })->with('category')->paginate(5)->appends([
+            'status' => $request->status,
+            'search' => $request->search,
+
+        ]);
+        return view('admin.services.view', compact('services'));
+    }
     public function index(Request $request)
 
     {

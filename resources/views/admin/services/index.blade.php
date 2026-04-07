@@ -130,15 +130,22 @@ $(document).ready(function() {
                                     </td>
                                     <td>{{ $service->created_at->format('m-d-Y') }}</td>
                                     <td>
-                                        <a href="{{ route('service.edit', $service->id) }}"
-                                            class="btn btn-primary btn-sm">Edit</a>
-                                        <form action="{{ route('service.destroy', $service->id) }}" method="POST"
-                                            class="delete-form">
-                                            @csrf
-                                            @method('DELETE')
-                                            <button type="submit" class="btn btn-danger btn-sm my-2">Delete</button>
-                                        </form>
+                                        <div class="d-flex justify-content-center gap-2">
+                                            <a href="{{ route('service.edit', $service->id) }}"
+                                                class="btn btn-outline-warning btn-sm d-inline-block"> <i
+                                                    class="fa-solid fa-pen-to-square"></i>Edit</a>
+                                            <form action="{{ route('service.destroy', $service->id) }}" method="POST"
+                                                class="delete-form">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit" class="btn btn-danger btn-sm my-2"><i class="fa-regular fa-trash-can"></i>Delete</button>
+                                            </form>
 
+                                            <a href="{{ route('services.view') }}" class="btn btn-info btn-sm text-white">
+                                                <i class="fa-solid fa-eye"></i>
+                                                View
+                                            </a>
+                                        </div>
                                     </td>
                                 </tr>
                             @endforeach
