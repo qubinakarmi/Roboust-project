@@ -14,7 +14,7 @@
                         <h3 class="card-title">Counter Form</h3>
                     </div>
 
-                    <form action="{{ route('counter.update',$counters->id) }}" method="POST">
+                    <form action="{{ route('counter.update',$counters->id) }}" method="POST" data-parseley-validate novalidate>
                         @csrf
                         @method('PUT')
 
@@ -24,7 +24,7 @@
                                 <!-- Title -->
                                 <div class="col-md-12">
                                     <label class="form-label">Title</label>
-                                    <input type="text" name="title" class="form-control" value="{{ old('title',$counters->title) }}">
+                                    <input type="text" name="title" class="form-control" value="{{ old('title',$counters->title) }}" required>
 
 
                                      @error('title')
@@ -35,7 +35,7 @@
                                 <!-- Description -->
                                 <div class="col-md-12">
                                     <label class="form-label">Description</label>
-                                    <textarea id="editor" name="description" class="form-control">{{ old('title',$counters->title) }}</textarea>
+                                    <textarea id="editor" name="description" class="form-control" required>{{ old('title',$counters->title) }}</textarea>
                                 
                                  @error('description')
                                         <span style="color: red;">{{ $message }}</span>
@@ -45,7 +45,7 @@
                                 <!-- Number -->
                                 <div class="col-md-12">
                                     <label class="form-label">Number</label>
-                                    <input type="number" name="number" class="form-control" placeholder="Example: 500"  value="{{ old('number',$counters->number) }}">
+                                    <input type="number" name="number" class="form-control" placeholder="Example: 500"  value="{{ old('number',$counters->number) }}" required>
                                 
                                 
                                  @error('number')
@@ -56,7 +56,7 @@
                                 <!-- Prefix -->
                                 <div class="col-md-12">
                                     <label class="form-label">Prefix</label>
-                                    <input type="text" name="prefix" class="form-control" placeholder="Example: + or $" value="{{ old('prefix',$counters->prefix) }}">
+                                    <input type="text" name="prefix" class="form-control" placeholder="Example: + or $" value="{{ old('prefix',$counters->prefix) }}" required>
                                
                                 @error('prefix')
                                         <span style="color: red;">{{ $message }}</span>
@@ -67,7 +67,7 @@
                                 <!-- Suffix -->
                                 <div class="col-md-12">
                                     <label class="form-label">Suffix</label>
-                                    <input type="text" name="suffix" class="form-control" placeholder="Example: + or K" value="{{ old('suffix',$counters->suffix) }}">
+                                    <input type="text" name="suffix" class="form-control" placeholder="Example: + or K" value="{{ old('suffix',$counters->suffix) }}" required>
                                 
                                  @error('suffix')
                                         <span style="color: red;">{{ $message }}</span>
@@ -79,7 +79,7 @@
                                 <div class="col-md-12">
                                     <label class="form-label">Icon</label>
                                     <input type="text" name="icon" class="form-control"
-                                        placeholder="Example: fa-solid fa-users" value="{{ old('icon',$counters->icon) }}">
+                                        placeholder="Example: fa-solid fa-users" value="{{ old('icon',$counters->icon) }}" required>
                                 
                                   @error('icon')
                                         <span style="color: red;">{{ $message }}</span>

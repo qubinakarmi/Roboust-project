@@ -15,7 +15,7 @@
                     </div>
 
                     <!-- Form -->
-                    <form action="{{ route('slider.store') }}" method="POST" enctype="multipart/form-data">
+                    <form action="{{ route('slider.store') }}" method="POST" enctype="multipart/form-data" data-prasley-validate novalidate>
                         @csrf
 
                         <div class="card-body">
@@ -24,7 +24,7 @@
                                 <!-- Slider Title  -->
                                 <div class="col-md-12">
                                     <label class="form-label">Title</label>
-                                    <input type="text" name="title" class="form-control" placeholder="Enter title" value="{{ old('title') }}">
+                                    <input type="text" name="title" class="form-control" placeholder="Enter title" value="{{ old('title') }}" required>
 
                                     @error('title')
                                         <span style="color: red;">{{ $message }}</span>
@@ -35,7 +35,7 @@
                                 <div class="col-md-12">
                                     <label class="form-label">Sub Title</label>
                                     <input type="text" name="sub_title" class="form-control"
-                                        placeholder="Enter sub title"  value="{{ old('sub_title') }}">
+                                        placeholder="Enter sub title"  value="{{ old('sub_title') }}" required>
 
                                     @error('sub_title')
                                         <span style="color: red;">{{ $message }}</span>
@@ -46,7 +46,7 @@
                                 <div class="col-md-12">
                                     <label class="form-label">Url Link</label>
                                     <input type="text" name="url_link" class="form-control"
-                                        placeholder="Enter url link " value="{{ old('url_link') }}">
+                                        placeholder="Enter url link " value="{{ old('url_link') }}" required>
 
                                     @error('url_link')
                                         <span style="color: red;">{{ $message }}</span>
@@ -56,7 +56,7 @@
                                 <div class="col-md-12">
                                     <label class="form-label">Video Link</label>
                                     <input type="text" name="video_link" class="form-control"
-                                        placeholder="Enter video link " value="{{ old('video_link') }}">
+                                        placeholder="Enter video link " value="{{ old('video_link') }}" required>
 
                                     @error('video_link')
                                         <span style="color: red;">{{ $message }}</span>
@@ -65,7 +65,7 @@
 
                                 <div class="col-md-12">
                                     <label class="form-label">Ordering</label>
-                                    <input type="text" name="ordering" class="form-control" placeholder="Enter Ordering" value="{{ old('ordering') }}">
+                                    <input type="text" name="ordering" class="form-control" placeholder="Enter Ordering" value="{{ old('ordering') }}" required>
 
                                     @error('ordering')
                                         <span style="color: red;">{{ $message }}</span>

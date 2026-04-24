@@ -14,7 +14,7 @@
                         <h3 class="card-title">Counter Form</h3>
                     </div>
 
-                    <form action="{{ route('counter.store') }}" method="POST">
+                    <form action="{{ route('counter.store') }}" method="POST" data-parsley-validate novalidate>
                         @csrf
 
                         <div class="card-body">
@@ -23,7 +23,7 @@
                                 <!-- Title -->
                                 <div class="col-md-12">
                                     <label class="form-label">Title</label>
-                                    <input type="text" name="title" class="form-control">
+                                    <input type="text" name="title" class="form-control" required>
 
 
                                      @error('title')
@@ -34,7 +34,7 @@
                                 <!-- Description -->
                                 <div class="col-md-12">
                                     <label class="form-label">Description</label>
-                                    <textarea id="editor" name="description" class="form-control"></textarea>
+                                    <textarea id="editor" name="description" class="form-control" required></textarea>
                                 
                                  @error('description')
                                         <span style="color: red;">{{ $message }}</span>
@@ -44,7 +44,7 @@
                                 <!-- Number -->
                                 <div class="col-md-12">
                                     <label class="form-label">Number</label>
-                                    <input type="number" name="number" class="form-control" placeholder="Example: 500">
+                                    <input type="number" name="number" class="form-control" placeholder="Example: 500" required>
                                 
                                 
                                  @error('number')
@@ -55,7 +55,7 @@
                                 <!-- Prefix -->
                                 <div class="col-md-12">
                                     <label class="form-label">Prefix</label>
-                                    <input type="text" name="prefix" class="form-control" placeholder="Example: + or $">
+                                    <input type="text" name="prefix" class="form-control" placeholder="Example: + or $" required>
                                
                                 @error('prefix')
                                         <span style="color: red;">{{ $message }}</span>
@@ -66,7 +66,7 @@
                                 <!-- Suffix -->
                                 <div class="col-md-12">
                                     <label class="form-label">Suffix</label>
-                                    <input type="text" name="suffix" class="form-control" placeholder="Example: + or K">
+                                    <input type="text" name="suffix" class="form-control" placeholder="Example: + or K" required>
                                 
                                  @error('suffix')
                                         <span style="color: red;">{{ $message }}</span>
@@ -78,7 +78,7 @@
                                 <div class="col-md-12">
                                     <label class="form-label">Icon</label>
                                     <input type="text" name="icon" class="form-control"
-                                        placeholder="Example: fa-solid fa-users">
+                                        placeholder="Example: fa-solid fa-users" required>
                                 
                                   @error('icon')
                                         <span style="color: red;">{{ $message }}</span>

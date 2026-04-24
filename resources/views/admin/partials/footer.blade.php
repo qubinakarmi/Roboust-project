@@ -1,8 +1,8 @@
     <!--end::App Main-->
     <!--begin::Footer-->
 
-    <script src="https://code.jquery.com/jquery-4.0.0.js" integrity="sha256-9fsHeVnKBvqh3FB2HYu7g2xseAZ5MlN6Kz/qnkASV8U="
-        crossorigin="anonymous"></script>
+    {{-- <script src="https://code.jquery.com/jquery-4.0.0.js" integrity="sha256-9fsHeVnKBvqh3FB2HYu7g2xseAZ5MlN6Kz/qnkASV8U="
+        crossorigin="anonymous"></script> --}}
 
 
     {{-- sweetalert --}}
@@ -58,77 +58,119 @@
     <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/tagmanager/3.0.2/tagmanager.min.js"></script>
 
-
-        
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/parsley.js/2.9.2/parsley.min.js"
+        integrity="sha512-eyHL1atYNycXNXZMDndxrDhNAegH2BDWt1TmkXJPoGf1WLlNYt08CSjkqF5lnCRmdm3IrkHid8s2jOUY4NIZVQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script>
-$("#tags_input").tagsManager({
-    hiddenTagListName: 'hidden_tags',
-    maxTags: 10,
-    prefilled: @json($currentTags ?? [])
+$(document).ready(function () {
+
+    const maxTags = 10;
+
+    $("#tags_input").tagsManager({
+        hiddenTagListName: 'hidden_tags',
+        prefilled: @json($currentTags ?? [])
+    });
+
+    // Listen for input / add event
+    $(document).on('keyup', '#tags_input', function (e) {
+
+        let currentTags = $('.tm-tag').length; // tagsManager uses .tm-tag class
+
+        if (currentTags >= maxTags) {
+
+            Swal.fire({
+                icon: 'warning',
+                title: 'Limit Reached',
+                text: 'You can only add up to ' + maxTags + ' tags.'
+            });
+
+            // optional: prevent further input
+         }
+    });
+
 });
 </script>
 
 
-    <script>
-        function setup(dropId, inputId, previewId) {
+<script>
+        document.addEventListener("DOMContentLoaded", function () {
 
-            let dropArea = document.getElementById(dropId);
-            let input = document.getElementById(inputId);
-            let preview = document.getElementById(previewId);
+    document.querySelectorAll(".drop-area").forEach((dropArea) => {
 
-            let selectedFiles = [];
+        let input = dropArea.querySelector(".file-input");
+        let preview = dropArea.nextElementSibling; // next div = preview
+        let selectedFiles = [];
 
-            dropArea.addEventListener("click", () => input.click());
+        dropArea.addEventListener("click", () => input.click());
 
-            ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
-                dropArea.addEventListener(eventName, e => e.preventDefault());
+        ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
+            dropArea.addEventListener(eventName, e => e.preventDefault());
+        });
+
+        dropArea.addEventListener("drop", function (e) {
+            handleFiles(e.dataTransfer.files);
+        });
+
+        input.addEventListener("change", function () {
+            handleFiles(this.files);
+        });
+
+        function handleFiles(files) {
+            Array.from(files).forEach(file => {
+                if (!file.type.startsWith("image/")) return;
+                selectedFiles.push(file);
             });
+            showPreview();
+        }
 
-            dropArea.addEventListener("drop", function(e) {
-                handleFiles(e.dataTransfer.files);
-            });
+        function showPreview() {
+            preview.innerHTML = "";
 
-            input.addEventListener("change", function() {
-                handleFiles(this.files);
-            });
-
-            function handleFiles(files) {
-                const file = files[0]; // single image
-                if (!file || !file.type.startsWith("image/")) return;
-
-                selectedFiles = [file];
-                showPreview();
-            }
-
-            function showPreview() {
-                preview.innerHTML = "";
-
-                let file = selectedFiles[0];
-                if (!file) return;
+            selectedFiles.forEach((file, index) => {
 
                 let reader = new FileReader();
 
-                reader.onload = function(e) {
-                    preview.innerHTML = `
-                <div class="col-md-4">
-                    <img src="${e.target.result}" class="img-fluid rounded border">
-                </div>
-            `;
+                reader.onload = function (e) {
+
+                    let col = document.createElement("div");
+                    col.classList.add("col-md-3", "mb-3");
+
+                    col.innerHTML = `
+                        <div class="card shadow-sm position-relative">
+                            <img src="${e.target.result}" 
+                                 class="card-img-top"
+                                 style="height:150px; object-fit:cover;">
+                            <button type="button"
+                                class="btn btn-danger btn-sm position-absolute top-0 end-0 m-1">
+                                ✕
+                            </button>
+                        </div>
+                    `;
+
+                    col.querySelector("button").addEventListener("click", () => {
+                        selectedFiles.splice(index, 1);
+                        showPreview();
+                    });
+
+                    preview.appendChild(col);
                 };
 
                 reader.readAsDataURL(file);
+            });
 
-                const dataTransfer = new DataTransfer();
-                dataTransfer.items.add(file);
-                input.files = dataTransfer.files;
-            }
+            updateInputFiles();
         }
 
-        // INIT BOTH
-        setup("drop-area-1", "images-1", "preview-1");
-        setup("drop-area-2", "images-2", "preview-2");
-    </script>
+        function updateInputFiles() {
+            const dataTransfer = new DataTransfer();
+            selectedFiles.forEach(file => dataTransfer.items.add(file));
+            input.files = dataTransfer.files;
+        }
 
+    });
+
+});
+    </script>
 
 
     <footer class="app-footer">

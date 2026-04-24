@@ -85,7 +85,7 @@
                                 <div class="col-md-12">
                                     <label class="form-label">Meta Title</label>
                                     <input type="text" name="meta_title" class="form-control"
-                                        placeholder="Enter blog meta_title" value="{{ old('meta_title') }}">
+                                        placeholder="Enter blog meta_title" value="{{ old('meta_title') }}"  data-parsley-trigger=" keyup"data-parsley-maxlength="155">
 
 
 
@@ -113,7 +113,7 @@
                                 <div class="col-md-12">
                                     <label class="form-label">Meta Description</label>
 
-                                    <textarea name="meta_description" class="form-control" id="editor">{{ old('meta_description') }}</textarea>
+                                    <textarea name="meta_description" class="form-control" id="editor"  data-parsley-trigger=" keyup"data-parsley-maxlength="180">{{ old('meta_description') }}</textarea>
 
                                     @error('meta_description')
                                         <span style="color: red;">{{ $message }}</span>

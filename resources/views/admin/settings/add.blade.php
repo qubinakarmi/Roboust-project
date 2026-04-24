@@ -30,7 +30,8 @@
                         <div class="card-title">Add Setting</div>
                     </div>
 
-                    <form action="{{ route('sets.store') }}" method="POST" enctype="multipart/form-data">
+                    <form action="{{ route('sets.store') }}" method="POST" enctype="multipart/form-data"
+                        data-prasley-validate novalidate>
                         @csrf
                         <div class="card-body">
 
@@ -42,16 +43,31 @@
                                         placeholder="Enter business title" value="{{ $settings['title'] ?? '' }}" />
                                 </div>
 
-                                     @error('title')
-                                        <span style="color: red;">{{ $message }}</span>
-                                    @enderror 
+                                @error('title')
+                                    <span style="color: red;">{{ $message }}</span>
+                                @enderror
+                            </div>
+
+
+
+                            <div class="row mb-3">
+                                <label for="email" class="col-sm-2 col-form-label">Email</label>
+                                <div class="col-sm-10">
+                                    <input type="text" name="email" class="form-control" id="email"
+                                        placeholder="Enter business email" value="{{ $settings['email'] ?? '' }}" />
+                                </div>
+
+                                @error('email')
+                                    <span style="color: red;">{{ $message }}</span>
+                                @enderror
                             </div>
 
                             <!-- Logo/Image -->
                             <div class="row mb-3">
                                 <label for="logo" class="col-sm-2 col-form-label">Logo Image</label>
                                 <div class="col-sm-10">
-                                    <x-image action="" />
+                                    {{-- <x-image action="" /> --}}
+                                    <input type="file" name="logo" id="">
                                     <p>
                                         <li>current image</li>
                                     </p>
@@ -62,9 +78,9 @@
 
                                 </div>
 
-                                     @error('logo')
-                                        <span style="color: red;">{{ $message }}</span>
-                                    @enderror 
+                                @error('logo')
+                                    <span style="color: red;">{{ $message }}</span>
+                                @enderror
                             </div>
 
                             <!-- Location -->
@@ -72,13 +88,12 @@
                                 <label for="location" class="col-sm-2 col-form-label">Location</label>
                                 <div class="col-sm-10">
                                     <input type="text" name="location" class="form-control" id="location"
-                                        placeholder="Enter business location"
-                                        value="{{ $settings['location'] ?? '' }}"required />
+                                        placeholder="Enter business location" value="{{ $settings['location'] ?? '' }}" />
                                 </div>
 
-                                     @error('location')
-                                        <span style="color: red;">{{ $message }}</span>
-                                    @enderror 
+                                @error('location')
+                                    <span style="color: red;">{{ $message }}</span>
+                                @enderror
                             </div>
 
                             <!-- Contact Information -->
@@ -86,16 +101,14 @@
                                 <label for="contact" class="col-sm-2 col-form-label">Contact Information</label>
                                 <div class="col-sm-10">
                                     <input type="text" name="contact" class="form-control"
-                                        placeholder="Phone, Email, etc." value="{{ $settings['contact'] ?? '' }}"
-                                         />
+                                        placeholder="Phone, Email, etc." value="{{ $settings['contact'] ?? '' }}" />
                                 </div>
 
-                                     @error('contact')
-                                        <span style="color: red;">{{ $message }}</span>
-                                    @enderror 
+                                @error('contact')
+                                    <span style="color: red;">{{ $message }}</span>
+                                @enderror
                             </div>
-                            <label class="col-sm-2 col-form-label">date</label>
-                            <input type="date" name="date" id="" class="form-control">
+
 
                         </div>
 

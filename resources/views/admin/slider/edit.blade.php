@@ -15,7 +15,7 @@
                     </div>
 
                     <!-- Form -->
-                    <form action="{{ route('slider.update',$slider->id) }}" method="POST" enctype="multipart/form-data">
+                    <form action="{{ route('slider.update',$slider->id) }}" method="POST" enctype="multipart/form-data" data-parsley-validate novalidate>
                         @csrf
                         @method('PUT')
 
@@ -25,7 +25,7 @@
                                 <!-- Slider Title  -->
                                 <div class="col-md-12">
                                     <label class="form-label">Title</label>
-                                    <input type="text" name="title" class="form-control" placeholder="Enter title" value="{{ old('title',$slider->title) }}">
+                                    <input type="text" name="title" class="form-control" placeholder="Enter title" value="{{ old('title',$slider->title) }}" required>
 
                                     @error('title')
                                         <span style="color: red;">{{ $message }}</span>
@@ -36,7 +36,7 @@
                                 <div class="col-md-12">
                                     <label class="form-label">Sub Title</label>
                                     <input type="text" name="sub_title" class="form-control"
-                                        placeholder="Enter sub title"  value="{{ old('sub_title',$slider->sub_title) }}">
+                                        placeholder="Enter sub title"  value="{{ old('sub_title',$slider->sub_title) }}" required>
 
                                     @error('sub_title')
                                         <span style="color: red;">{{ $message }}</span>
@@ -47,7 +47,7 @@
                                 <div class="col-md-12">
                                     <label class="form-label">Url Link</label>
                                     <input type="text" name="url_link" class="form-control"
-                                        placeholder="Enter url link " value="{{ old('url_link',$slider->url_link) }}">
+                                        placeholder="Enter url link " value="{{ old('url_link',$slider->url_link) }}" required>
 
                                     @error('url_link')
                                         <span style="color: red;">{{ $message }}</span>
@@ -57,7 +57,7 @@
                                 <div class="col-md-12">
                                     <label class="form-label">Video Link</label>
                                     <input type="text" name="video_link" class="form-control"
-                                        placeholder="Enter video link " value="{{ old('video_link',$slider->video_link) }}">
+                                        placeholder="Enter video link " value="{{ old('video_link',$slider->video_link) }}" required>
 
                                     @error('video_link')
                                         <span style="color: red;">{{ $message }}</span>
@@ -66,7 +66,7 @@
 
                                 <div class="col-md-12">
                                     <label class="form-label">Ordering</label>
-                                    <input type="text" name="ordering" class="form-control" placeholder="Enter Ordering" value="{{ old('ordering',$slider->ordering) }}">
+                                    <input type="text" name="ordering" class="form-control" placeholder="Enter Ordering" value="{{ old('ordering',$slider->ordering) }}" required>
 
                                     @error('ordering')
                                         <span style="color: red;">{{ $message }}</span>

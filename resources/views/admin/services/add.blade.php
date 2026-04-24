@@ -15,7 +15,7 @@
                     </div>
 
                     <!-- Form -->
-                    <form action="{{ route('service.store') }}" method="POST" enctype="multipart/form-data">
+                    <form action="{{ route('service.store') }}" method="POST" enctype="multipart/form-data" data-parsley-validate novalidate>
                         @csrf
 
                         <div class="card-body">
@@ -25,7 +25,7 @@
                                 <div class="col-md-12">
                                     <label class="form-label">Service Name</label>
                                     <input type="text" name="name" class="form-control"
-                                        placeholder="Enter service name">
+                                        placeholder="Enter service name" required>
 
 
                                     @error('name')
@@ -38,7 +38,7 @@
                                 <div class="col-md-12">
                                     <label class="form-label">Sub Title</label>
                                     <input type="text" name="sub_title" class="form-control"
-                                        placeholder="Enter Sub title">
+                                        placeholder="Enter Sub title" required>
 
                                     @error('sub_title')
                                         <span style="color: red;">{{ $message }}</span>
@@ -52,7 +52,7 @@
                                 <!-- short Description -->
                                 <div class="col-md-12">
                                     <label class="form-label">Short Description</label>
-                                    <textarea name="short_desc" rows="6" class="form-control" placeholder="Write service description..."></textarea>
+                                    <textarea name="short_desc" rows="6" class="form-control" placeholder="Write service description..." required></textarea>
 
                                     @error('shprt_desc')
                                         <span style="color: red;">{{ $message }}</span>
@@ -62,7 +62,7 @@
                                 <!-- Service Description -->
                                 <div class="col-md-12">
                                     <label class="form-label">Description</label>
-                                    <textarea id="editor" name="description" class="form-control" placeholder="Write service description..."></textarea>
+                                    <textarea id="editor" name="description" class="form-control" placeholder="Write service description..." required></textarea>
 
                                     @error('description')
                                         <span style="color: red;">{{ $message }}</span>
@@ -91,7 +91,7 @@
                                 <!-- Service Image -->
                                 <div class="col-md-12">
                                     <label class="form-label">Image</label>
-                                    <x-image action="" />
+                                    <x-image />
 
                                     @error('logo')
                                         <span style="color: red;">{{ $message }}</span>
@@ -109,7 +109,7 @@
                                 <div class="col-md-12">
                                     <label class="form-label">Meta Title</label>
                                     <input type="text" name="meta_title" class="form-control"
-                                        placeholder="Enter blog meta_title" value="{{ old('meta_title') }}">
+                                        placeholder="Enter blog meta_title" value="{{ old('meta_title') }}" data-parsley-trigger=" keyup"data-parsley-maxlength="155">
 
 
 
@@ -139,7 +139,7 @@
                                 <div class="col-md-12">
                                     <label class="form-label">Meta Description</label>
 
-                                    <textarea name="meta_description" class="form-control" id="editor">{{ old('meta_description') }}</textarea>
+                                    <textarea name="meta_description" class="form-control" id="editor"  data-parsley-trigger=" keyup"data-parsley-maxlength="180">{{ old('meta_description') }}</textarea>
 
                                     @error('meta_description')
                                         <span style="color: red;">{{ $message }}</span>

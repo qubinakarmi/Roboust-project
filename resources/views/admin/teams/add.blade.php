@@ -15,7 +15,7 @@
                     </div>
 
                     <!-- Form -->
-                    <form action="{{ route('team.store') }}" method="POST" enctype="multipart/form-data">
+                    <form action="{{ route('team.store') }}" method="POST" enctype="multipart/form-data" data-parsley-validate novalidate>
                         @csrf
 
                         <div class="card-body">
@@ -24,7 +24,7 @@
                                 <div class="col-md-12">
                                     <label class="form-label">Designation</label>
                                     <input type="text" name="designation" class="form-control"
-                                        placeholder="Example: Web Developer">
+                                        placeholder="Example: Web Developer" required>
 
 
                                     @error('designation')
@@ -34,7 +34,7 @@
                                 <!-- Full Name -->
                                 <div class="col-md-12">
                                     <label class="form-label">Full Name</label>
-                                    <input type="text" name="name" class="form-control" placeholder="Enter full name">
+                                    <input type="text" name="name" class="form-control" placeholder="Enter full name" required>
 
                                     @error('name')
                                         <span style="color: red;">{{ $message }}</span>
@@ -46,7 +46,7 @@
                                 <!-- Email -->
                                 <div class="col-md-12">
                                     <label class="form-label">Email</label>
-                                    <input type="email" name="email" class="form-control" placeholder="Enter email">
+                                    <input type="email" name="email" class="form-control" placeholder="Enter email" data-parsley-type="email" data-parsley-maxlength=" 25" required>
 
                                     @error('email')
                                         <span style="color: red;">{{ $message }}</span>
@@ -57,7 +57,7 @@
                                 <div class="col-md-12">
                                     <label class="form-label">Phone</label>
                                     <input type="text" name="phone" class="form-control"
-                                        placeholder="Enter phone number">
+                                        placeholder="Enter phone number" required data-parsley-type="number" data-parsley-maxlength="15">
 
                                     @error('phone')
                                         <span style="color: red;">{{ $message }}</span>
@@ -67,7 +67,7 @@
                                 <!-- Address -->
                                 <div class="col-md-12">
                                     <label class="form-label">Address</label>
-                                    <input type="text" name="address" class="form-control" placeholder="Enter address">
+                                    <input type="text" name="address" class="form-control" placeholder="Enter address" required>
 
                                     @error('address')
                                         <span style="color: red;">{{ $message }}</span>
@@ -77,7 +77,7 @@
                                 <!-- Bio / Description -->
                                 <div class="col-md-12">
                                     <label class="form-label">Short Bio</label>
-                                    <textarea id ="editor" name="bio" class="form-control" rows="3" placeholder="Write short introduction"></textarea>
+                                    <textarea id ="editor" name="bio" class="form-control" rows="3" placeholder="Write short introduction" required ></textarea>
 
                                     @error('bio')
                                         <span style="color: red;">{{ $message }}</span>

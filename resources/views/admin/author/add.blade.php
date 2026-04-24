@@ -15,7 +15,8 @@
                     </div>
 
                     <!-- Form -->
-                    <form action="{{ route('author.store') }}" method="POST" enctype="multipart/form-data">
+                    <form action="{{ route('author.store') }}" method="POST" enctype="multipart/form-data"
+                        data-parsley-validate novalidate>
                         @csrf
 
                         <div class="card-body">
@@ -25,46 +26,44 @@
                                 <div class="col-md-12">
                                     <label class="form-label">Author Name</label>
                                     <input type="text" name="name" class="form-control"
-                                        placeholder="Enter author name">
+                                        placeholder="Enter author name" required>
 
-                                        @error('name')
+                                    @error('name')
                                         <span style="color: red;">{{ $message }}</span>
+                                    @enderror
 
-                                        @enderror
 
-                                        
                                 </div>
 
-                                
+
 
                                 <div class="col-md-12">
                                     <label class="form-label">Email</label>
-                                    <input type="text" name="email" class="form-control" placeholder="Enter Email">
-                                
-                                            @error('email')
-                                        <span style="color: red;">{{ $message }}</span>
+                                    <input type="text" name="email" class="form-control" placeholder="Enter Email"
+                                        required data-parsley-type="email" data-parsley-trigger="keyup" data-parsley-maxlength="25">
 
-                                        @enderror
+                                    @error('email')
+                                        <span style="color: red;">{{ $message }}</span>
+                                    @enderror
                                 </div>
 
                                 <div class="col-md-12">
                                     <label class="form-label">Address</label>
-                                    <input type="text" name="address" class="form-control" placeholder="Enter Email">
-                                
-                                            @error('address')
-                                        <span style="color: red;">{{ $message }}</span>
+                                    <input type="text" name="address" class="form-control" placeholder="Enter Address"
+                                        data-parsley-trigger="keyup" data-parsley-maxlength="25" required>
 
-                                        @enderror
+                                    @error('address')
+                                        <span style="color: red;">{{ $message }}</span>
+                                    @enderror
                                 </div>
                                 <div class="col-md-12">
                                     <label class="form-label">Bio</label>
-                                    <textarea name="bio" placeholder="Enter your bio" class="form-control"></textarea>
-                                
-                                
-                                            @error('bio')
-                                        <span style="color: red;">{{ $message }}</span>
+                                    <textarea name="bio" placeholder="Enter your bio" class="form-control" required data-parsley-trigger="keyup" data-parsley-maxlength="120"></textarea>
 
-                                        @enderror
+
+                                    @error('bio')
+                                        <span style="color: red;">{{ $message }}</span>
+                                    @enderror
                                 </div>
 
 
@@ -82,20 +81,19 @@
                                 <!-- Author Image -->
                                 <div class="col-md-12">
                                     <label class="form-label">Image</label>
-                                    <x-image action="" />
-                                
-                                
-                                            @error('logo')
-                                        <span style="color: red;">{{ $message }}</span>
+                                    <x-image />
 
-                                        @enderror
+
+                                    @error('logo')
+                                        <span style="color: red;">{{ $message }}</span>
+                                    @enderror
                                 </div>
 
 
 
                             </div>
                         </div>
-
+ 
                         <!-- Footer -->
                         <div class="card-footer">
                             <button type="submit" class="btn btn-info">Add Service</button>

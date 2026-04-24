@@ -36,7 +36,7 @@
                                 <div class="col-md-12">
                                     <label class="form-label">Title</label>
                                     <input type="text" name="title" class="form-control" placeholder="Enter blog title"
-                                        value="{{ old('title', $datas->title) }}">
+                                        value="{{ old('title', $datas->title) }}" required>
 
                                     @error('title')
                                         <span style="color: red;">{{ $message }}</span>
@@ -47,7 +47,7 @@
                                     <label class="form-label">Sub Title</label>
                                     <input type="text" name="sub_title" class="form-control"
                                         placeholder="Enter blog sub title"
-                                        value="{{ old('sub_title', $datas->sub_title) }}">
+                                        value="{{ old('sub_title', $datas->sub_title) }}" required>
 
                                     @error('title')
                                         <span style="color: red;">{{ $message }}</span>
@@ -59,7 +59,8 @@
                                 <div class="col-md-12">
                                     <label class="form-label">Short Content</label>
                                     <textarea name="short_content" rows="6" class="form-control" placeholder="Write blog short content here..."
-                                        required style="color: black; min-height:300px;">{{ old('short_content', $datas->short_content) }}</textarea>
+                                        required style="color: black; min-height:300px;" required
+                                        >{{ old('short_content', $datas->short_content) }}</textarea>
                                     @error('short_content')
                                         <span style="color: red;">{{ $message }}</span>
                                     @enderror
@@ -74,7 +75,7 @@
 
 
 
-                                    <textarea id="editor" name="blog_content" class="form-control" style="color: black;min-height:300px;">{{ old('blog_content', $datas->blog_content) }}</textarea>
+                                    <textarea id="editor" name="blog_content" class="form-control" style="color: black;min-height:300px;" required>{{ old('blog_content', $datas->blog_content) }}</textarea>
 
 
                                     @error('blog_content')

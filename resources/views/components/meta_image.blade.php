@@ -1,10 +1,6 @@
-<!-- Drag & Drop Area -->
-<div id="drop-area-2" class="border border-2 border-primary rounded p-5 text-center mb-3"
-    style="cursor:pointer; background:#f8f9fa;">
-    <p class="mb-2">Drag & Drop Images Here</p>
-    <p class="text-muted">or Click to Select</p>
-    <input type="file" name="meta_image" id="images-2" accept="image/*" hidden>
+<!-- Uploader 1 -->
+<div class="drop-area border border-2 border-primary rounded p-5 text-center mb-3">
+    <p>Drag & Drop Images Here</p>
+    <input type="file" name="meta_image" class="file-input" multiple hidden>
 </div>
-
-<!-- Preview Section -->
-<div class="row" id="preview-2"></div>
+<div class="row preview"></div>

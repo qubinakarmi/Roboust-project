@@ -21,7 +21,7 @@
                         <div class="card-title">Add Category</div>
                     </div>
 
-                    <form action="{{ route('category.store') }}" method="POST" enctype="multipart/form-data">
+                    <form action="{{ route('category.store') }}" method="POST" enctype="multipart/form-data"   data-parsley-validate novalidate>
                         @csrf
                         <div class="card-body">
 
@@ -30,7 +30,7 @@
                                 <label for="title" class="col-sm-2 col-form-label">Category</label>
                                 <div class="col-sm-10">
                                     <input type="text" name="category" class="form-control" id="title"
-                                        placeholder="Enter Category for services" value="{{ old('category') }}" />
+                                        placeholder="Enter Category for services" value="{{ old('category') }}" required/>
                                 </div>
                                 <span>@error('category') <p style="color:red;">{{ $message }}</p> @enderror</span>
                             </div>

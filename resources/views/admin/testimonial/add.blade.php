@@ -15,7 +15,7 @@
                     </div>
 
                     <!-- Form -->
-                    <form action="{{ route('testimonial.store') }}" method="POST" enctype="multipart/form-data">
+                    <form action="{{ route('testimonial.store') }}" method="POST" enctype="multipart/form-data" data-parsley-validate novalidate>
                         @csrf
 
                         <div class="card-body">
@@ -23,7 +23,7 @@
                                 <div class="col-md-12">
                                     <label class="form-label">Company Name</label>
                                     <input type="text" name="company_name" class="form-control"
-                                        placeholder="Company or designation">
+                                        placeholder="Company or designation" required>
 
                                     @error('company_name')
                                         <span style="color: red;">{{ $message }}</span>
@@ -34,7 +34,7 @@
                                 <div class="col-md-12">
                                     <label class="form-label">Designation</label>
                                     <input type="text" name="designation" class="form-control"
-                                        placeholder="Company or designation">
+                                        placeholder="Company or designation" required>
 
                                     @error('designation')
                                         <span style="color: red;">{{ $message }}</span>
@@ -45,7 +45,7 @@
                                 <div class="col-md-6">
                                     <label class="form-label">Client Name</label>
                                     <input type="text" name="client_name" class="form-control"
-                                        placeholder="Enter client name">
+                                        placeholder="Enter client name" required>
 
                                     @error('client_name')
                                         <span style="color: red;">{{ $message }}</span>
@@ -54,7 +54,7 @@
                                 <!-- Testimonial Message -->
                                 <div class="col-md-12">
                                     <label class="form-label">Message</label>
-                                    <textarea id="editor" name="message"></textarea>
+                                    <textarea id="editor" name="message" required></textarea>
                                     @error('message')
                                         <span style="color: red;">{{ $message }}</span>
                                     @enderror

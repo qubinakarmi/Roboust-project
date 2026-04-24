@@ -10,13 +10,13 @@
     <div class="container">
         <h2>Upload Multiple Images</h2>
 
-        <form action="{{ route('gall.store') }}" method="POST" enctype="multipart/form-data">
+        <form action="{{ route('gall.store') }}" method="POST" enctype="multipart/form-data" data-prasley-validate novalidate>
             @csrf
 
             <div class="col-md-12">
                 <label for="">Image Title</label>
                 <input type="text" name="title" id="" class="form-control mb-2"
-                    placeholder="Enter a Image Title">
+                    placeholder="Enter a Image Title" required>
 
 
                 {{-- error handling --}}
@@ -28,7 +28,7 @@
 
 
             </div>
-
+{{-- 
             <div id="drop-area" class="border border-2 border-primary rounded p-5 text-center mb-3"
                 style="cursor:pointer; background:#f8f9fa;">
 
@@ -38,18 +38,20 @@
                 <input type="file" name="images[]" id="images" multiple accept="image/*" hidden>
 
 
+            </div> --}}
+
+         <!-- Drag & Drop Area -->
+            <div id="drop-area" class="border border-2 border-primary rounded p-5 text-center mb-3"
+                style="cursor:pointer; background:#f8f9fa;">
+                <p class="mb-2">Drag & Drop Images Here</p>
+                <p class="text-muted">or Click to Select</p>
+                <input type="file" name="images[]" id="images" multiple accept="image/*" hidden>
             </div>
 
+            <!-- Preview Section -->
+            <div class="row" id="preview"></div>
+
             
-
-
-
-
-
-
-
-
-
 
             {{-- when no image selected --}}
             @error('images')
