@@ -28,7 +28,7 @@
 
     {{-- end of slider --}}
 
-    
+
 
 
     <div class="site-section">
@@ -95,31 +95,30 @@
                     <div class="owl-slide-3 owl-carousel">
 
                         @foreach ($courses as $course)
-                                <div class="course-1-item">
-                                    <figure class="thumnail">
-                                        <a href="course-single.html"><img src="{{ asset('courses/' . $course->image) }}"
-                                                alt="Image" class="img-fluid"></a>
-                                        <div class="price">${{ $course->price }}</div>
-                                        <div class="category">
-                                            <h3>{{ $course->title }}</h3>
-                                        </div>
-                                    </figure>
-                                    <div class="course-1-content pb-4">
-                                        <h2>{{ $course->sub_title }}</h2>
-                                        <div class="rating text-center mb-3">
-                                            <span class="icon-star2 text-warning"></span>
-                                            <span class="icon-star2 text-warning"></span>
-                                            <span class="icon-star2 text-warning"></span>
-                                            <span class="icon-star2 text-warning"></span>
-                                            <span class="icon-star2 text-warning"></span>
-                                        </div>
-                                        <p class="desc mb-4">{{ $course->short_desc }}</p>
-                                        <p><a href="course-single.html" class="btn btn-primary rounded-0 px-4">Enroll In
-                                                This
-                                                Course</a></p>
+                            <div class="course-1-item">
+                                <figure class="thumnail">
+                                    <a href="course-single.html"><img src="{{ asset('courses/' . $course->image) }}"
+                                            alt="Image" class="img-fluid"></a>
+                                    <div class="price">${{ $course->price }}</div>
+                                    <div class="category">
+                                        <h3>{{ $course->title }}</h3>
                                     </div>
+                                </figure>
+                                <div class="course-1-content pb-4">
+                                    <h2>{{ $course->sub_title }}</h2>
+                                    <div class="rating text-center mb-3">
+                                        <span class="icon-star2 text-warning"></span>
+                                        <span class="icon-star2 text-warning"></span>
+                                        <span class="icon-star2 text-warning"></span>
+                                        <span class="icon-star2 text-warning"></span>
+                                        <span class="icon-star2 text-warning"></span>
+                                    </div>
+                                    <p class="desc mb-4">{{ $course->short_desc }}</p>
+                                    <p><a href="course-single.html" class="btn btn-primary rounded-0 px-4">Enroll In
+                                            This
+                                            Course</a></p>
                                 </div>
-                            
+                            </div>
                         @endforeach
 
 
@@ -149,7 +148,7 @@
                     </h2>
                 </div>
                 <div class="col-lg-8">
-                    <p class="lead">{{ Str::limit($pages->short_content,150) }}</p>
+                    <p class="lead">{{ Str::limit($pages->short_content, 150) }}</p>
                     <p><a href="{{ route('about') }}">Read more</a></p>
                 </div>
             </div>
@@ -231,84 +230,81 @@
                         <h2 class="text-black">News &amp; Updates</h2>
                         <a href="#">Read All News</a>
                     </div>
+
+
                     <div class="row">
                         <div class="col-lg-6">
                             <div class="post-entry-big">
-                                <a href="news-single.html" class="img-link"><img src="images/blog_large_1.jpg"
+                                <a href="news-single.html" class="img-link"><img src="{{ asset('blogs/'.$mainBlog->images) }}"
                                         alt="Image" class="img-fluid"></a>
                                 <div class="post-content">
                                     <div class="post-meta">
-                                        <a href="#">June 6, 2019</a>
+                                        <a href="#">{{ $mainBlog->created_at->format('F d,Y') }}</a>
                                         <span class="mx-1">/</span>
-                                        <a href="#">Admission</a>, <a href="#">Updates</a>
+                                        <a href="#">{{ $mainBlog->title}}</a>
                                     </div>
-                                    <h3 class="post-heading"><a href="news-single.html">Campus Camping and Learning
-                                            Session</a></h3>
+                                    <h3 class="post-heading"><a href="news-single.html">{{ $mainBlog->short_content }}</a></h3>
                                 </div>
                             </div>
                         </div>
+
+
+
                         <div class="col-lg-6">
-                            <div class="post-entry-big horizontal d-flex mb-4">
-                                <a href="news-single.html" class="img-link mr-4"><img src="images/blog_1.jpg"
-                                        alt="Image" class="img-fluid"></a>
-                                <div class="post-content">
-                                    <div class="post-meta">
-                                        <a href="#">June 6, 2019</a>
-                                        <span class="mx-1">/</span>
-                                        <a href="#">Admission</a>, <a href="#">Updates</a>
-                                    </div>
-                                    <h3 class="post-heading"><a href="news-single.html">Campus Camping and Learning
-                                            Session</a></h3>
-                                </div>
-                            </div>
 
-                            <div class="post-entry-big horizontal d-flex mb-4">
-                                <a href="news-single.html" class="img-link mr-4"><img src="images/blog_2.jpg"
-                                        alt="Image" class="img-fluid"></a>
-                                <div class="post-content">
-                                    <div class="post-meta">
-                                        <a href="#">June 6, 2019</a>
-                                        <span class="mx-1">/</span>
-                                        <a href="#">Admission</a>, <a href="#">Updates</a>
+                            @foreach ($otherBlogs as $blog)
+                                <div class="post-entry-big horizontal d-flex mb-4">
+                                    <a href="news-single.html" class="img-link mr-4"><img
+                                            src="{{ asset('blogs/' .$blog->images) }}" alt="Image"
+                                            class="img-fluid"></a>
+                                    <div class="post-content">
+                                        <div class="post-meta">
+                                            <a href="#">{{ $blog->created_at->format('F d, Y') }}</a>
+                                            <span class="mx-1">/</span>
+                                            <a href="#">{{ $blog->title }}</a>
+                                        </div>
+                                        <h3 class="post-heading"><a href="news-single.html">{{ $blog->short_content }}</a></h3>
                                     </div>
-                                    <h3 class="post-heading"><a href="news-single.html">Campus Camping and Learning
-                                            Session</a></h3>
                                 </div>
-                            </div>
+                            @endforeach
 
-                            <div class="post-entry-big horizontal d-flex mb-4">
-                                <a href="news-single.html" class="img-link mr-4"><img src="images/blog_1.jpg"
-                                        alt="Image" class="img-fluid"></a>
-                                <div class="post-content">
-                                    <div class="post-meta">
-                                        <a href="#">June 6, 2019</a>
-                                        <span class="mx-1">/</span>
-                                        <a href="#">Admission</a>, <a href="#">Updates</a>
-                                    </div>
-                                    <h3 class="post-heading"><a href="news-single.html">Campus Camping and Learning
-                                            Session</a></h3>
-                                </div>
-                            </div>
+
+
+
+
+
+
+
+
+
                         </div>
                     </div>
                 </div>
+
+
+
+
+
+
+
+
+
+
+                {{-- Video section --}}
                 <div class="col-lg-3">
-                    <div class="section-heading">
-                        <h2 class="text-black">Campus Videos</h2>
+                    <div>
+                        <h2 class="text-black">Campus Video</h2>
                         <a href="#">View All Videos</a>
                     </div>
-                    <a href="https://vimeo.com/45830194" class="video-1 mb-4" data-fancybox="" data-ratio="2">
-                        <span class="play">
-                            <span class="icon-play"></span>
-                        </span>
-                        <img src="images/course_5.jpg" alt="Image" class="img-fluid">
-                    </a>
-                    <a href="https://vimeo.com/45830194" class="video-1 mb-4" data-fancybox="" data-ratio="2">
-                        <span class="play">
-                            <span class="icon-play"></span>
-                        </span>
-                        <img src="images/course_5.jpg" alt="Image" class="img-fluid">
-                    </a>
+                    @foreach ($videos as $video)
+                        <a href="{{ $video->video_url }}" class="video-1 mb-4" data-fancybox="" data-ratio="2">
+                            <span class="play">
+                                <span class="icon-play"></span>
+                            </span>
+                            <img src="{{ asset('videos/' . $video->thumbnail) }}" alt="Image" class="img-fluid">
+                        </a>
+                    @endforeach
+
                 </div>
             </div>
         </div>
@@ -316,21 +312,5 @@
 
 
 
-    {{-- 
-    <div class="site-section ftco-subscribe-1" style="background-image: url('images/bg_1.jpg')">
-        <div class="container">
-            <div class="row align-items-center">
-                <div class="col-lg-7">
-                    <h2>Subscribe to us!</h2>
-                    <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia,</p>
-                </div>
-                <div class="col-lg-5">
-                    <form action="" class="d-flex">
-                        <input type="text" class="rounded form-control mr-2 py-3" placeholder="Enter your email">
-                        <button class="btn btn-primary rounded py-3 px-4" type="submit">Send</button>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div> --}}
+
 @endsection

@@ -101,7 +101,7 @@ class BlogController extends Controller
             'blog_content' => 'required',
             'sub_title' => 'required',
             'short_content' => 'required',
-            'logo' => 'mimes:jpeg,png,jpg,gif|max:2048',
+            'logo' => 'required|mimes:jpeg,png,jpg,gif|max:2048',
             'status' => 'required',
             'hidden_tags'   => [
                 'nullable',

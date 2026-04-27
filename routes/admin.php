@@ -17,6 +17,7 @@ use App\Http\Controllers\Admin\SliderController;
 use App\Http\Controllers\Admin\TestimonialController;
 use App\Http\Controllers\Admin\TeamController;
 use App\Http\Controllers\Admin\SubPageController;
+use App\Http\Controllers\Admin\VideoController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -64,6 +65,7 @@ Route::resource('page', PagesController::class);
 Route::resource('slider', SliderController::class);
 Route::resource('subpage', SubPageController::class);
 Route::resource('course', CourseController::class);
+Route::resource('video',VideoController::class);
 
 
 
