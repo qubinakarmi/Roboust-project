@@ -65,18 +65,18 @@
                             <li>
                                 <a href="{{ route('home') }}" class="nav-link text-left">Home</a>
                             </li>
-                            <li class="has-children">
-                                <a href="about.html" class="nav-link text-left">About Us</a>
-                                <ul class="dropdown">
+                            <li >
+                                <a href="{{ route('about') }}" class="nav-link text-left">About Us</a>
+                                {{-- <ul class="dropdown">
                                     <li><a href="teachers.html">Our Teachers</a></li>
                                     <li><a href="about.html">Our School</a></li>
-                                </ul>
+                                </ul> --}}
                             </li>
                             <li>
-                                <a href="admissions.html" class="nav-link text-left">Admissions</a>
+                                <a href="{{ route('admissions') }}" class="nav-link text-left">Admissions</a>
                             </li>
                             <li class="active">
-                                <a href="courses.html" class="nav-link text-left">Courses</a>
+                                <a href="{{ route('courses') }}" class="nav-link text-left">Courses</a>
                             </li>
                             <li>
                                 <a href="{{ route('contact') }}" class="nav-link text-left">Contact</a>

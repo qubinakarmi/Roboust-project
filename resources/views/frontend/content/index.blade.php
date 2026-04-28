@@ -114,11 +114,12 @@
                                         <span class="icon-star2 text-warning"></span>
                                     </div>
                                     <p class="desc mb-4">{{ $course->short_desc }}</p>
-                                    <p><a href="course-single.html" class="btn btn-primary rounded-0 px-4">Enroll In
+                                    <p><a href="{{ route('admissions',$course->id) }}#enrollment-form" class="btn btn-primary rounded-0 px-4">Enroll In
                                             This
                                             Course</a></p>
                                 </div>
                             </div>
+                            
                         @endforeach
 
 
@@ -194,33 +195,11 @@
     </div>
 
 
-    <div class="section-bg style-1" style="background-image: url('images/hero_1.jpg');">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-4 col-md-6 mb-5 mb-lg-0">
-                    <span class="icon flaticon-mortarboard"></span>
-                    <h3>Our Philosphy</h3>
-                    <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Reiciendis recusandae, iure repellat quis
-                        delectus ea? Dolore, amet reprehenderit.</p>
-                </div>
-                <div class="col-lg-4 col-md-6 mb-5 mb-lg-0">
-                    <span class="icon flaticon-school-material"></span>
-                    <h3>Academics Principle</h3>
-                    <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Reiciendis recusandae, iure repellat quis
-                        delectus ea?
-                        Dolore, amet reprehenderit.</p>
-                </div>
-                <div class="col-lg-4 col-md-6 mb-5 mb-lg-0">
-                    <span class="icon flaticon-library"></span>
-                    <h3>Key of Success</h3>
-                    <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Reiciendis recusandae, iure repellat quis
-                        delectus ea?
-                        Dolore, amet reprehenderit.</p>
-                </div>
-            </div>
-        </div>
-    </div>
 
+
+
+
+    {{-- Blogs --}}
     <div class="news-updates">
         <div class="container">
 
@@ -267,11 +246,6 @@
                                     </div>
                                 </div>
                             @endforeach
-
-
-
-
-
 
 
 

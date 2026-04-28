@@ -116,6 +116,7 @@ class ServiceController extends Controller
             'meta_keywords' =>  $request->hidden_tags ?? '',
             'meta_description' => $request->meta_description ?? '',
             'meta_image' => $meta_fileName ?? '',
+              'icons' => $request->icons ?? '',
 
 
 
@@ -199,6 +200,7 @@ class ServiceController extends Controller
             'description' => strip_tags($request->description),
             'status'      => $request->status,
             'meta_keywords' =>  $request->hidden_tags ?? '',
+              'icons' => $request->icons ?? '',
 
         ];
 

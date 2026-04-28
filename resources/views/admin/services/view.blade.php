@@ -138,17 +138,18 @@ $(document).ready(function() {
                                         <div class=" d-flex justify-content-center gap-2">
                                             <a href="{{ route('service.edit', $service->id) }}"
                                                 class="btn btn-warning btn-sm"> <i
-                                                    class="fa-solid fa-pen-to-square"></i>Edit</a>
+                                                    class="fa-solid fa-pen-to-square"></i></a>
                                             <form action="{{ route('service.destroy', $service->id) }}" method="POST"
                                                 class="delete-form">
                                                 @csrf
                                                 @method('DELETE')
-                                                <button type="submit" class="btn btn-danger btn-sm my-2"> <i class="fa-regular fa-trash-can"></i>Delete</button>
+                                                <button type="submit" class="btn btn-danger btn-sm "> <i
+                                                        class="fa-regular fa-trash-can"></i></button>
                                             </form>
 
                                             <a href="{{ route('services.view') }}" class="btn btn-info btn-sm text-white">
                                                 <i class="fa-solid fa-eye"></i>
-                                                View
+
                                             </a>
                                         </div>
                                     </td>

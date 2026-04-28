@@ -42,6 +42,17 @@
                                 @enderror 
                             </div>
 
+
+                                   <div class="col-md-12">
+                                    <label class="form-label">Icons</label>
+                                    <input type="text" name="icons" class="form-control"
+                                        placeholder="Enter Icons"  value="{{ old('icons', $services->icons) }}" required>
+
+                                    @error('icons')
+                                        <span style="color: red;">{{ $message }}</span>
+                                    @enderror
+                                </div>
+
                             <!-- Short Description -->
                             <div class="col-md-12">
                                 <label class="form-label">Short Description</label>

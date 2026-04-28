@@ -20,6 +20,7 @@ class Service extends Model
         'meta_description',
         'meta_image',
         'status',
+        'icons'
 
     ];
 
