@@ -16,7 +16,7 @@
             @endif
 
             <a href="{{ route('blog.export') }}" class="btn btn-info">
-                <i class="fa-solid fa-download fa-xl"></i> Download All Blogs
+                <i class="fa-solid fa-download fa-xl"></i> 
             </a>
 
 
@@ -62,7 +62,7 @@
 
                     <div class="d-flex justify-content-center align-items-center">
                         <a href="{{ route('blog.create') }}" class="btn btn-success btn-sm p-2" id="btn">
-                            <i class="fa-solid fa-plus"></i>Add Blog
+                            <i class="fa-solid fa-plus"></i>
                         </a>
                     </div>
 
@@ -116,7 +116,6 @@
                                                 <a href="{{ route('blog.edit', $blog->id) }}"
                                                     class="btn btn-warning btn-sm">
                                                     <i class="fa-regular fa-pen-to-square"></i>
-                                                    Edit
                                                 </a>
 
                                                 <!-- Delete -->
@@ -127,7 +126,6 @@
                                                     <button type="submit"
                                                         class="btn btn-danger btn-sm   ">
                                                         <i class="fa-solid fa-trash"></i>
-                                                        Delete
                                                     </button>
                                                 </form>
 

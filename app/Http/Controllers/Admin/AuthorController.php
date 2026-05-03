@@ -60,6 +60,7 @@ return Excel::download(new AuthorsExport,'authors.xlsx');
             'logo' => 'required|mimes:jpeg,jpg,png,gif,svg|max:2048'
         ]);
 
+        $fileName = null;
 
         if ($request->hasFile('logo')) {
             $file = $request->file('logo');

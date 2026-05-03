@@ -95,7 +95,7 @@
 
             <h2 class="mb-4">Gallery</h2>
             <a class="btn btn-outline-primary mb-3" href="{{ route('gall.create') }}"><i
-                    class="fa-solid fa-plus"></i>Add</a>
+                    class="fa-solid fa-plus"></i></a>
 
             <div class="row g-3">
                 @foreach ($galleries as $gallery)

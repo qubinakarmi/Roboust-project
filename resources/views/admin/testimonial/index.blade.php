@@ -16,8 +16,8 @@
 
 
 
-               <a href="{{ route('testimonial.export') }}" class="btn btn-info"> <i class="fa-solid fa-download fa-xl"></i> Download Testimonial
-        Record</a>
+               <a href="{{ route('testimonial.export') }}" class="btn btn-info"> <i class="fa-solid fa-download fa-xl"></i> 
+</a>
 
             <div class="mb-3">
                 <form action="{{ route('testimonial.index') }}" method="GET">
@@ -51,7 +51,8 @@
 
                         {{-- create route --}}
                         <a href="{{ route('testimonial.create') }}" class="btn btn-success btn-sm">
-                            Add New Testimonial
+                          <i
+                    class="fa-solid fa-plus"></i>
                         </a>
                     </div>
                 </div>
@@ -90,14 +91,18 @@
                                     </td>
                                     <td>{{ $testimonial->created_at->format('m-d-Y') }}</td>
                                     <td class="text-nowrap">
+                                        <div class="d-flex">
                                         <a href="{{ route('testimonial.edit', $testimonial->id) }}"
-                                            class="btn btn-primary btn-sm">Edit</a>
+                                            class="btn btn-warning btn-sm"> <i
+                                                    class="fa-regular fa-pen-to-square"></i></a>
                                         <form action="{{ route('testimonial.destroy', $testimonial->id) }}" method="POST"
                                             class="delete-form">
                                             @csrf
                                             @method('DELETE')
-                                            <button type="submit" class="btn btn-danger btn-sm my-2">Delete</button>
+                                            <button type="submit" class="btn btn-danger btn-sm mx-2"><i
+                                                        class="fa-solid fa-trash"></i></button>
                                         </form>
+                                        </div>
 
                                     </td>
                                 </tr>

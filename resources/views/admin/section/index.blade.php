@@ -1,5 +1,5 @@
 @extends('admin.layouts.app2')
-@section('title', 'Video List')
+@section('title', 'Section List')
 
 @section('content')
     @if (session('success'))
@@ -19,10 +19,10 @@
             </a> --}}
             <!-- Search -->
             <div class="py-2">
-                <form action="{{ route('video.index') }}" method="GET">
+                <form action="{{ route('section.index') }}" method="GET">
                     <div class="row g-2 ">
                         <div class="d-flex justify-content-center align-items-center me-2">
-                            <input type="text" name="search" class="form-control w-25" placeholder="Search video">
+                            <input type="text" name="search" class="form-control w-25" placeholder="Search title">
                             <button type="submit" class="btn btn-success mx-2">
                                 <i class="fa-solid fa-magnifying-glass"></i>
                             </button>
@@ -37,11 +37,11 @@
 
                 <!-- Card Header -->
                 <div class="card-header">
-                    <h3 class="card-title mb-0">Video List</h3>
+                    <h3 class="card-title mb-0">Section List</h3>
 
                     <div class="d-flex flex-column flex-md-row justify-content-center align-items-center">
-                        <a href="{{ route('video.create') }}" class="btn btn-outline-success btn-sm">
-                            <i class="fa-solid fa-plus"></i> 
+                        <a href="{{ route('section.create') }}" class="btn btn-success btn-sm">
+                            <i class="fa-solid fa-plus"></i>
                         </a>
                     </div>
                 </div>
@@ -53,47 +53,45 @@
                             <thead>
                                 <tr>
                                     <th>Title</th>
-                                    <th>Thumbnail Image</th>
+                                    <td>Description</td>
+                                    <th>Image</th>
                                     <th>Status</th>
                                     <th>Created_at</th>
+
                                     <th>Action</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($videos as $video)
+                                @foreach ($sections as $section)
                                     <tr>
-                                        <td>{{ $video->title }}</td>
-
-                                        <td> <img
-                                                src="{{ isset($video->thumbnail) ? asset('videos/' . $video->thumbnail) : '' }}"
-                                                alt="{{ $video->name }}" class="img-fluid rounded"
-                                                style="max-height: 80px;"></td>
-
-
                                         <td>
+                                            {{ $section->title }}
 
-                                            @if ($video->status === 0)
-                                                <span class="alert alert-warning p-1" role="alert">Pending</span>
-                                            @else
-                                                <span class="alert alert-success p-1 text-black"
-                                                    role="alert">Published</span>
-                                            @endif
+                                        </td>
+                                        <td>
+                                            {{ $section->description }}
                                         </td>
 
-                                        <td>{{ $video->created_at->format('m-d-Y') }}</td>
+                                        <td><img src="{{ asset('sections/' . $section->image) }}" alt=""
+                                                style="height: 200px;width:300px;">
+                                        </td>
+                                        <td>{{ $section->status }}</td>
 
+                                        <td>{{ $section->created_at }}</td>
                                         <td>
                                             <div class="d-flex">
-                                            <a href="{{ route('video.edit', $video->id) }}" class="btn btn-warning btn-sm"><i
-                                                    class="fa-regular fa-pen-to-square"></i></a>
+                                                <a href="{{ route('section.edit', $section->id) }}"
+                                                    class="btn btn-warning btn-sm"><i
+                                                        class="fa-regular fa-pen-to-square"></i></a>
+                                                <form action="{{ route('section.destroy', $section->id) }}" method="POST"
+                                                    enctype="multipart/form-data" class="delete-form">
+                                                    @csrf
+                                                    @method('DELETE')
 
-                                            <form action="{{ route('video.destroy', $video->id) }}" method="POST"
-                                                class="delete-form">
-                                                @csrf
-                                                @method('DELETE')
-                                                <button type="submit" class="btn btn-danger btn-sm mx-2"><i
-                                                        class="fa-solid fa-trash-can"></i></button>
-                                            </form>
+                                                    <button class="btn btn-danger btn-sm mx-2"><i
+                                                            class="fa-solid fa-trash-can"></i></button>
+
+                                                </form>
                                             </div>
                                         </td>
                                     </tr>
@@ -104,11 +102,11 @@
                 </div>
 
                 <!-- Card Footer -->
-                <div class="card-footer clearfix">
+                {{-- <div class="card-footer clearfix">
                     <div class="d-flex justify-content-center">
-                        {{ $videos->links('pagination::bootstrap-5') }}
+                        {{ $courses->links('pagination::bootstrap-5') }}
                     </div>
-                </div>
+                </div> --}}
 
             </div>
 

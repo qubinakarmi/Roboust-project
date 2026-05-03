@@ -6,7 +6,7 @@
     <div class="app-content mt-4">
         <div class="container-fluid">
 
-            <a href="{{ route('team.export') }}" class="btn btn-info my-2"> <i class="fa-solid fa-download fa-xl"></i> Download Team Record</a>
+            <a href="{{ route('team.export') }}" class="btn btn-info my-2"> <i class="fa-solid fa-download fa-xl"></i></a>
 
             <div class="mb-3">
                 <form action="{{ route('team.index') }}" method="GET">
@@ -39,8 +39,7 @@
                     <div class="d-flex justify-content-between align-items-center">
                         <h3 class="card-title mb-0">Teams</h3>
                         <a href="{{ route('team.create') }}" class="btn btn-success btn-sm">
-                            Add Team Member
-                        </a>
+<i class="fa-solid fa-plus"></i>                        </a>
                     </div>
                 </div>
 
@@ -88,14 +87,16 @@
                                         </td>
                                         <td>{{ $team->created_at->format('m-d-Y') }}</td>
                                         <td>
+                                            <div class="d-flex">
                                             <a href="{{ route('team.edit', $team->id) }}"
-                                                class="btn btn-primary btn-sm mb-1">Edit</a>
+                                                class="btn btn-warning btn-sm mb-1"><i class="fa-regular fa-pen-to-square"></i></a>
                                             <form action="{{ route('team.destroy', $team->id) }}" method="POST"
                                                 class="delete-form">
                                                 @csrf
                                                 @method('DELETE')
-                                                <button type="submit" class="btn btn-danger btn-sm my-2">Delete</button>
+                                                <button type="submit" class="btn btn-danger btn-sm mx-2"><i class="fa-solid fa-trash"></i></button>
                                             </form>
+                                            </div>
                                         </td>
                                     </tr>
                                 @endforeach

@@ -14,9 +14,8 @@
 
     <div class="app-content mt-4">
         <div class="container-fluid">
-            <a href="{{ route('subpage.export') }}" class="btn btn-info"> <i class="fa-solid fa-download fa-xl"></i> Download
-                Sub Content
-                Record</a>
+            <a href="{{ route('subpage.export') }}" class="btn btn-info"> <i class="fa-solid fa-download fa-xl"></i> 
+                </a>
 
             <div class="mb-3">
                 <form action="{{ route('subpage.index') }}" method="GET">

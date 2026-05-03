@@ -86,14 +86,19 @@
                                         <td>{{ $teacher->created_at->format('m-d-Y') }}</td>
 
                                         <td>
+                                            <div class="d-flex">
+                                             <a href="{{ route('teacher.edit', $teacher->id) }}" class="btn btn-warning btn-sm"> <i
+                                                    class="fa-regular fa-pen-to-square"></i>
+                                            </a>
                                             <form action="{{ route('teacher.destroy', $teacher->id) }}" method="POST"
                                                 class="delete-form">
                                                 @csrf
                                                 @method('DELETE')
-                                                <button type="submit" class="btn btn-danger btn-sm my-2">Delete</button>
+                                                <button type="submit" class="btn btn-danger btn-sm mx-2"> <i
+                                                        class="fa-solid fa-trash"></i>
+                                                </button>
                                             </form>
-                                            <a href="{{ route('teacher.edit', $teacher->id) }}"
-                                                class="btn btn-warning">Edit</a>
+                                           </div>
                                         </td>
                                     </tr>
                                 @endforeach

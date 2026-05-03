@@ -15,8 +15,8 @@
 
 
 
-            <a href="{{ route('reg.export') }}" class="btn btn-info"><i class="fa-solid fa-download fa-xl"></i> Download User
-                Records</a>
+            <a href="{{ route('reg.export') }}" class="btn btn-info"><i class="fa-solid fa-download fa-xl"></i>
+ </a>
 
             <div class="mb-3">
                 <form action="{{ route('reg.index') }}" method="GET">
@@ -91,7 +91,8 @@
                                             class="delete-form">
                                             @csrf
                                             @method('DELETE')
-                                            <button type="submit" class="btn btn-danger btn-sm my-2">Delete</button>
+                                            <button type="submit" class="btn btn-danger btn-sm my-2">                                                        <i class="fa-solid fa-trash"></i>
+</button>
                                         </form>
 
                                     </td>

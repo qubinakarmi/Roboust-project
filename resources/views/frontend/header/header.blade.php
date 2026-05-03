@@ -75,7 +75,7 @@
                             <li>
                                 <a href="{{ route('admissions') }}" class="nav-link text-left">Admissions</a>
                             </li>
-                            <li class="active">
+                            <li>
                                 <a href="{{ route('courses') }}" class="nav-link text-left">Courses</a>
                             </li>
                             <li>

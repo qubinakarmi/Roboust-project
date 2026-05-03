@@ -14,8 +14,7 @@
     <div class="app-content mt-4">
         <div class="container-fluid">
 
-            <a href="{{ route('counter.export') }}" class="btn btn-info"> <i class="fa-solid fa-download fa-xl"></i> Download
-                Counter Record</a>
+            <a href="{{ route('counter.export') }}" class="btn btn-info"> <i class="fa-solid fa-download fa-xl"></i> </a>
             <div class="mb-3">
                 <form action="{{ route('counter.index') }}" method="GET">
                     <div class="d-flex justify-content-end align-items-center">
@@ -46,7 +45,6 @@
                         <h3 class="card-title mb-0">Counters</h3>
                         {{-- create route --}}
                         <a href="{{ route('counter.create') }}" class="btn btn-success btn-sm">
-                            Add Counter
                         </a>
                     </div>
                 </div>
@@ -88,15 +86,21 @@
                                     <td>{{ $counter->created_at->format('m-d-Y') }}</td>
 
                                     <td class="text-nowrap">
-                                        <a href="{{ route('counter.edit', $counter->id) }}"
-                                            class="btn btn-primary btn-sm">Edit</a>
+                                        <div class="d-flex">
+                                        <a href="{{ route('counter.edit', $counter->id) }}" class="btn btn-warning btn-sm">
+                                            <i class="fa-regular fa-pen-to-square"></i>
+                                        </a>
                                         <form action="{{ route('counter.destroy', $counter->id) }}" method="POST"
                                             class="delete-form">
                                             @csrf
                                             @method('DELETE')
-                                            <button type="submit" class="btn btn-danger btn-sm my-2">Delete</button>
-                                        </form>
+                                            <button type="submit" class="btn btn-danger btn-sm mx-2">
 
+                                                <i class="fa-solid fa-trash"></i>
+
+                                            </button>
+                                        </form>
+</div>
                                     </td>
                                 </tr>
                             @endforeach

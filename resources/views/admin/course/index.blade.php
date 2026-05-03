@@ -41,7 +41,7 @@
 
                     <div class="d-flex flex-column flex-md-row justify-content-center align-items-center">
                         <a href="{{ route('course.create') }}" class="btn btn-success btn-sm">
-                            <i class="fa-solid fa-plus"></i> Add Course
+                            <i class="fa-solid fa-plus"></i> 
                         </a>
                     </div>
                 </div>
@@ -88,15 +88,22 @@
                                         </td>
                                         <td>{{ $course->created_at->format('m-d-Y') }}</td>
 
-                                        <td>
+                                        <td> 
+                                            <div class="d-flex ">
+                                                <a href="{{ route('course.edit', $course->id) }}" class="btn btn-warning btn-sm "> 
+                                                    <i
+                                                    class="fa-regular fa-pen-to-square"></i>
+                                            </a>
                                             <form action="{{ route('course.destroy', $course->id) }}" method="POST"
-                                                class="delete-form">
+                                                class="delete-form  mx-2">
                                                 @csrf
                                                 @method('DELETE')
-                                                <button type="submit" class="btn btn-danger btn-sm my-2">Delete</button>
+                                                <button type="submit" class="btn btn-danger btn-sm"> <i
+                                                        class="fa-solid fa-trash"></i>
+                                                </button>
                                             </form>
-                                            <a href="{{ route('course.edit', $course->id) }}"
-                                                class="btn btn-warning">Edit</a>
+                                            </div>
+
                                         </td>
                                     </tr>
                                 @endforeach

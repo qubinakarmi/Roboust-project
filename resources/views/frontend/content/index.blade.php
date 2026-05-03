@@ -114,12 +114,12 @@
                                         <span class="icon-star2 text-warning"></span>
                                     </div>
                                     <p class="desc mb-4">{{ $course->short_desc }}</p>
-                                    <p><a href="{{ route('admissions',$course->id) }}#enrollment-form" class="btn btn-primary rounded-0 px-4">Enroll In
-                                            This
-                                            Course</a></p>
+                                    <a href="{{ url('admissionPage/' . $course->id) }}#enrollment-form"
+                                        class="btn btn-primary rounded-0 px-4">
+                                        Enroll In This Course
+                                    </a>
                                 </div>
                             </div>
-                            
                         @endforeach
 
 
@@ -214,15 +214,17 @@
                     <div class="row">
                         <div class="col-lg-6">
                             <div class="post-entry-big">
-                                <a href="news-single.html" class="img-link"><img src="{{ asset('blogs/'.$mainBlog->images) }}"
-                                        alt="Image" class="img-fluid"></a>
+                                <a href="news-single.html" class="img-link"><img
+                                        src="{{ asset('blogs/' . $mainBlog->images) }}" alt="Image"
+                                        class="img-fluid"></a>
                                 <div class="post-content">
                                     <div class="post-meta">
                                         <a href="#">{{ $mainBlog->created_at->format('F d,Y') }}</a>
                                         <span class="mx-1">/</span>
-                                        <a href="#">{{ $mainBlog->title}}</a>
+                                        <a href="#">{{ $mainBlog->title }}</a>
                                     </div>
-                                    <h3 class="post-heading"><a href="news-single.html">{{ $mainBlog->short_content }}</a></h3>
+                                    <h3 class="post-heading"><a href="news-single.html">{{ $mainBlog->short_content }}</a>
+                                    </h3>
                                 </div>
                             </div>
                         </div>
@@ -234,7 +236,7 @@
                             @foreach ($otherBlogs as $blog)
                                 <div class="post-entry-big horizontal d-flex mb-4">
                                     <a href="news-single.html" class="img-link mr-4"><img
-                                            src="{{ asset('blogs/' .$blog->images) }}" alt="Image"
+                                            src="{{ asset('blogs/' . $blog->images) }}" alt="Image"
                                             class="img-fluid"></a>
                                     <div class="post-content">
                                         <div class="post-meta">
@@ -242,7 +244,8 @@
                                             <span class="mx-1">/</span>
                                             <a href="#">{{ $blog->title }}</a>
                                         </div>
-                                        <h3 class="post-heading"><a href="news-single.html">{{ $blog->short_content }}</a></h3>
+                                        <h3 class="post-heading"><a
+                                                href="news-single.html">{{ $blog->short_content }}</a></h3>
                                     </div>
                                 </div>
                             @endforeach

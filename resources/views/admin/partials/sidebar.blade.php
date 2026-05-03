@@ -38,6 +38,72 @@
 
 
 
+                <li class="nav-item">
+                    <a href="#" class="nav-link">
+                        <p> Admission<i class="nav-arrow bi bi-chevron-right"></i>
+                        </p>
+                    </a>
+
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="{{ route('enroll.index') }}" class="nav-link">
+                                <p>Admission List</p>
+                            </a>
+                        </li>
+                    </ul>
+
+                </li>
+
+                <li class="nav-item">
+                    <a href="#" class="nav-link">
+                        <p>
+                           Details<i class="nav-arrow bi bi-chevron-right"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="{{ route('section.index') }}" class="nav-link">
+                                <p>Section </p>
+                            </a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a href="{{ route('requirement.index') }}" class="nav-link">
+                                <p>Requirement </p>
+                            </a>
+                        </li>
+
+
+                    </ul>
+                </li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -74,6 +140,25 @@
                         </li>
 
                     </ul>
+
+                           <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="{{ route('video.index') }}" class="nav-link">
+                                {{-- <i class="nav-icon bi bi-circle"></i> --}}
+                                <p>Video  List</p>
+                            </a>
+                        </li>
+
+                    </ul>
+                </li>
+
+                        <li class="nav-item">
+                    <a href="{{ route('faq.index') }}" class="nav-link">
+                        <p>
+                            Faq
+                        </p>
+                    </a>
+
                 </li>
 
 
@@ -94,7 +179,7 @@
 
 
 
-                   <li class="nav-item">
+                <li class="nav-item">
                     <a href="#" class="nav-link">
                         <i class="fa-solid fa-book"></i>
                         {{-- <i class=" nav-icon fa-solid fa-person-walking-luggage"></i> --}}
@@ -194,7 +279,21 @@
 
 
 
+                <li class="nav-item">
+                    <a href="#" class="nav-link">
+                        <p> Teacher<i class="nav-arrow bi bi-chevron-right"></i>
+                        </p>
+                    </a>
 
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="{{ route('teacher.index') }}" class="nav-link">
+                                <p>Teacher List</p>
+                            </a>
+                        </li>
+                    </ul>
+
+                </li>
 
                 <li class="nav-item">
                     <a href="#" class="nav-link">
@@ -255,6 +354,11 @@
 
 
                 </li>
+
+
+
+
+
 
 
 

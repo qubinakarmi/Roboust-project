@@ -14,9 +14,7 @@
 
     <div class="app-content mt-4">
         <div class="container-fluid">
-            <a href="{{ route('page.export') }}" class="btn btn-info"> <i class="fa-solid fa-download fa-xl"></i> Download
-                Page
-                Record</a>
+            <a href="{{ route('page.export') }}" class="btn btn-info"> <i class="fa-solid fa-download fa-xl"></i></a>
 
             <div class="mb-3">
                 <form action="{{ route('page.index') }}" method="GET">
@@ -42,9 +40,9 @@
             </div>
 
             <div class="card">
-                <div class=" d-flex justify-content-start align-item-start p-2">
-                    <a href="{{ route('page.create') }}" class="btn btn-success  btn-sm p-2" id="btn"> <i
-                            class="fa-solid fa-plus"></i> Add page content</a>
+                <div class=" d-flex justify-content-center align-item-center p-2">
+                    <a href="{{ route('page.create') }}" class="btn btn-outline-success  btn-sm p-2" id="btn"> <i
+                            class="fa-solid fa-plus"></i> </a>
 
                 </div>
 
@@ -86,13 +84,13 @@
 
 
                                     <td>
-                                        <div class="d-flex justify-content-center">
+                                        <div class="d-flex ">
                                             <div class="row">
 
                                                 <div class="col-md-6">
                                                     <a href="{{ route('page.edit', $page->id) }}"
                                                         class="btn btn-warning btn-sm">
-                                                        <i class="fa-solid fa-pen-to-square"></i> Edit
+                                                        <i class="fa-solid fa-pen-to-square"></i>
                                                     </a>
                                                 </div>
                                                 <div class="col-md-6">
@@ -102,20 +100,20 @@
                                                         @method('DELETE')
 
                                                         <button type="submit" class="btn btn-danger btn-sm">
-                                                            <i class="fa-solid fa-trash"></i> Delete
+                                                            <i class="fa-solid fa-trash"></i>
                                                         </button>
                                                     </form>
                                                 </div>
                                                 <div class="col-md-6 my-2">
                                                     <a href="{{ route('subpage.create', ['page_id' => $page->id]) }}"
                                                         class="btn btn-success btn-sm">
-                                                        <i class="fa-solid fa-plus"></i> Subpage
+                                                        <i class="fa-solid fa-plus"></i>
                                                     </a>
                                                 </div>
                                                 <div class="col-md-6 my-2">
                                                     <a href="{{ route('subpage.index') }}"
                                                         class="btn btn-info btn-sm text-white">
-                                                        <i class="fa-solid fa-eye"></i> View
+                                                        <i class="fa-solid fa-eye"></i>
                                                     </a>
                                                 </div>
                                             </div>
@@ -149,7 +147,7 @@
 
                 <!-- Card Footer -->
                 <div class="card-footer clearfix">
-                    <div class="d-flex justify-content-center">
+                    <div class="d-flex ">
                         <span class="pagination px-2">{{ $pages->links('pagination::bootstrap-5') }}</span>
                     </div>
                 </div>
