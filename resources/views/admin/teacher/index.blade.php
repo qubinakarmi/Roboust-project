@@ -2,6 +2,15 @@
 @section('title', 'Teacher List')
 
 @section('content')
+
+
+    @if (session('error'))
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            {{ session('error') }}
+
+            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+        </div>
+    @endif
     @if (session('success'))
         <div class="alert alert-success alert-dismissible fade show" role="alert">
             {{ session('success') }}
@@ -64,10 +73,10 @@
                             <tbody>
                                 @foreach ($teachers as $teacher)
                                     <tr>
-                                        <td>{{ $teacher->name }}</td>
-                                        <td>{{ $teacher->subject }}</td>
+                                        <td>{{ $teacher->name ?? 'N/A' }}</td>
+                                        <td>{{ $teacher->subject ?? 'N/A' }}</td>
                                         <td class="text-truncate" style="max-width: 200px;">
-                                            {{ $teacher->short_desc }}
+                                            {{ $teacher->short_desc ?? 'N/A' }}
                                         </td>
                                         <td>
                                             <img src="{{ isset($teacher->image) ? asset('teachers/' . $teacher->image) : '' }}"
@@ -83,22 +92,23 @@
                                                     role="alert">Published</span>
                                             @endif
                                         </td>
-                                        <td>{{ $teacher->created_at->format('m-d-Y') }}</td>
+                                        <td>{{ $teacher->created_at->format('m-d-Y') ?? 'N/A' }}</td>
 
                                         <td>
                                             <div class="d-flex">
-                                             <a href="{{ route('teacher.edit', $teacher->id) }}" class="btn btn-warning btn-sm"> <i
-                                                    class="fa-regular fa-pen-to-square"></i>
-                                            </a>
-                                            <form action="{{ route('teacher.destroy', $teacher->id) }}" method="POST"
-                                                class="delete-form">
-                                                @csrf
-                                                @method('DELETE')
-                                                <button type="submit" class="btn btn-danger btn-sm mx-2"> <i
-                                                        class="fa-solid fa-trash"></i>
-                                                </button>
-                                            </form>
-                                           </div>
+                                                <a href="{{ route('teacher.edit', $teacher->id) }}"
+                                                    class="btn btn-warning btn-sm"> <i
+                                                        class="fa-regular fa-pen-to-square"></i>
+                                                </a>
+                                                <form action="{{ route('teacher.destroy', $teacher->id) }}" method="POST"
+                                                    class="delete-form">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <button type="submit" class="btn btn-danger btn-sm mx-2"> <i
+                                                            class="fa-solid fa-trash"></i>
+                                                    </button>
+                                                </form>
+                                            </div>
                                         </td>
                                     </tr>
                                 @endforeach

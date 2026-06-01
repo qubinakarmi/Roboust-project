@@ -61,18 +61,20 @@
                             </thead>
                             <tbody>
                                 @foreach ($collects as $collect)
-                                <tr>
-                                    <td>{{ $collect->question }}</td>
-                                    <td>{{ $collect->answer }}</td>
-                                    <td>       @if ($collect->status === 0)
+                                    <tr>
+                                        <td>{{ $collect->question ?? 'N/A'  }}</td>
+                                        <td>{{ $collect->answer ?? 'N/A'  }}</td>
+                                        <td>
+                                            @if ($collect->status === 0)
                                                 <span class="alert alert-warning p-1" role="alert">Pending</span>
                                             @else
                                                 <span class="alert alert-success p-1 text-black"
                                                     role="alert">Published</span>
-                                            @endif</td>
-                                    <td>{{ $collect->created_at }}</td>
-                                    <td>
-                                                                 <div class="d-flex justify-content-center align-items-center gap-2">
+                                            @endif
+                                        </td>
+                                        <td>{{ $collect->created_at ?? 'N/A'  }}</td>
+                                        <td>
+                                            <div class="d-flex justify-content-center align-items-center gap-2">
 
                                                 <!-- Edit -->
                                                 <a href="{{ route('faq.edit', $collect->id) }}"
@@ -85,17 +87,16 @@
                                                     class="delete-form">
                                                     @csrf
                                                     @method('DELETE')
-                                                    <button type="submit"
-                                                        class="btn btn-danger btn-sm   ">
+                                                    <button type="submit" class="btn btn-danger btn-sm   ">
                                                         <i class="fa-solid fa-trash"></i>
                                                     </button>
                                                 </form>
 
                                                 <!-- View -->
-                                            
+
 
                                             </div>
-                                    </td>
+                                        </td>
                                     </tr>
                                 @endforeach
                             </tbody>

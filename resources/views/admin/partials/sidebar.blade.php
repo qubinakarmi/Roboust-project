@@ -57,7 +57,7 @@
                 <li class="nav-item">
                     <a href="#" class="nav-link">
                         <p>
-                           Details<i class="nav-arrow bi bi-chevron-right"></i>
+                            Details<i class="nav-arrow bi bi-chevron-right"></i>
                         </p>
                     </a>
                     <ul class="nav nav-treeview">
@@ -140,19 +140,60 @@
                         </li>
 
                     </ul>
+                <li class="nav-item">
+                    <a href="{{ route('certificate.index') }}" class="nav-link">
+                        <p>
+                            Certificate
+                        </p>
+                    </a>
 
-                           <ul class="nav nav-treeview">
-                        <li class="nav-item">
-                            <a href="{{ route('video.index') }}" class="nav-link">
-                                {{-- <i class="nav-icon bi bi-circle"></i> --}}
-                                <p>Video  List</p>
-                            </a>
-                        </li>
+                </li>
+                      <li class="nav-item">
+                    <a href="{{ route('about.index') }}" class="nav-link">
+                        <p>
+                            About
+                        </p>
+                    </a>
 
-                    </ul>
+                </li>
+                <li class="nav-item">
+                    <a href="{{ route('brand.index') }}" class="nav-link">
+                        <p>
+                            Brand
+                        </p>
+                    </a>
+
                 </li>
 
-                        <li class="nav-item">
+                <ul class="nav nav-treeview">
+                    <li class="nav-item">
+                        <a href="{{ route('video.index') }}" class="nav-link">
+                            {{-- <i class="nav-icon bi bi-circle"></i> --}}
+                            <p>Video List</p>
+                        </a>
+                    </li>
+
+                </ul>
+                </li>
+                     <li class="nav-item">
+                    <a href="{{ route('carier.index') }}" class="nav-link">
+                        <p>
+                            Career
+                        </p>
+                    </a>
+
+                </li>
+                    </li>
+                     <li class="nav-item">
+                    <a href="{{ route('enrollment.index') }}" class="nav-link">
+                        <p>
+                            Enroll
+                        </p>
+                    </a>
+
+                </li>
+
+                <li class="nav-item">
                     <a href="{{ route('faq.index') }}" class="nav-link">
                         <p>
                             Faq
@@ -160,8 +201,44 @@
                     </a>
 
                 </li>
+                     <li class="nav-item">
+                    <a href="{{ route('whyUs.index') }}" class="nav-link">
+                        <p>
+                            WhyUS
+                        </p>
+                    </a>
 
+                </li>
 
+                <li class="nav-item">
+                    <a href="#" class="nav-link">
+                        <i class="nav-icon fa-solid fa-image"></i>
+
+                        <p> Alumini <i class="nav-arrow bi bi-chevron-right"></i>
+                        </p>
+                    </a>
+
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="{{ route('alum.create') }}" class="nav-link">
+
+                                <i class="fa-thin fa-image"></i>
+                                <p>Add Alumini</p>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+
+   </li>
+                    </li>
+                     <li class="nav-item">
+                    <a href="{{ route('offices.index') }}" class="nav-link">
+                        <p>
+                            Office
+                        </p>
+                    </a>
+
+                </li>
 
                 <li class="nav-item">
                     <a href="{{ route('counter.index') }}" class="nav-link">
@@ -171,6 +248,16 @@
                             Counter
                             {{-- <span class="nav-badge badge text-bg-secondary me-3">6</span> --}}
                             {{-- <i class="nav-arrow bi bi-chevron-right"></i> --}}
+                        </p>
+                    </a>
+
+                </li>
+
+                <li class="nav-item">
+                    <a href="{{ route('rate.index') }}" class="nav-link">
+                        <p>
+                            Rate
+
                         </p>
                     </a>
 
@@ -191,6 +278,13 @@
                         <li class="nav-item">
                             <a href="{{ route('course.index') }}" class="nav-link">
                                 <p>Course List</p>
+                            </a>
+                        </li>
+                    </ul>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="{{ route('program.index') }}" class="nav-link">
+                                <p>Program List</p>
                             </a>
                         </li>
                     </ul>
@@ -348,6 +442,14 @@
                         <li class="nav-item">
                             <a href="{{ route('page.index') }}" class="nav-link">
                                 <p>Pages List</p>
+                            </a>
+                        </li>
+                    </ul>
+
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="{{ route('page.index') }}" class="nav-link">
+                                <p>Pages </p>
                             </a>
                         </li>
                     </ul>

@@ -1,4 +1,6 @@
 <?php
+
+use App\Http\Controllers\Admin\AboutUsController;
 use App\Http\Controllers\Admin\AdminLoginController;
 use App\Http\Controllers\Admin\AdminHomeController;
 use App\Http\Controllers\Admin\ListController;
@@ -20,9 +22,19 @@ use App\Http\Controllers\Admin\SubPageController;
 use App\Http\Controllers\Admin\TeacherController;
 use App\Http\Controllers\Admin\VideoController;
 use App\Http\Controllers\Admin\AdmissionController;
+use App\Http\Controllers\Admin\AluminiController;
+use App\Http\Controllers\Admin\BrandController;
+use App\Http\Controllers\Admin\CareerController;
+use App\Http\Controllers\admin\CertificateController;
+use App\Http\Controllers\Admin\EnrollController;
 use App\Http\Controllers\Admin\SectionController;
 use App\Http\Controllers\Admin\RequirementController;
 use App\Http\Controllers\Admin\FaqController;
+use App\Http\Controllers\Admin\OfficeController;
+use App\Http\Controllers\Admin\PlacementController;
+use App\Http\Controllers\admin\ProgramController;
+use App\Http\Controllers\Admin\RateController;
+use App\Http\Controllers\Admin\WhyUsController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -54,7 +66,6 @@ Route::get('subpage/export', [SubPageController::class, 'export'])->name('subpag
 // Resource route
 Route::get('blog_view', [BlogController::class, 'view'])->name('blog.view');
 Route::get('service_view', [ServiceController::class, 'view'])->name('services.view');
-
 Route::resource('author', AuthorController::class);
 Route::resource('blog', BlogController::class);
 Route::resource('category', CategoryController::class);
@@ -72,10 +83,27 @@ Route::resource('subpage', SubPageController::class);
 Route::resource('course', CourseController::class);
 Route::resource('video',VideoController::class);
 Route::resource('teacher',TeacherController::class);
-Route::resource('enroll',AdmissionController::class);
+Route::resource('admit',AdmissionController::class);
 Route::resource('section',SectionController::class);
 Route::resource('requirement',RequirementController::class);
 Route::resource('faq',FaqController::class);
+Route::resource('rate',RateController::class);
+Route::resource('alum',AluminiController::class);
+Route::resource('place',PlacementController::class);
+Route::resource('program',ProgramController::class);
+Route::resource('certificate',CertificateController::class);
+Route::resource('brand',BrandController::class);
+Route::resource('about',AboutUsController::class);
+Route::resource('whyUs',WhyUsController::class);
+Route::resource('carier',CareerController::class);
+Route::resource('enrollment',EnrollController::class);
+Route::resource('offices', OfficeController::class);
+
+
+
+
+
+
 
 
 

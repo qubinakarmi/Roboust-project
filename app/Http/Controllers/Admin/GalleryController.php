@@ -22,7 +22,7 @@ class GalleryController extends Controller
      */
     public function create()
     {
-        $galleries = Gallery::latest()->paginate(5);
+        $galleries = Gallery::latest()->paginate(8);
 
         return view('admin.gallery.gallery', compact('galleries'));
     }

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Course;
+use Illuminate\Support\Str;
 
 class CourseController extends Controller
 {
@@ -42,13 +43,13 @@ class CourseController extends Controller
     public function store(Request $request)
     {
         //
-
         $request->validate([
             'title' => 'required',
             'sub_title' => 'required',
-            'price' => 'required',
             'short_desc' => 'required',
-            'logo' => 'required|mimes:jpeg,jpg,png,gif,svg|max:2048'
+            'duration' => 'required',
+            'logo' => 'required|mimes:jpeg,jpg,png,gif,svg|max:2048',
+
         ]);
 
 
@@ -62,11 +63,20 @@ class CourseController extends Controller
         Course::create([
 
             'title' => $request->title,
+            'slug' => Str::slug($request->title, '-'),
             'sub_title' => $request->sub_title,
-            'price' => $request->price,
+            'duration' => $request->duration,
             'short_desc' => $request->short_desc,
             'image' => $fileName,
-            'status' => $request->status
+            'course_info' => $request->course_info,
+            'career_outcome' => $request->career_outcome,
+            'tool' => $request->tool,
+            'certification' => $request->certification,
+            'benefits' => $request->benefits,
+
+
+            'video' => $request->video,
+            'status' => $request->status,
 
         ]);
 
@@ -103,7 +113,7 @@ class CourseController extends Controller
         $request->validate([
             'title' => 'required',
             'sub_title' => 'required',
-            'price' => 'required',
+            'duration' => 'required',
             'short_desc' => 'required',
             'logo' => 'mimes:jpeg,jpg,png,gif,svg|max:2048'
         ]);
@@ -129,7 +139,7 @@ class CourseController extends Controller
 
             'title' => $request->title,
             'sub_title' => $request->sub_title,
-            'price' => $request->price,
+            'duration' => $request->duration,
             'short_desc' => $request->short_desc,
             'image' => $fileName,
             'status' => $request->status

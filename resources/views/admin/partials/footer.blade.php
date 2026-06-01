@@ -39,11 +39,13 @@
     </style>
 
     <script>
-        ClassicEditor
-            .create(document.querySelector('#editor'))
-            .catch(error => {
-                console.error(error);
-            });
+        document.querySelectorAll('.editor').forEach((element) => {
+            ClassicEditor
+                .create(element)
+                .catch(error => {
+                    console.error(error);
+                });
+        });
     </script>
 
     {{-- image javascript --}}
@@ -61,81 +63,81 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/parsley.js/2.9.2/parsley.min.js"
         integrity="sha512-eyHL1atYNycXNXZMDndxrDhNAegH2BDWt1TmkXJPoGf1WLlNYt08CSjkqF5lnCRmdm3IrkHid8s2jOUY4NIZVQ=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-<script>
-$(document).ready(function () {
+    <script>
+        $(document).ready(function() {
 
-    const maxTags = 10;
+            const maxTags = 10;
 
-    $("#tags_input").tagsManager({
-        hiddenTagListName: 'hidden_tags',
-        prefilled: @json($currentTags ?? [])
-    });
-
-    // Listen for input / add event
-    $(document).on('keyup', '#tags_input', function (e) {
-
-        let currentTags = $('.tm-tag').length; // tagsManager uses .tm-tag class
-
-        if (currentTags >= maxTags) {
-
-            Swal.fire({
-                icon: 'warning',
-                title: 'Limit Reached',
-                text: 'You can only add up to ' + maxTags + ' tags.'
+            $("#tags_input").tagsManager({
+                hiddenTagListName: 'hidden_tags',
+                prefilled: @json($currentTags ?? [])
             });
 
-            // optional: prevent further input
-         }
-    });
+            // Listen for input / add event
+            $(document).on('keyup', '#tags_input', function(e) {
 
-});
-</script>
+                let currentTags = $('.tm-tag').length; // tagsManager uses .tm-tag class
 
+                if (currentTags >= maxTags) {
 
-<script>
-        document.addEventListener("DOMContentLoaded", function () {
+                    Swal.fire({
+                        icon: 'warning',
+                        title: 'Limit Reached',
+                        text: 'You can only add up to ' + maxTags + ' tags.'
+                    });
 
-    document.querySelectorAll(".drop-area").forEach((dropArea) => {
-
-        let input = dropArea.querySelector(".file-input");
-        let preview = dropArea.nextElementSibling; // next div = preview
-        let selectedFiles = [];
-
-        dropArea.addEventListener("click", () => input.click());
-
-        ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
-            dropArea.addEventListener(eventName, e => e.preventDefault());
-        });
-
-        dropArea.addEventListener("drop", function (e) {
-            handleFiles(e.dataTransfer.files);
-        });
-
-        input.addEventListener("change", function () {
-            handleFiles(this.files);
-        });
-
-        function handleFiles(files) {
-            Array.from(files).forEach(file => {
-                if (!file.type.startsWith("image/")) return;
-                selectedFiles.push(file);
+                    // optional: prevent further input
+                }
             });
-            showPreview();
-        }
 
-        function showPreview() {
-            preview.innerHTML = "";
+        });
+    </script>
 
-            selectedFiles.forEach((file, index) => {
 
-                let reader = new FileReader();
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
 
-                reader.onload = function (e) {
+            document.querySelectorAll(".drop-area").forEach((dropArea) => {
 
-                    let col = document.createElement("div");
-                    col.classList.add("col-md-3", "mb-3");
+                let input = dropArea.querySelector(".file-input");
+                let preview = dropArea.nextElementSibling; // next div = preview
+                let selectedFiles = [];
 
-                    col.innerHTML = `
+                dropArea.addEventListener("click", () => input.click());
+
+                ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
+                    dropArea.addEventListener(eventName, e => e.preventDefault());
+                });
+
+                dropArea.addEventListener("drop", function(e) {
+                    handleFiles(e.dataTransfer.files);
+                });
+
+                input.addEventListener("change", function() {
+                    handleFiles(this.files);
+                });
+
+                function handleFiles(files) {
+                    Array.from(files).forEach(file => {
+                        if (!file.type.startsWith("image/")) return;
+                        selectedFiles.push(file);
+                    });
+                    showPreview();
+                }
+
+                function showPreview() {
+                    preview.innerHTML = "";
+
+                    selectedFiles.forEach((file, index) => {
+
+                        let reader = new FileReader();
+
+                        reader.onload = function(e) {
+
+                            let col = document.createElement("div");
+                            col.classList.add("col-md-3", "mb-3");
+
+                            col.innerHTML = `
                         <div class="card shadow-sm position-relative">
                             <img src="${e.target.result}" 
                                  class="card-img-top"
@@ -147,29 +149,29 @@ $(document).ready(function () {
                         </div>
                     `;
 
-                    col.querySelector("button").addEventListener("click", () => {
-                        selectedFiles.splice(index, 1);
-                        showPreview();
+                            col.querySelector("button").addEventListener("click", () => {
+                                selectedFiles.splice(index, 1);
+                                showPreview();
+                            });
+
+                            preview.appendChild(col);
+                        };
+
+                        reader.readAsDataURL(file);
                     });
 
-                    preview.appendChild(col);
-                };
+                    updateInputFiles();
+                }
 
-                reader.readAsDataURL(file);
+                function updateInputFiles() {
+                    const dataTransfer = new DataTransfer();
+                    selectedFiles.forEach(file => dataTransfer.items.add(file));
+                    input.files = dataTransfer.files;
+                }
+
             });
 
-            updateInputFiles();
-        }
-
-        function updateInputFiles() {
-            const dataTransfer = new DataTransfer();
-            selectedFiles.forEach(file => dataTransfer.items.add(file));
-            input.files = dataTransfer.files;
-        }
-
-    });
-
-});
+        });
     </script>
 
 

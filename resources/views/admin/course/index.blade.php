@@ -41,7 +41,7 @@
 
                     <div class="d-flex flex-column flex-md-row justify-content-center align-items-center">
                         <a href="{{ route('course.create') }}" class="btn btn-success btn-sm">
-                            <i class="fa-solid fa-plus"></i> 
+                            <i class="fa-solid fa-plus"></i>
                         </a>
                     </div>
                 </div>
@@ -53,6 +53,7 @@
                             <thead>
                                 <tr>
                                     <th>Title</th>
+                                    <th>Slug</th>
                                     <th>Sub Title</th>
                                     <th>Short Description</th>
                                     <th>Price</th>
@@ -67,6 +68,8 @@
                                 @foreach ($courses as $course)
                                     <tr>
                                         <td>{{ $course->title }}</td>
+                                        <td>{{ $course->slug }}</td>
+
                                         <td>{{ $course->sub_title }}</td>
                                         <td class="text-truncate" style="max-width: 200px;">
                                             {{ $course->short_desc }}
@@ -88,20 +91,20 @@
                                         </td>
                                         <td>{{ $course->created_at->format('m-d-Y') }}</td>
 
-                                        <td> 
+                                        <td>
                                             <div class="d-flex ">
-                                                <a href="{{ route('course.edit', $course->id) }}" class="btn btn-warning btn-sm "> 
-                                                    <i
-                                                    class="fa-regular fa-pen-to-square"></i>
-                                            </a>
-                                            <form action="{{ route('course.destroy', $course->id) }}" method="POST"
-                                                class="delete-form  mx-2">
-                                                @csrf
-                                                @method('DELETE')
-                                                <button type="submit" class="btn btn-danger btn-sm"> <i
-                                                        class="fa-solid fa-trash"></i>
-                                                </button>
-                                            </form>
+                                                <a href="{{ route('course.edit', $course->id) }}"
+                                                    class="btn btn-warning btn-sm ">
+                                                    <i class="fa-regular fa-pen-to-square"></i>
+                                                </a>
+                                                <form action="{{ route('course.destroy', $course->id) }}" method="POST"
+                                                    class="delete-form  mx-2">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <button type="submit" class="btn btn-danger btn-sm"> <i
+                                                            class="fa-solid fa-trash"></i>
+                                                    </button>
+                                                </form>
                                             </div>
 
                                         </td>
@@ -113,11 +116,11 @@
                 </div>
 
                 <!-- Card Footer -->
-                <div class="card-footer clearfix">
+                {{-- <div class="card-footer clearfix">
                     <div class="d-flex justify-content-center">
                         {{ $courses->links('pagination::bootstrap-5') }}
                     </div>
-                </div>
+                </div> --}}
 
             </div>
 

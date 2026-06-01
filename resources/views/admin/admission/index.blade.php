@@ -62,23 +62,23 @@
                             <tbody>
                                 @foreach ($admissions as $admission)
                                     <tr>
-                                        <td> {{ $admission->fullname }}</td>
-                                        <td> {{ $admission->email }}</td>
-                                        <td> {{ $admission->phone }}</td>
-                                        <td> {{ $admission->course->title }}</td>
-                                        <td> {{ $admission->start_date }}</td>
-                                        <td> {{ $admission->address }}</td>
-                                        <td> {{ $admission->message }}</td>
-  <td>
-                                                       <form action="{{ route('enroll.destroy', $admission->id) }}" method="POST"
-                                            class="delete-form">
-                                            @csrf
-                                            @method('DELETE')
-                                            <button type="submit" class="btn btn-danger btn-sm my-2">
-                                                                                                        <i class="fa-solid fa-trash"></i>
+                                        <td> {{ $admission->fullname ?? 'N/A' }}</td>
+                                        <td> {{ $admission->email ?? 'N/A' }}</td>
+                                        <td> {{ $admission->phone ?? 'N/A' }}</td>
+                                        <td> {{ $admission->course->title ?? 'N/A' }}</td>
+                                        <td> {{ $admission->start_date ?? 'N/A' }}</td>
+                                        <td> {{ $admission->address ?? 'N/A' }}</td>
+                                        <td> {{ $admission->message ?? 'N/A' }}</td>
+                                        <td>
+                                            <form action="{{ route('enroll.destroy', $admission->id) }}" method="POST"
+                                                class="delete-form">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit" class="btn btn-danger btn-sm my-2">
+                                                    <i class="fa-solid fa-trash"></i>
 
-                                            </button>
-                                        </form>
+                                                </button>
+                                            </form>
                                         </td>
                                     </tr>
                                 @endforeach

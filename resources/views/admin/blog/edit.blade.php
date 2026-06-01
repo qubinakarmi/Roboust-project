@@ -75,7 +75,7 @@
 
 
 
-                                    <textarea id="editor" name="blog_content" class="form-control" style="color: black;min-height:300px;" required>{{ old('blog_content', $datas->blog_content) }}</textarea>
+                                    <textarea  name="blog_content" class="form-control editor" style="color: black;min-height:300px;" required>{{ old('blog_content', $datas->blog_content) }}</textarea>
 
 
                                     @error('blog_content')

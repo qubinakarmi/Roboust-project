@@ -120,7 +120,7 @@
 
                                                 <!-- Delete -->
                                                 <form action="{{ route('blog.destroy', $blog->id) }}" method="POST"
-                                                    class="m-0">
+                                                    class="m-0 delete-form">
                                                     @csrf
                                                     @method('DELETE')
                                                     <button type="submit"

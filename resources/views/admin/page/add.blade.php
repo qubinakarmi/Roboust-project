@@ -55,7 +55,7 @@
 
                                 <div class="col-md-12">
                                     <label class="form-label">Detail Content</label>
-                                    <textarea name="detail_content" class="form-control" placeholder="Enter a Detail Content">{{ old('detail_content') }}</textarea>
+                                    <textarea name="detail_content" class="form-control editor" placeholder="Enter a Detail Content">{{ old('detail_content') }}</textarea>
                                     @error('detail_content')
                                         <span style="color: red;">{{ $message }}</span>
                                     @enderror

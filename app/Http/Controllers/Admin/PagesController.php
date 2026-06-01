@@ -17,7 +17,7 @@ class PagesController extends Controller
 
     public function index(Request $request)
     {
-        $pages = Page::when($request->filled('search'), function ($query) use ($request) {
+        $pages = Page::with('pageContent')->when($request->filled('search'), function ($query) use ($request) {
             $query->where('title', 'LIKE', '%' . $request->search . '%');
         })->when($request->filled('status'), function ($query) use ($request) {
             $query->where('status', $request->status);

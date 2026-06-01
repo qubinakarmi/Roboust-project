@@ -1,0 +1,166 @@
+@extends('admin.layouts.app2')
+@section('title', 'Office List')
+
+@section('content')
+    <div class="app-content mt-4">
+        <div class="container-fluid">
+
+
+
+            @if (session('success'))
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                    {{ session('success') }}
+
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            @endif
+
+            {{-- <a href="{{ route('blog.export') }}" class="btn btn-info">
+                <i class="fa-solid fa-download fa-xl"></i> 
+            </a> --}}
+
+
+
+            {{-- <div class="mb-3">
+                <form action="{{ route('blog.index') }}" method="GET">
+                    <div class="d-flex justify-content-center align-items-centeralign-items-center">
+
+
+                        <!-- Search input -->
+                        <input type="text" name="search" placeholder="Search" class="form-control me-2 w-25"
+                            value="{{ request('search') }}">
+
+                        <!-- Author dropdown -->
+                        <select id="authorFilter" name="author_id" class="form-control  me-2 w-25">
+                            <option value="">Select Author</option>
+                            @foreach ($authors as $author)
+                                <option value="{{ $author->id }}" {{ 'author_id' == $author->id ? 'selected' : '' }}>
+                                    {{ $author->name }}
+                                </option>
+                            @endforeach
+                        </select>
+                        <button type="submit" class="btn btn-success mx-2">
+                            <i class="fa-solid fa-magnifying-glass"></i>
+                        </button>
+
+                    </div>
+                </form>
+            </div> --}}
+
+
+
+
+
+
+
+
+            <div class="card">
+
+                <!-- Card Header -->
+                <div class="card-header">
+                    <h3 class="card-title mb-0">Office Posts</h3>
+
+                    <div class="d-flex justify-content-center align-items-center">
+                        <a href="{{ route('offices.create') }}" class="btn btn-success btn-sm p-2" id="btn">
+                            <i class="fa-solid fa-plus"></i>
+                        </a>
+                    </div>
+
+
+                </div>
+
+                <!-- Card Body -->
+                <div class="card-body p-0">
+                    <div class="table-responsive">
+
+                        <table class="table table-striped table-hover mb-0">
+                            <thead>
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Email</th>
+                                    <th>Address</th>
+                                    <th>Status</th>
+                                    <th>Created_at</th>
+
+                                    <th style="width: 180px">Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach ($offices as $office)
+                                    <tr>
+                                        <td>{{ $office->name ?? 'N/A' }}</td>
+                                        <td>{{ $office->email ?? 'N/A' }}</td>
+                                        <td>{{ $office->address ?? 'N/A' }}</td>
+
+                                        <td>
+
+                                            @if ($office->status === 0)
+                                                <span class="alert alert-warning p-1" role="alert">hidden</span>
+                                            @else
+                                                <span class="alert alert-success p-1 text-black"
+                                                    role="alert">visible</span>
+                                            @endif
+                                        </td>
+
+
+                                        <td>{{ $office->created_at->format('m-d-Y') }}</td>
+
+
+
+                                        <td>
+                                            <div class="d-flex justify-content-center align-items-center gap-2">
+
+                                                <!-- Edit -->
+                                                <a href="{{ route('offices.edit', $office->id) }}"
+                                                    class="btn btn-warning btn-sm">
+                                                    <i class="fa-regular fa-pen-to-square"></i>
+                                                </a>
+
+                                                <!-- Delete -->
+                                                <form action="{{ route('offices.destroy', $office->id) }}"
+                                                    method="POST" class="m-0 delete-form">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <button type="submit" class="btn btn-danger btn-sm   ">
+                                                        <i class="fa-solid fa-trash"></i>
+                                                    </button>
+                                                </form>
+
+                                                <!-- View -->
+
+
+                                            </div>
+                                        </td>
+                                    </tr>
+                                @endforeach
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+
+
+
+                <!-- Card Footer -->
+                {{-- <div class="card-footer clearfix">
+                    <div class="d-flex justify-content-center">
+                        <span class="pagination px-2">{{ $certificates->links('pagination::bootstrap-5') }}</span>
+                    </div>
+                </div> --}}
+
+            </div>
+
+        </div>
+    </div>
+
+
+
+
+
+
+
+
+
+
+@endsection

@@ -55,7 +55,7 @@
 
                         <thead>
                             <tr>
-                                <th>Title</th>
+                                <th>Page_id</th>
 
                                 <th>Sub Title</th>
 
@@ -68,8 +68,7 @@
                         <tbody>
                             @foreach ($pages as $page)
                                 <tr>
-                                    <td>{{ $page->title ?? 'N\A' }}</td>
-                                    <td>{{ $page->sub_title ?? 'N\A' }}</td>
+<td>{{ $page->pageContent?->title ?? 'N/A' }}</td>                                    <td>{{ $page->sub_title ?? 'N\A' }}</td>
 
                                     <td><img src="{{ asset('pages/' . $page->image) }}" alt="{{ $page->title }}"
                                             style="height: 100px;width:100px;"></td>
@@ -80,7 +79,7 @@
                                             <span class="alert alert-success p-1 text-black" role="alert">Published</span>
                                         @endif
                                     </td>
-                                    <td>{{ $page->created_at->format('m-d-Y') }}</td>
+                                    <td>{{ $page->created_at ?? 'N\A' }}</td>
 
 
                                     <td>

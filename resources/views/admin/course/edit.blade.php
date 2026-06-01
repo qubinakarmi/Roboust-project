@@ -50,12 +50,12 @@
                                 </div>
 
                                 <div class="col-md-12">
-                                    <label class="form-label">Price</label>
-                                    <input type="text" name="price" class="form-control" placeholder="Enter price"
+                                    <label class="form-label">duration</label>
+                                    <input type="text" name="duration" class="form-control" placeholder="Enter duration"
                                         data-parsley-trigger="keyup" data-parsley-maxlength="25" required
-                                        value="{{ old('price', $course->price) }}">
+                                        value="{{ old('duration', $course->duration) }}">
 
-                                    @error('price')
+                                    @error('duration')
                                         <span style="color: red;">{{ $message }}</span>
                                     @enderror
                                 </div>

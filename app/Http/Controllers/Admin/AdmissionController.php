@@ -40,7 +40,6 @@ class AdmissionController extends Controller
             'fullname'=>'required',
             'email'=>'required',
             'phone'=>'required|max:10',
-
             'start_date'=>'required',
             'address'=>'required',
             'message'=>'required',

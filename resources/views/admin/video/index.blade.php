@@ -62,7 +62,7 @@
                             <tbody>
                                 @foreach ($videos as $video)
                                     <tr>
-                                        <td>{{ $video->title }}</td>
+                                        <td>{{ $video->title ?? 'N/A'  }}</td>
 
                                         <td> <img
                                                 src="{{ isset($video->thumbnail) ? asset('videos/' . $video->thumbnail) : '' }}"
@@ -80,7 +80,7 @@
                                             @endif
                                         </td>
 
-                                        <td>{{ $video->created_at->format('m-d-Y') }}</td>
+                                        <td>{{ $video->created_at->format('m-d-Y') ?? 'N/A'  }}</td>
 
                                         <td>
                                             <div class="d-flex">
